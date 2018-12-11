@@ -14,9 +14,9 @@
         require_once("Database_Connection.php");
 
         if(isset($_POST['submit'])){
-            $sql = "INSERT INTO `child` (`id`, `hobbies`,`medicalProblems`,`disability`,`parentSsn`)
-                    VALUES (NULL,'".$_POST['hobbies']."','".$_POST['medicalProblem']."','".$_POST['disabilty']."','".$_SESSION["ssn"]."')";
-            
+            $sql = "INSERT INTO `child` (`id`,`name`, `hobbies`,`medicalProblems`,`disability`,`parentId`)
+                    VALUES (NULL,'".$_POST['name']."','".$_POST['hobbies']."','".$_POST['medicalProblem']."','".$_POST['disabilty']."','".$_SESSION["id"]."')";
+
             if (mysqli_query($conn,$sql)) {
                 header("location:child.php");
             }
@@ -24,9 +24,11 @@
                 echo $sql;
             }
         }
-    ?>    
+    ?>
 
     <form name="childForm" action="" method="post">
+      <input type="text" name="name" placeholder="Child Name"/><br>
+
     <input type="text" name="hobbies" placeholder="Hobbies"/><br>
     <input type="text" name="medicalProblem" placeholder="Medical Problems"/><br>
     <input type="text" name="disabilty" placeholder="Disabilty"/><br>
@@ -34,4 +36,3 @@
     <input type="submit" name="submit"/>
 </body>
 </html>
-

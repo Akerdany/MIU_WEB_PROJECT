@@ -15,7 +15,7 @@
 <?php
 
   session_start();
-    include("connection1.php");
+    include("Database_Connection.php");
 
 if (isset($_SESSION['email']))
 {
@@ -25,7 +25,7 @@ if (isset($_SESSION['email']))
 
      <button onclick="ReloadingPage()">Reload page</button>';
      echo"
-     <a href='logout1.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
+     <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
      <a href='../html/Nursery Website.php'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
 
      ";
@@ -90,7 +90,7 @@ echo "</p></div>";
 
 else
 {
-  header("location:logout1.php");
+  header("location:logOut.php");
 }
 
 ?>

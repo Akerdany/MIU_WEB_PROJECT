@@ -1,6 +1,6 @@
 <?php
   date_default_timezone_set('Africa/Cairo');
-  include 'connection1.php';
+  include 'Database_Connection.php';
   include 'includes/comment.inc.php';
  ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
     <textarea name='message'></textarea><br>
     <button  type='submit' name='commentSubmit'>Comment</button>
     <button onclick='ReloadingPage()'>Reload page</button>
-    <a href='logout1.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
+    <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
     <a href='../html/Nursery Website.php'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
 
     </form>";

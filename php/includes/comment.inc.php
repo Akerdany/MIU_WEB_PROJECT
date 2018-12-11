@@ -1,15 +1,15 @@
 <?php
-session_start();
+
 function setComments($conn)
 {
 
   if (isset($_POST['commentSubmit'])) {
 
-     $email=$_SESSION['email'];
+     $id=$_SESSION['id'];
       $date=$_POST['date'];
       $message=$_POST['message'];
 
-      $sql = "INSERT INTO `comments` ( `userId`, `date`, `message`) VALUES( '".$email."'
+      $sql = "INSERT INTO `comments` ( `userId`, `date`, `message`) VALUES( '".$id."'
         ,'".$date."', '".$message."')";
        $result= mysqli_query($conn,$sql);
 
@@ -20,19 +20,41 @@ function setComments($conn)
 function getComments($conn)
 {
   $sql= 'SELECT * FROM comments';
+
   $result= mysqli_query($conn,$sql);
-  $email=$_SESSION['email'];
+
+
+//  $email=$_SESSION['username'];
+
+
+
   while ($row=mysqli_fetch_assoc($result)) {
   echo "<div class='comment-box'><p>";
 
+  $sqlFinder= 'SELECT user.email
+FROM user
+INNER JOIN comments ON user.id=comments.userId';
+
+  $resultFinder= mysqli_query($conn,$sqlFinder);
+$email='';
+  while($rowFinder =mysqli_fetch_array($resultFinder)){
+
+  $email= $rowFinder['email'];
 
 
-echo $email."<br>";
+
+
+
+
+
+  }
+echo  $email."<br>";
 echo $row['date']."<br>";
 
 
 echo nl2br($row['message']); // nl2br is a new line 2 breaks <br>
 echo "</p></div>";
+
 
 
   }

@@ -13,7 +13,7 @@
         session_start();
         require_once("Database_Connection.php");
 
-        if($_SESSION['type_User']=="Manager"){
+    //    if($_SESSION['type_User']=="Manager"){
 
             $sql="select * from child";
             $result = mysqli_query($conn,$sql);
@@ -24,7 +24,7 @@
                     <td>Hobbies</td>
                     <td>Medical Problems</td>
                     <td>Disability</td>
-                    <td>ParentSSN</td>
+                    <td>ParentId</td>
                     </tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
@@ -32,12 +32,17 @@
                     echo "<td>" .$row['hobbies']. "</td>";
                     echo "<td>".$row['medicalProblems']."</td>";
                     echo "<td>" .$row['disability']. "</td>";
-                    echo "<td>".$row['parentSsn']."</td>";
+                    echo "<td>".$row['parentId']."</td>";
                     echo "</tr>";
-                }    
+
+
+                }
+                  echo "</table>";
             }
-        }
+              include 'Comments.php';
+        //}
+
+
     ?>
 </body>
 </html>
-
