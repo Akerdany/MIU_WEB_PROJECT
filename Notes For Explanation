@@ -1,0 +1,2 @@
+$rowFinder =mysqli_fetch_assoc($resultFinder) is a function for one variable
+while ($row=mysqli_fetch_assoc($result)) {}  is a function for an array
