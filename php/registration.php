@@ -173,7 +173,7 @@
 
                 <input type="number" name="homeNumber" placeholder="Home Number"/><br>
 
-                <input type="text" name="ssn" placeholder="SSN"/><br>
+                <input type="number" name="ssn" placeholder="SSN"/><br>
 
             </fieldset>
 
@@ -252,8 +252,13 @@
                 <input type="number" name="phoneNumber" placeholder="Phone Number"/><br>
 
                 <input type="number" name="HomeNumber" placeholder="Home Number"/><br>
+<<<<<<< HEAD
 
                 <input type="text" name="ssn" placeholder="SSN"/><br>
+=======
+
+                <input type="number" name="ssn" placeholder="SSN"/><br>
+>>>>>>> aa26125b727795bc5987af0f0b71736a728c31d8
 
             </fieldset>
 
