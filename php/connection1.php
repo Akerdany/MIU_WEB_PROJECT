@@ -6,7 +6,7 @@ $username = "root";
 $password = "";
 
 
-$conn = new mysqli($servername, $username, $password,"nursery_website(complete)");
+$conn = new mysqli($servername, $username, $password,"nursery_website");
 
 
 
