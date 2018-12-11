@@ -40,3 +40,7 @@
 </script>
 
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>

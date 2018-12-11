@@ -34,7 +34,7 @@
             });
         });
 
-    </script>  
+    </script>
 
     <meta charset="utf-8">
         <title></title>
@@ -95,27 +95,27 @@
 
                         $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
                         VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','2')";
-                        
+
                         if (mysqli_query($conn,$sql1)) {
-                            
+
                             $sqluserID = mysqli_query($conn,"SELECT id FROM user WHERE email='".$email."'");
 
                             if($row2 = mysqli_fetch_array($sqluserID)){
-                                
+
                                 $userID = $row2["id"];
 
                                 echo "<script type='text/javascript'>alert('$userID');</script>";
 
                                 $sqlParent = "INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES (NULL, '".$userID."', '".$workPosition."', '".$workPlace."')";
                                 $sqlAdress = "INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES (NULL, '".$region."', '".$streetName."', '".$buildingNumber."', '".$flatNumber."', '".$apartmentNumber."', '".$postalCode."', '".$userID."')";
-                                
+
                                 if(mysqli_query($conn,$sqlParent) && mysqli_query($conn,$sqlAdress)){
                                     echo"DONE";
                                     header("location:logIn.php");
                                 }
                                 else{
                                     echo"Server might be offline right now";
-                                }       
+                                }
                             }
                             else{
                                 echo"Error in user id";
@@ -131,7 +131,7 @@
         }
         else {
             echo "Please fill all the boxes";
-            echo "whyyy"; 
+            echo "whyyy";
         }
         }
 
@@ -143,40 +143,40 @@
             <button name="parent" id="parent">Parent</button>
 
         <h2>Or a:<h2>
-            <button name="employee" id="employee">Employee</button>  
+            <button name="employee" id="employee">Employee</button>
 
     </div>
 
     <div id="parentForm" style="display:none;">
 
-        <button name="backP" id="backP">Get Back</button><br> 
+        <button name="backP" id="backP">Get Back</button><br>
 
         <form  method="post">
             <fieldset>
-                
+
                 <legend> Personal Information: </legend>
-                
+
                 <input type="text" name="firstName" placeholder="First name"/><br>
-                
+
                 <input type="text" name="lastName" placeholder="Last name"/><br>
-        
+
                 <input type="text" name="familyName" placeholder="Family Name"/><br>
-        
+
                 <input type="radio" name="gender" value="Male"/>  Male <br>
                 <input type="radio" name="gender" value="Female"/>  Female <br>
-                
+
                 <input type="text" name="nationality" placeholder="Nationality"/><br>
 
                 <input type="date" name="dateOfBirth" placeholder="Date of Birth"/><br>
-                
+
                 <input type="number" name="phoneNumber" placeholder="Phone Number"/><br>
 
                 <input type="number" name="homeNumber" placeholder="Home Number"/><br>
-                
+
                 <input type="text" name="ssn" placeholder="SSN"/><br>
 
             </fieldset>
-            
+
             <fieldset>
 
                 <legend>Address Information: </legend>
@@ -184,7 +184,7 @@
                 <input type="text" name="region" placeholder="Region"/><br>
 
                 <input type="text" name="streetName" placeholder="Street Name"/><br>
-            
+
                 <input type="number" name="buildingNumber" placeholder="Building Number"/><br>
 
                 <input type="number" name="flatNumber" placeholder="Flat Number"/><br>
@@ -212,13 +212,13 @@
                 <legend>Account Information: </legend>
 
                 <input type="text" name="email" placeholder="Email"/><br>
-                
+
                 <input type="password" name="password" placeholder="Password"/><br>
 
                 <input type="password" name="confirmPassword" placeholder="Confirm Password"/><br>
-            
+
             </fieldset>
-            
+
             <br>
             <input type="submit" name="registerParent" value="register"/><br>
 
@@ -233,26 +233,26 @@
         <form  method="post">
 
             <fieldset>
-                
+
                 <legend> Personal Information: </legend>
-                
+
                 <input type="text" name="firstName" placeholder="First name"/><br>
-                
+
                 <input type="text" name="lastName" placeholder="Last name"/><br>
-        
+
                 <input type="text" name="familyName" placeholder="Family Name"/><br>
-        
+
                 <input type="radio" name="gender" value="Male"/>  Male <br>
                 <input type="radio" name="gender" value="Female"/>  Female <br>
-                
+
                 <input type="text" name="nationality" placeholder="Nationality"/><br>
 
                 <input type="date" name="dateOfBirth" placeholder="Date of Birth"/><br>
-                
+
                 <input type="number" name="phoneNumber" placeholder="Phone Number"/><br>
 
                 <input type="number" name="HomeNumber" placeholder="Home Number"/><br>
-                
+
                 <input type="text" name="ssn" placeholder="SSN"/><br>
 
             </fieldset>
@@ -273,7 +273,7 @@
 
                 <input type="number" name="postalCode" placeholder="Postal Code"/><br>
 
-            </fieldset> 
+            </fieldset>
 
             <fieldset>
 
@@ -296,38 +296,42 @@
                     <option value="Marketing">Marketing</option>
                     <option value="Security">Security</option>
                     <option value="Transportation">Transportion</option>
-                </select> <br> 
+                </select> <br>
 
                 C.V:
                 <input type="file" name="cv"/><br>
 
-                <textarea rows="4" cols="50" name="skills">Skills</textarea><br> 
-                
+                <textarea rows="4" cols="50" name="skills">Skills</textarea><br>
+
                 <input type="number" name="bankAccount" placeholder="Bank Account"/><br>
 
-                Medical Test: 
+                Medical Test:
                 <input type="file" name="medicalTest"/><br>
 
-            </fieldset> 
-            
+            </fieldset>
+
             <fieldset>
 
                 <legend>Account Information: </legend>
 
                 <input type="text" name="email" placeholder="Email"/><br>
-                
+
                 <input type="password" name="password" placeholder="Password"/><br>
 
                 <input type="password" name="confirmpassword" placeholder="Confirm Password"/><br>
-            
-            </fieldset> 
+
+            </fieldset>
 
             <br>
             <input type="submit" name="registerEmployee" value="register"/><br>
 
         </form>
- 
+
     </div>
 
   </body>
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>

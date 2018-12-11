@@ -15,12 +15,12 @@
 
         if(isset($_POST['submit'])){
             if($_POST['password']==$_POST['confirmPassword']){
-                
+
                 if($_SESSION['password']==$_POST['password']){
                     $sql="DELETE FROM user WHERE id = '".$_SESSION['id']."'";
                     mysqli_query($conn,$sql);
                     echo"Account deleted";
-                    
+
                     if(mysqli_close($conn)){
                         session_destroy();
                         header("location:../html/NurseryWebsite.html");
@@ -28,15 +28,15 @@
                     else{
                         echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
                     }
-                } 
+                }
                 else{
-                    echo"Sorry, you have entered the password wrong<br>";             
+                    echo"Sorry, you have entered the password wrong<br>";
                 }
             }
             else{
                 echo"You must enter the confirmation code right<br>";
             }
-        }   
+        }
     ?>
     <br>
     <form name="deleteForm" action="" method="post">
@@ -51,3 +51,7 @@
 </body>
 </html>
 
+<?php
+mysqli_close($conn);
+
+ ?>

@@ -36,3 +36,7 @@
     <input type="submit" name="submit"/>
 </body>
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>

@@ -21,7 +21,7 @@
             $id = $_SESSION['id'];
 
             mysqli_query($conn, "UPDATE user SET firstName='$first', lastName='$last', password='$pass' WHERE id='$id'");
-            
+
             header("Location: logIn.php");
         }
         else if(isset($_POST['deleteAccount'])){
@@ -46,3 +46,7 @@
 
 </body>
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>

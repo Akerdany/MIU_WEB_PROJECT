@@ -29,21 +29,21 @@
                 $_SESSION["ssn"]=$row["ssn"];
 
                 $result1=mysqli_query($conn,"SELECT * FROM type WHERE id='".$row["typeId"]."'");
-                
+
                 if($row2=mysqli_fetch_array($result1)){
                     $_SESSION["type_User"]=$row2["typeName"];
                 }
 
                 echo '<script language="javascript">';
                 echo 'alert($result1)';
-                echo '</script>'; 
+                echo '</script>';
 
                 header("Location: index.php");
-            }        
+            }
             else{
                 echo '<script language="javascript">';
                 echo 'alert("you have entered the username or password wrong")';
-                echo '</script>';         
+                echo '</script>';
             }
         }
     }
@@ -83,3 +83,7 @@
 
     </body>
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>

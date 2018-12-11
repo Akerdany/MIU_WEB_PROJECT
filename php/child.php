@@ -36,3 +36,7 @@
     <input type="text" name="disability" value=<?php echo $disability;?>><br>
 </body>
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>
