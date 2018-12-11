@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function setComments($conn)
 {
 
@@ -20,26 +20,17 @@ function setComments($conn)
 function getComments($conn)
 {
   $sql= 'SELECT * FROM comments';
-
   $result= mysqli_query($conn,$sql);
-
-
-//  $email=$_SESSION['username'];
-
-
-
+//  $email=$_SESSION['email'];
   while ($row=mysqli_fetch_assoc($result)) {
   echo "<div class='comment-box'><p>";
-
-  $sqlFinder= 'SELECT user.email
-FROM user
-INNER JOIN comments ON user.id=comments.userId';
+  $sqlFinder= "SELECT user.email,user.id
+  FROM user
+  INNER JOIN comments ON user.id=comments.userId";
 
   $resultFinder= mysqli_query($conn,$sqlFinder);
 $email='';
-  while($rowFinder =mysqli_fetch_array($resultFinder)){
-
-  $email= $rowFinder['email'];
+ while($rowFinder =mysqli_fetch_array($resultFinder)){
 
 
 
@@ -47,14 +38,26 @@ $email='';
 
 
 
+
+
+
+
+
+   if ($row['userId']==$rowFinder['id']) {
+
+
+
+echo   $rowFinder['email']."<br>";
+break;
+
+}
   }
-echo  $email."<br>";
+//echo $row['userId']."<br>";
 echo $row['date']."<br>";
 
 
 echo nl2br($row['message']); // nl2br is a new line 2 breaks <br>
 echo "</p></div>";
-
 
 
   }

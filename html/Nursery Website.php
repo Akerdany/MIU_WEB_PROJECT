@@ -39,7 +39,8 @@ color: white;
         font-family: Verdana, sans-serif;
     }
 
-    .mySlides {
+    .mySlides
+    {
         display: none;
     }
 
@@ -132,7 +133,7 @@ color: white;
      <h2>Nursery Website</h2>
 
        <?php
-         include '../php/connection1.php';
+         include '../php/Database_Connection.php';
        session_start();
      if (isset($_SESSION['email']))
      {
@@ -237,10 +238,14 @@ echo "My last visited page is:".$_SESSION['page'];
         <!--get the next page-->
         <button> <b>Start!</b> </button>
         <a href='../php/comments.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='commentSection'>comments</button></a>
-        <a href='../php/logout1.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
+        <a href='../php/logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
 
     </form>
 
 </body>
 
 </html>
+<?php
+mysqli_close($conn);
+
+ ?>
