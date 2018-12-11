@@ -113,7 +113,6 @@
                                     echo"DONE";
                                     header("location:logIn.php");
                                 }
-
                                 else{
                                     echo"Server might be offline right now";
                                 }       
