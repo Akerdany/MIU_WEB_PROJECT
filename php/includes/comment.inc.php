@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 function setComments($conn)
 {
 
@@ -17,7 +17,7 @@ function setComments($conn)
 }
 
 
-function getComments($conn)
+ function getComments($conn)
 {
   $sql= 'SELECT * FROM comments';
   $result= mysqli_query($conn,$sql);

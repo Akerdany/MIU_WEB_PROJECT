@@ -58,7 +58,8 @@ body {
         if($_SESSION['type_User']=="Manager"){
 
             if($_SESSION['gender']=="Male"){
-                echo"<h1>Welcome  Mr. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
+                echo"<h1>Welcome  Mr. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>
+                ";
             }
             else{
                 echo"<h1>Welcome  Mrs. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
@@ -72,7 +73,7 @@ body {
             else{
                 echo"<h1>Welcome  Mrs. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
             }
-        }        
+        }
     ?>
 </div>
 
@@ -88,6 +89,7 @@ body {
     ?>
     <a href='editAccount.php'>Edit Your Account</a>
     <a href='logOut.php'>Sign Out</a>
+    <!--<a href="DisplayingMessageToManager.php">Messages</a>-->
 </div>
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
@@ -101,6 +103,6 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>
-     
+
 </body>
 </html>

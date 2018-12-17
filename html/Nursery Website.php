@@ -144,7 +144,7 @@ color: white;
 
 
 
-
+    $seen=true;
     $sql="SELECT * FROM `message`";
     $result= mysqli_query($conn,$sql);
     $i=0;

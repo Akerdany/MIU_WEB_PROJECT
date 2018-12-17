@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" href="../css/test.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <script>
 
         $(document).ready(function(){
@@ -34,6 +34,35 @@
             });
         });
 
+        function checkAvailability(){
+            jQuery.ajax(
+                {
+                    url: "check_availability.php",
+                    data: 'email='+$("#email").val(),
+                    type: "POST",
+
+                    success:function(data){
+                        $("#msg").html(data);
+                    },
+                    error:function(){
+                        $("#msg").html("error");
+                    }
+                });
+        }
+
+        function getResult()
+        {
+            jQuery.ajax(
+                {
+                    url: "backend-search.php",
+                    data: 'term='+$("#term").val(),
+                    type: "POST",
+                    success:function(data2){
+                        $("#result").html(data2);
+                    }
+                });
+        }
+
     </script>
 
     <meta charset="utf-8">
@@ -52,6 +81,9 @@
                 padding-right: 0.75em;
                 border: 2px groove (internal value);
             }
+
+            .email-ok{color:#2FC332;}
+            .email-taken{color:#D60202;}
         </style>
 
     </head>
@@ -211,7 +243,8 @@
 
                 <legend>Account Information: </legend>
 
-                <input type="text" name="email" placeholder="Email"/><br>
+                <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
+                <div id="msg"></div><br>
 
                 <input type="password" name="password" placeholder="Password"/><br>
 
