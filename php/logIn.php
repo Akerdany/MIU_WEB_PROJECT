@@ -14,7 +14,7 @@
             $result = mysqli_query($conn, $sql);
 
             if($row = mysqli_fetch_array($result)){
-                $_SESSION['sendToId'] = 17;
+                $_SESSION['toUserId'] = 17;
                 $_SESSION['TheEmail']='';
                 $_SESSION["id"]=$row["id"];
                 $_SESSION["username"]=$row["email"];

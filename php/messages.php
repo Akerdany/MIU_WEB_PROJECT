@@ -22,7 +22,7 @@
 
 if (isset($_SESSION['username']))
 {
-  $sendToId= $_SESSION['sendToId'] ;
+  $toUserId= $_SESSION['toUserId'] ;
   echo "<div class='comment-box'><p>";
   echo $_SESSION['username'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
   echo'
@@ -41,8 +41,8 @@ if (isset($_SESSION['username']))
   echo '<div id="main">
   <div id="result-message-area">
   ';
-
-      $sql1="SELECT * FROM `message` where message.sendToId='".$_SESSION["sendToId"]."' AND  message.email='".$_SESSION["username"]."'";
+  //SELECT user.email,user.id,messagetest.message FROM user INNER JOIN messagetest ON user.id=message.userId// messagetest.toUserId='".$_SESSION["toUserId"]."'
+      $sql1="  SELECT user.email,user.id,messagetest.message FROM user INNER JOIN messagetest ON user.id='".$_SESSION["id"]."'";
       $result1= mysqli_query($conn,$sql1);
       while ($row= mysqli_fetch_assoc($result1)) {
           $message=$row['message'];
@@ -58,9 +58,9 @@ echo "</p></div>";
        {
 
         $message=$_POST['message'];
-        $email = $_SESSION['username'];
-        $sql='INSERT INTO `message` (`id`, `message`,`email`,`sendToId`,`seen`)
-        VALUES ("","'.$message.'","'.$email.'","'.$sendToId. '",0)
+        $id = $_SESSION['id'];
+        $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`seen`)
+        VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '",0)
         ';
         if(mysqli_query($conn,$sql))
         {

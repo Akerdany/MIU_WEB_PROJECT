@@ -7,7 +7,8 @@
     #result-message-area{width: 100%; padding: 0% 1%; height: 90%;}
   #message_area{width:98%;  height:10%; }
   .email-ok{color:#2FC332;}
-    .email-taken{color:#D60202;}
+  .email-taken{color:#D60202;}
+
 
 </style>
   <body>
@@ -18,13 +19,18 @@
   session_start();
     include("Database_Connection.php");
 
-if (isset($_SESSION['email']))
+
+if (isset($_SESSION['username']))
 {
+  $toUserId= $_SESSION['toUserId'] ;
   echo "<div class='comment-box'><p>";
-  echo $_SESSION['email'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
-  echo '
-  <input type="text" name="email" id="email" placeholder="Email" onBlur="checkFounded()"/><br>
+  echo $_SESSION['username'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
+  echo'
+  <input type="text" name="email" id="email" placeholder="Email" onkeyup="checkFounded()"/><br>
+
   <div id="msg"></div><br>
+
+
      <button onclick="ReloadingPage()">Reload page</button>';
      echo"
      <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
@@ -36,14 +42,14 @@ if (isset($_SESSION['email']))
   <div id="result-message-area">
   ';
 
-      $sql1="SELECT * FROM `message`";
+      $sql1="SELECT * FROM `message` where message.toUserId='".$_SESSION["toUserId"]."' AND  message.email='".$_SESSION["username"]."'";
       $result1= mysqli_query($conn,$sql1);
       while ($row= mysqli_fetch_assoc($result1)) {
           $message=$row['message'];
           $email= $row['email'];
           echo "<div class='comment-box'><p>";
 
-          echo '<h4 style="color:blue">'.$email.'</h4>';
+          echo '<h4 style="color:blue">'.$email.' to '.$_SESSION['TheEmail'].'</h4>';
           echo '<p>'.$message.'</p>';
 echo "</p></div>";
 
@@ -52,14 +58,14 @@ echo "</p></div>";
        {
 
         $message=$_POST['message'];
-        $email = $_SESSION['email'];
-        $sql='INSERT INTO `message` (`id`, `message`,`email`,`seen`)
-        VALUES ("","'.$message.'","'.$email.'",0)
+        $email = $_SESSION['username'];
+        $sql='INSERT INTO `message` (`id`, `message`,`email`,`toUserId`,`seen`)
+        VALUES ("","'.$message.'","'.$email.'","'.$toUserId. '",0)
         ';
         if(mysqli_query($conn,$sql))
         {
           echo "<div class='comment-box'><p>";
-          echo '<h4 style="color:blue">'.$_SESSION['email'].'</h4>';
+          echo '<h4 style="color:blue">'.$_SESSION['username'].' to '.$_SESSION['TheEmail'].' </h4>';
 
           echo '<p>'.$message.'</p></div>';
           echo "</p></div>";
@@ -97,11 +103,10 @@ else
 
 ?>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="../js/Reload.js"></script>
+<script src="../js/ajax.js"></script>
 
-<script src="../js/ReloadAndAjax.js">
-
-</script>
 </html>
 <?php
 mysqli_close($conn);

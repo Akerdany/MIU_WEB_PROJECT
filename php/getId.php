@@ -23,7 +23,7 @@ printf("Errormessage: %s\n", mysqli_error($conn));
 $rowForId=mysqli_fetch_assoc($resultForId);
 
 echo  '<div class="email-ok">'.$rowForId["id"].'</div>';
-  $_SESSION['sendToId'] =$rowForId["id"];
+  $_SESSION['toUserId'] =$rowForId["id"];
 mysqli_free_result($resultForId);
 mysqli_close($conn);
 
