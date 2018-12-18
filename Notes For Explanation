@@ -1,3 +1,17 @@
 
-while ($row=mysqli_fetch_assoc($result)) {}  is a function for an array
-mysqli_free_result($result); to empty the result set
+1.while ($row=mysqli_fetch_assoc($result)) {}  is a function for an array
+2.mysqli_free_result($result); to empty the result set
+
+
+/////////////////////////////////////////////
+3.This function below checks if you have any errors in your sql statement (V.I by the way)
+
+
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+if (!mysqli_query($conn, $sql)) {
+    printf("Errormessage: %s\n", mysqli_error($conn));
+}

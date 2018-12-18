@@ -93,7 +93,7 @@
             require_once("Database_Connection.php");
 
             if (isset($_POST['registerParent'])){
-
+                
                 $firstName = $_POST["firstName"];
                 $lastName = $_POST["lastName"];
                 $familyName = $_POST["familyName"];

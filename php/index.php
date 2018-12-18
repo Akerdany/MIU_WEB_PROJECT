@@ -88,6 +88,7 @@ body {
         }
     ?>
     <a href='editAccount.php'>Edit Your Account</a>
+      <a href='messages.php'>Messages</a>
     <a href='logOut.php'>Sign Out</a>
     <!--<a href="DisplayingMessageToManager.php">Messages</a>-->
 </div>
