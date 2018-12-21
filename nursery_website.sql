@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2018 at 01:57 PM
+-- Generation Time: Dec 21, 2018 at 07:38 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -86,6 +86,14 @@ CREATE TABLE `child` (
   `parentId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `child`
+--
+
+INSERT INTO `child` (`id`, `name`, `hobbies`, `medicalProblems`, `disability`, `parentId`) VALUES
+(2, 'asdasd', 'asasdas', 'sadasdasd', 'asdasdasdasd', 1),
+(5, 'ahmed', 'jhgnty', 'gfgfjh', 'fglkf', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -109,7 +117,21 @@ INSERT INTO `comments` (`cid`, `userId`, `date`, `message`) VALUES
 (11, 10, '2018-12-09 18:05:48', 'ss'),
 (14, 10, '2018-12-09 18:08:57', '123\r\n'),
 (15, 10, '2018-12-09 18:09:01', '1233\r\n\r\n\r\n\r\n\r\n\r\n'),
-(18, 10, '2018-12-09 18:10:54', '12');
+(18, 10, '2018-12-09 18:10:54', '12'),
+(21, 10, '2018-12-11 17:50:05', 'sdsd'),
+(22, 10, '2018-12-11 17:50:10', 'ss'),
+(23, 10, '2018-12-11 18:00:25', 'aa'),
+(24, 10, '2018-12-11 18:00:25', 'aa'),
+(25, 17, '2018-12-11 18:46:36', 'hi '),
+(26, 17, '2018-12-11 19:52:24', 'vdsfk'),
+(27, 17, '2018-12-11 19:52:36', 'dsfsdf'),
+(36, 10, '2018-12-12 01:49:28', 'sd'),
+(37, 10, '2018-12-12 01:49:31', 'your child '),
+(38, 10, '2018-12-12 01:50:09', 'my child is not'),
+(39, 10, '2018-12-12 01:50:09', 'my child is not'),
+(40, 10, '2018-12-12 01:50:35', 'it worked\r\n'),
+(42, 17, '2018-12-18 15:45:07', 'foad'),
+(43, 17, '2018-12-18 15:45:11', '345');
 
 -- --------------------------------------------------------
 
@@ -248,6 +270,7 @@ CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `message` text NOT NULL,
   `email` varchar(100) NOT NULL,
+  `toUserId` int(11) NOT NULL,
   `seen` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -255,21 +278,37 @@ CREATE TABLE `message` (
 -- Dumping data for table `message`
 --
 
-INSERT INTO `message` (`id`, `message`, `email`, `seen`) VALUES
-(33, 'aa', 'foad.osama@hotmail.com', 1),
-(34, 'aa', 'foad.osama@hotmail.com', 1),
-(35, 'aa', 'foad.osama@hotmail.com', 1),
-(36, 'aa', 'foad.osama@hotmail.com', 1),
-(37, 'aa', 'foad.osama@hotmail.com', 1),
-(38, 'aa', 'foad.osama@hotmail.com', 1),
-(39, 'aa', 'foad.osama@hotmail.com', 1),
-(40, 'aa', 'foad.osama@hotmail.com', 1),
-(41, 'sd', 'foad.osama@hotmail.com', 1),
-(42, 'dd', 'foad.osama@hotmail.com', 1),
-(43, 'sd', 'foad.osama@hotmail.com', 1),
-(44, 'sd', 'foad.osama@hotmail.com', 1),
-(45, '123', 'foad.osama@hotmail.com', 1),
-(46, '12e132312', 'foad.osama@hotmail.com', 0);
+INSERT INTO `message` (`id`, `message`, `email`, `toUserId`, `seen`) VALUES
+(78, 'fiad', 'foadosama1@gmail.com', 0, 0),
+(79, 'fiad', 'foadosama1@gmail.com', 0, 0),
+(80, 's', 'foadosama1@gmail.com', 17, 0),
+(81, 'a', 'foadosama1@gmail.com', 10, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messagetest`
+--
+
+CREATE TABLE `messagetest` (
+  `id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `toUserId` int(11) NOT NULL COMMENT 'it is the id of the person you are sending to him the message',
+  `seen` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messagetest`
+--
+
+INSERT INTO `messagetest` (`id`, `message`, `userId`, `toUserId`, `seen`) VALUES
+(1, 'f', 10, 17, 0),
+(2, 'foad', 17, 10, 0),
+(3, 'hi', 17, 10, 0),
+(4, 's', 17, 10, 0),
+(5, 's', 10, 17, 0),
+(6, 'd', 10, 17, 0);
 
 -- --------------------------------------------------------
 
@@ -385,7 +424,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyN
 (10, 'foad.osama@hotmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'Egyptian', '2018-12-11', 0, 0, 0, 0, 1),
 (11, '11', '11', '11', '11', '11', '11', '11', '2018-12-27', 11, 11, 11, 11, 1),
 (14, '99', '11199', '1199', '1199', '1199', '1199', '1199', '2018-12-11', 1199, 999, 99, 99, 1),
-(17, 'foadosama1@gmail.com', 'foadosama1@gmail.com', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, 2, 1);
+(17, 'foadosama1@gmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -459,6 +498,14 @@ ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `messagetest`
+--
+ALTER TABLE `messagetest`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`),
+  ADD KEY `toUserId` (`toUserId`);
+
+--
 -- Indexes for table `parent`
 --
 ALTER TABLE `parent`
@@ -514,13 +561,13 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -550,7 +597,13 @@ ALTER TABLE `medicalinsurance`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- AUTO_INCREMENT for table `messagetest`
+--
+ALTER TABLE `messagetest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `parent`
@@ -615,6 +668,13 @@ ALTER TABLE `maintenance`
 --
 ALTER TABLE `medicalinsurance`
   ADD CONSTRAINT `medicalinsurance_ibfk_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`);
+
+--
+-- Constraints for table `messagetest`
+--
+ALTER TABLE `messagetest`
+  ADD CONSTRAINT `messagetest_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `messagetest_ibfk_2` FOREIGN KEY (`toUserId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `parent`
