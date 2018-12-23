@@ -1,6 +1,8 @@
 <?php
     require_once("Database_Connection.php");
+
     if(!empty($_POST["email"])){
+        
         $query = "SELECT * FROM user WHERE email='".$_POST["email"]."'";
         $result = mysqli_query($conn, $query);
         $user_count = mysqli_num_rows($result);

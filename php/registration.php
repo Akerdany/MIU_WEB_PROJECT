@@ -92,8 +92,8 @@
         <?php
             require_once("Database_Connection.php");
 
-            if (isset($_POST['registerParent'])){
-                
+            if (isset($_POST['registerParent']) || isset($_POST['registerEmployee'])){
+
                 $firstName = $_POST["firstName"];
                 $lastName = $_POST["lastName"];
                 $familyName = $_POST["familyName"];
@@ -111,17 +111,19 @@
                 $apartmentNumber = $_POST["apartmentNumber"];
                 $postalCode = $_POST["postalCode"];
 
-                $workPosition = $_POST["workPosition"];
-                $workPlace = $_POST["workPlace"];
-                $workNumber = $_POST["workNumber"];
-
                 $email = $_POST["email"];
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirmPassword"];
 
-                if($firstName!="" && $lastName!="" && $familyName!="" && $gender!="" && $nationality!="" && $dateOfBirth!="" && $phoneNumber!="" &&
-                   $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
-                   $workPosition!="" && $workPlace!="" && $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
+                if(isset($_POST['registerParent'])){
+
+                    $workPosition = $_POST["workPosition"];
+                    $workPlace = $_POST["workPlace"];
+                    $workNumber = $_POST["workNumber"];
+
+                    if($firstName!="" && $lastName!="" && $familyName!="" && $gender!="" && $nationality!="" && $dateOfBirth!="" && $phoneNumber!="" &&
+                        $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
+                        $workPosition!="" && $workPlace!="" && $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
 
                     if($password == $confirmPassword){
 
@@ -142,6 +144,7 @@
                                 $sqlAdress = "INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES (NULL, '".$region."', '".$streetName."', '".$buildingNumber."', '".$flatNumber."', '".$apartmentNumber."', '".$postalCode."', '".$userID."')";
 
                                 if(mysqli_query($conn,$sqlParent) && mysqli_query($conn,$sqlAdress)){
+
                                     echo"DONE";
                                     header("location:logIn.php");
                                 }
@@ -155,18 +158,34 @@
                         }
                         else {
                             echo $sql1;
+                            echo"<br>";
+                            printf("Errormessage: %s\n", mysqli_error($conn));
                         }
                     }
                     else{
                         echo"Please confirm your password";
                     }
-        }
-        else {
-            echo "Please fill all the boxes";
-            echo "whyyy";
-        }
-        }
+                }   
+                }
+                
+                else if(isset($_POST['registerEmployee'])){
 
+                    $university = $_POST["university"];
+                    $universityDegree = $_POST["universityDegree"];
+                    $graduationYear = $_POST["graduationYear"];
+                    $department = $_POST["department"];
+                    $cv = $_POST["cv"];
+                    $skills = $_POST["skills"];
+                    $bankAccount = $_POST["bankAccount"];
+                    $medicalTest = $_POST["medicalTest"];
+                    
+                }
+                
+            else {
+                echo "Please fill all the boxes";
+                echo "whyyy";
+            }
+        }
         ?>
 
     <div id="choice" class="choice">
