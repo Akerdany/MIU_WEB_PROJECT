@@ -20,7 +20,7 @@ date_default_timezone_set('Africa/Cairo');
   session_start();
     include("Database_Connection.php");
 
-function getMessages($conn)
+function getMessages($conn,$toUserId)
 {
   $sql1="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.userId FROM user INNER JOIN messagetest ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId ORDER BY messagetest.date ";
   $result1= mysqli_query($conn,$sql1);
@@ -28,14 +28,23 @@ function getMessages($conn)
       $message=$row['message'];
       $email= $row['email'];
       $date=$row['date'];
+      $sql4="SELECT messagetest.toUserId FROM messagetest";
+      $result4=mysqli_query($conn,$sql4);
+      while ($row4= mysqli_fetch_assoc($result4)) {
+
+      $toUserId=$row4['toUserId'];
+
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['TheEmail']==$toUserId))
+      {
       echo "<div class='comment-box'><p>";
       echo '<h4 style="color:blue">'.$email.' to '.$_SESSION['TheEmail'].'</h4>';
       echo '<p>'.$message.'</p><br>';
       echo '<p>'.$date.'</p>';
       echo "</p></div>";
-
+    }
   }
 
+}
 }
 function setMessages($conn,$toUserId)
 {
@@ -79,7 +88,7 @@ function displayResult($toUserId)
   <div id="result-message-area">
   ';
 }
-function getOthersMessages($conn) //to get other messages from other users
+function getOthersMessages($conn,$toUserId) //to get other messages from other users
 {
   $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId where '".$_SESSION["id"]."'=messagetest.toUserId ORDER BY messagetest.date ";
   $result2= mysqli_query($conn,$sql2);
@@ -88,12 +97,22 @@ function getOthersMessages($conn) //to get other messages from other users
       $message=$row2['message'];
       $email= $row2['email'];
       $date=$row2['date'];
+
+      $sql4="SELECT messagetest.toUserId FROM messagetest";
+      $result4=mysqli_query($conn,$sql4);
+      while ($row4= mysqli_fetch_assoc($result4)) {
+
+      $toUserId=$row4['toUserId'];
+
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['TheEmail']==$toUserId))
+      {
       echo "<div class='comment-box'><p>";
       echo '<h4 style="color:blue"> '.$_SESSION['TheEmail'].' to '.$email.' </h4>';
       echo '<p>'.$message.'</p><br>';
       echo '<p>'.$date.'</p>';
       echo "</p></div>";
-
+    }
+}
   }
 }
 
@@ -119,8 +138,8 @@ if (isset($_SESSION['username']))
   $toUserId= $_SESSION['toUserId'];
   displayResult($toUserId);
 
-    getMessages($conn);
-    getOthersMessages($conn);
+    getMessages($conn,$toUserId);
+    getOthersMessages($conn,$toUserId);
 
       if (Isset($_POST['submit']))
        {
