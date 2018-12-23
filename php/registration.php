@@ -149,20 +149,24 @@
                                     header("location:logIn.php");
                                 }
                                 else{
+                                    
                                     echo"Server might be offline right now";
                                 }
                             }
                             else{
+
                                 echo"Error in user id";
                             }
                         }
                         else {
+
                             echo $sql1;
                             echo"<br>";
                             printf("Errormessage: %s\n", mysqli_error($conn));
                         }
                     }
                     else{
+
                         echo"Please confirm your password";
                     }
                 }   
