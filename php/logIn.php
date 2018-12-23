@@ -72,7 +72,7 @@
 body
 {
     font-family: Verdana, sans-serif;
-    background-image: URL("Background.jpg" ); 
+    background-image: URL("../pictures/Background.jpg"); 
     background-size: cover ;/* Set The image in Full size*/
     
 }
