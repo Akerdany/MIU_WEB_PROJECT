@@ -1,0 +1,383 @@
+body 
+{
+    font-family: Verdana, sans-serif;
+    background-image: linear-gradient( snow,aqua ,skyblue , pink ,hotpink , coral , teal ,green, yellow, orange,violet,pink);
+ 
+}
+
+.mySlides
+{
+    display: none;
+}
+
+img 
+{
+    vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 700px;
+    position: relative;
+    margin: auto;
+}
+
+
+/* Fading animation */
+.fade 
+{
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade
+{
+    from 
+    {
+        opacity: .4
+    }
+
+    to 
+    {
+        opacity: 1
+    }
+}
+
+@keyframes fade
+{
+    from 
+    {
+        opacity: .4
+    }
+
+    to 
+    {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) 
+{
+    .text 
+    {
+        font-size: 11px
+    }
+}
+
+.topnav/*setting of nagbar place */
+{
+    overflow: hidden;
+    background-color :indigo;
+    width: 1500px;  
+    height: 50px;
+    position:relative;/*bt-apply width height top left position*/
+    left: 0px;/*starts after 1000pixel */
+    top: -10px;
+}
+
+.topnav a /*inside the world font settings*/
+{
+    float: right;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color:none;
+    color: white;
+}
+.Footer/*setting of nagbar place */
+{
+    overflow: hidden;
+    background-color:indigo;
+    width: 1500px;  
+    height: 100px;
+    position:relative;/*bt-apply width height top left position*/
+    left: -px;/*sratrs after 1000pixel */
+    top: -10px;
+    bottom:0px;
+}
+
+.Footer a /*inside the world font settings*/
+{
+    float: right;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.Footer a:hover {
+    background-color:none;
+    color: white;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  
+.fa:hover 
+{
+      opacity: 0.7;
+}
+
+  
+.Header
+{
+    background-image: transparent;
+    width: 700px; 
+    height: 50px;
+    text-align-last: justify;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+div#Buttons/* mkan buttons feen feh header*/
+{
+    width: 510px;  
+    height: 50px;
+    position:relative;
+    left: 15px;
+    top: 15px;
+  
+}
+.Rest_Of_Page
+{
+    background-color: transparent;  
+    width: 1200px;
+    border-radius: 20px;
+    margin: center;    
+    height: 1550px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 100px;
+    top: 0px;
+}
+
+#Home_Button /*Button Settings*/
+{
+    border-radius: 5px;/*smooth of edges*/
+    background-color:hotpink;
+    color: #FFFFFF;
+    border: none;
+    text-align: middle;
+    font-size: 15px;
+    padding: 5px;
+    width: 75px;
+    transition: all 0.5s;/*23taked dah leh 3laka bel word motion*/
+    cursor: auto;/*shape of cursor lma mouse you2af 3ala button*/
+    margin: 5px;
+}
+
+#Home_Button span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+#Home_Button span:after 
+{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;/*arrow motion starts mn feen */
+    transition: 0.5s;
+}
+  
+#Home_Button:hover span 
+{
+    padding-right: 25px;
+}
+  
+#Home_Button:hover span:after 
+{
+    opacity: 5;
+    right: 5px;/*arrow ha-y-stop feen*/
+}
+#Aboutus_Button /*Button Settings*/
+{
+    border-radius: 5px;/*smooth of edges*/
+    background-color: darkgreen;
+    color: #FFFFFF;
+    border: none;
+    text-align: middle;
+    font-size: 15px;
+    padding: 5px;
+    width: 100px;
+    transition: all 0.5s;/*23taked dah leh 3laka bel word motion*/
+    cursor: auto;/*shape of cursor lma mouse you2af 3ala button*/
+    margin: 5px;
+}
+
+#Aboutus_Button span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+#Aboutus_Button span:after 
+{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;/*arrow motion starts mn feen */
+    transition: 0.5s;
+}
+  
+#Aboutus_Button:hover span 
+{
+    padding-right: 25px;
+}
+  
+#Aboutus_Button:hover span:after 
+{
+    opacity: 5;
+    right: 5px;/*arrow ha-y-stop feen*/
+}
+#Contactus_Button /*Button Settings*/
+{
+    border-radius: 5px;/*smooth of edges*/
+    background-color: violet;
+    color: #FFFFFF;
+    border: none;
+    text-align: middle;
+    font-size: 15px;
+    padding: 5px;
+    width: 120px;
+    transition: all 0.5s;/*23taked dah leh 3laka bel word motion*/
+    cursor: auto;/*shape of cursor lma mouse you2af 3ala button*/
+    margin: 5px;
+}
+
+#Contactus_Button span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+#Contactus_Button span:after 
+{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;/*arrow motion starts mn feen */
+    transition: 0.5s;
+}
+  
+#Contactus_Button:hover span 
+{
+    padding-right: 25px;
+}
+  
+  #Contactus_Button:hover span:after 
+{
+    opacity: 5;
+    right: 5px;/*arrow ha-y-stop feen*/
+}
+#Branches_Button /*Button Settings*/
+{
+    border-radius: 5px;/*smooth of edges*/
+    background-color: teal;
+    color: #FFFFFF;
+    border: none;
+    text-align: middle;
+    font-size: 15px;
+    padding: 5px;
+    width: 90px;
+    transition: all 0.5s;/*23taked dah leh 3laka bel word motion*/
+    cursor: auto;/*shape of cursor lma mouse you2af 3ala button*/
+    margin: 5px;
+}
+#Branches_Button span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+#Branches_Button span:after 
+{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;/*arrow motion starts mn feen */
+    transition: 0.5s;
+}
+#Branches_Button:hover span 
+{
+    padding-right: 25px;
+}
+  
+#Branches_Button:hover span:after 
+{
+    opacity: 5;
+    right: 5px;/*arrow ha-y-stop feen*/
+}
+#Ourteam_Button /*Button Settings*/
+{
+    border-radius: 5px;/*smooth of edges*/
+    background-color:  deeppink;
+    color: #FFFFFF;
+    border: none;
+    text-align: middle;
+    font-size: 15px;
+    padding: 5px;
+    width: 120px;
+    transition: all 0.5s;/*23taked dah leh 3laka bel word motion*/
+    cursor: auto;/*shape of cursor lma mouse you2af 3ala button*/
+    margin: 5px;
+}
+
+#Ourteam_Button span 
+{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+#Ourteam_Button span:after 
+{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;/*arrow motion starts mn feen */
+    transition: 0.5s;
+}
+  
+#Ourteam_Button:hover span 
+{
+    padding-right: 25px;
+}
+  
+#Ourteam_Button:hover span:after 
+{
+    opacity: 5;
+    right: 5px;/*arrow ha-y-stop feen*/
+}
