@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2018 at 07:38 PM
+-- Generation Time: Dec 23, 2018 at 07:55 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -274,16 +274,6 @@ CREATE TABLE `message` (
   `seen` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`id`, `message`, `email`, `toUserId`, `seen`) VALUES
-(78, 'fiad', 'foadosama1@gmail.com', 0, 0),
-(79, 'fiad', 'foadosama1@gmail.com', 0, 0),
-(80, 's', 'foadosama1@gmail.com', 17, 0),
-(81, 'a', 'foadosama1@gmail.com', 10, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -295,6 +285,7 @@ CREATE TABLE `messagetest` (
   `message` text NOT NULL,
   `userId` int(11) DEFAULT NULL,
   `toUserId` int(11) NOT NULL COMMENT 'it is the id of the person you are sending to him the message',
+  `date` datetime NOT NULL,
   `seen` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -302,13 +293,9 @@ CREATE TABLE `messagetest` (
 -- Dumping data for table `messagetest`
 --
 
-INSERT INTO `messagetest` (`id`, `message`, `userId`, `toUserId`, `seen`) VALUES
-(1, 'f', 10, 17, 0),
-(2, 'foad', 17, 10, 0),
-(3, 'hi', 17, 10, 0),
-(4, 's', 17, 10, 0),
-(5, 's', 10, 17, 0),
-(6, 'd', 10, 17, 0);
+INSERT INTO `messagetest` (`id`, `message`, `userId`, `toUserId`, `date`, `seen`) VALUES
+(40, 'a', 10, 17, '2018-12-21 23:44:26', 0),
+(41, 'a', 10, 17, '2018-12-23 03:27:38', 0);
 
 -- --------------------------------------------------------
 
@@ -391,7 +378,8 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`id`, `typeName`) VALUES
-(1, 'Manager');
+(1, 'Manager'),
+(2, 'Parent');
 
 -- --------------------------------------------------------
 
@@ -422,9 +410,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `ssn`, `typeId`) VALUES
 (10, 'foad.osama@hotmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'Egyptian', '2018-12-11', 0, 0, 0, 0, 1),
-(11, '11', '11', '11', '11', '11', '11', '11', '2018-12-27', 11, 11, 11, 11, 1),
-(14, '99', '11199', '1199', '1199', '1199', '1199', '1199', '2018-12-11', 1199, 999, 99, 99, 1),
-(17, 'foadosama1@gmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, 2, 1);
+(17, 'foadosama1@gmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, 2, 1),
+(21, 'foadsamy@hotmail', 'password123', 'foad', 'ryiiieteoietoiy', 'weriwueroiweur', 'Male', 'egyptian', '2018-12-04', 4337412, 345350934, 2147483647, 749823940, 2);
 
 --
 -- Indexes for dumped tables
@@ -603,7 +590,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `messagetest`
 --
 ALTER TABLE `messagetest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `parent`
@@ -621,13 +608,13 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
