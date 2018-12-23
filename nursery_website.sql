@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2018 at 07:55 PM
+-- Generation Time: Dec 23, 2018 at 08:12 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -151,20 +151,21 @@ CREATE TABLE `employee` (
   `experience` varchar(100) NOT NULL,
   `bankAccount` varchar(100) NOT NULL,
   `userId` int(11) NOT NULL,
-  `medicalTest` varchar(100) NOT NULL,
+  `medicalTest` blob NOT NULL,
   `category` varchar(100) NOT NULL COMMENT 'Is the employee partime or full time',
   `maximumInsuranceCost` int(11) NOT NULL,
   `yearOfGraduation` int(11) NOT NULL,
   `university` varchar(100) NOT NULL,
-  `skills` varchar(100) NOT NULL
+  `skills` varchar(100) NOT NULL,
+  `cv` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `department`, `salary`, `incomeMethod`, `universityDegree`, `position`, `experience`, `bankAccount`, `userId`, `medicalTest`, `category`, `maximumInsuranceCost`, `yearOfGraduation`, `university`, `skills`) VALUES
-(1, 11, 11, '11', 11, '11', '11', '11', '11', '11', 10, '11', '11', 11, 0, '', '');
+INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `department`, `salary`, `incomeMethod`, `universityDegree`, `position`, `experience`, `bankAccount`, `userId`, `medicalTest`, `category`, `maximumInsuranceCost`, `yearOfGraduation`, `university`, `skills`, `cv`) VALUES
+(1, 11, 11, '11', 11, '11', '11', '11', '11', '11', 10, 0x3131, '11', 11, 0, '', '', '');
 
 -- --------------------------------------------------------
 
