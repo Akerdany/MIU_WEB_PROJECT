@@ -115,15 +115,9 @@
                 $password = $_POST["password"];
                 $confirmPassword = $_POST["confirmPassword"];
 
-                if(isset($_POST['registerParent'])){
-
-                    $workPosition = $_POST["workPosition"];
-                    $workPlace = $_POST["workPlace"];
-                    $workNumber = $_POST["workNumber"];
-
-                    if($firstName!="" && $lastName!="" && $familyName!="" && $gender!="" && $nationality!="" && $dateOfBirth!="" && $phoneNumber!="" &&
-                        $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
-                        $workPosition!="" && $workPlace!="" && $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
+                if($firstName!="" && $lastName!="" && $familyName!="" && $gender!="" && $nationality!="" && $dateOfBirth!="" && $phoneNumber!="" &&
+                $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
+                $workPosition!="" && $workPlace!="" && $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
 
                     if($password == $confirmPassword){
 
@@ -138,58 +132,81 @@
 
                                 $userID = $row2["id"];
 
-                                echo "<script type='text/javascript'>alert('$userID');</script>";
-
-                                $sqlParent = "INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES (NULL, '".$userID."', '".$workPosition."', '".$workPlace."')";
                                 $sqlAdress = "INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES (NULL, '".$region."', '".$streetName."', '".$buildingNumber."', '".$flatNumber."', '".$apartmentNumber."', '".$postalCode."', '".$userID."')";
 
-                                if(mysqli_query($conn,$sqlParent) && mysqli_query($conn,$sqlAdress)){
+                                if(mysqli_query($conn,$sqlAdress)){
 
-                                    echo"DONE";
-                                    header("location:logIn.php");
+                                    if(isset($_POST['registerParent'])){
+
+                                        $workPosition = $_POST["workPosition"];
+                                        $workPlace = $_POST["workPlace"];
+                                        $workNumber = $_POST["workNumber"];
+                                        
+                                        $sqlParent = "INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES (NULL, '".$userID."', '".$workPosition."', '".$workPlace."')";
+
+                                        if(mysqli_query($conn,$sqlParent)){
+    
+                                            echo"DONE";
+                                            header("location:logIn.php");
+                                        }
+                                    }
+
+                                    else if(isset($_POST['registerEmployee'])){
+
+                                        $university = $_POST["university"];
+                                        $universityDegree = $_POST["universityDegree"];
+                                        $graduationYear = $_POST["graduationYear"];
+                                        $department = $_POST["department"];
+                                        // $cv = $_POST["cv"];
+                                        $skills = $_POST["skills"];
+                                        $bankAccount = $_POST["bankAccount"];
+                                        // $medicalTest = $_POST["medicalTest"];
+                                        
+                                        // $target_dir = "uploads/";
+                                        // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+                                        // $uploadOk = 1;
+                                        // $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                                        // // Check if image file is a actual image or fake image
+                                        // if(isset($_POST["submit"])) {
+                                        //     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                                        //     if($check !== false) {
+                                        //         echo "File is an image - " . $check["mime"] . ".";
+                                        //         $uploadOk = 1;
+                                        //     } else {
+                                        //         echo "File is not an image.";
+                                        //         $uploadOk = 0;
+                                        //     }
+                                        // }
+                                    }
+                    
                                 }
-                                else{
-                                    
-                                    echo"Server might be offline right now";
+                                else{                                   
+                                    echo"Address table might have a problem";
                                 }
                             }
                             else{
-
                                 echo"Error in user id";
                             }
                         }
                         else {
-
                             echo $sql1;
                             echo"<br>";
+                            
+                            //Underconstructing the error table for IT department
                             printf("Errormessage: %s\n", mysqli_error($conn));
                         }
                     }
                     else{
-
                         echo"Please confirm your password";
                     }
-                }   
-                }
-                
-                else if(isset($_POST['registerEmployee'])){
-
-                    $university = $_POST["university"];
-                    $universityDegree = $_POST["universityDegree"];
-                    $graduationYear = $_POST["graduationYear"];
-                    $department = $_POST["department"];
-                    $cv = $_POST["cv"];
-                    $skills = $_POST["skills"];
-                    $bankAccount = $_POST["bankAccount"];
-                    $medicalTest = $_POST["medicalTest"];
-                    
-                }
-                
+                }                                  
             else {
                 echo "Please fill all the boxes";
                 echo "whyyy";
             }
         }
+
+        mysqli_close($conn);
         ?>
 
     <div id="choice" class="choice">
@@ -387,7 +404,3 @@
 
   </body>
 </html>
-<?php
-mysqli_close($conn);
-
- ?>
