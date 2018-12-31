@@ -22,29 +22,40 @@ date_default_timezone_set('Africa/Cairo');
 
 function getMessages($conn,$toUserId)
 {
-  $sql1="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.userId FROM user INNER JOIN messagetest ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId ORDER BY messagetest.date ";
+	
+  $sql1="  SELECT user.email,user.id,messagetest.message,
+  messagetest.date,messagetest.userId FROM user INNER JOIN messagetest
+  ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId
+  ORDER BY messagetest.date ";
   $result1= mysqli_query($conn,$sql1);
+
+
   while ($row= mysqli_fetch_assoc($result1)) {
       $message=$row['message'];
       $email= $row['email'];
       $date=$row['date'];
       $sql4="SELECT messagetest.toUserId FROM messagetest";
       $result4=mysqli_query($conn,$sql4);
+	  
       while ($row4= mysqli_fetch_assoc($result4)) {
 
       $toUserId=$row4['toUserId'];
-
-      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['TheEmail']==$toUserId))
+ 
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['toUserId']==$toUserId))
       {
-      echo "<div class='comment-box'><p>";
+     echo "<div class='comment-box'><p>";
       echo '<h4 style="color:blue">'.$email.' to '.$_SESSION['TheEmail'].'</h4>';
       echo '<p>'.$message.'</p><br>';
       echo '<p>'.$date.'</p>';
       echo "</p></div>";
+	  
     }
+	
   }
+ 
 
 }
+
 }
 function setMessages($conn,$toUserId)
 {
@@ -104,7 +115,7 @@ function getOthersMessages($conn,$toUserId) //to get other messages from other u
 
       $toUserId=$row4['toUserId'];
 
-      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['TheEmail']==$toUserId))
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['toUserId']==$toUserId))
       {
       echo "<div class='comment-box'><p>";
       echo '<h4 style="color:blue"> '.$_SESSION['TheEmail'].' to '.$email.' </h4>';
