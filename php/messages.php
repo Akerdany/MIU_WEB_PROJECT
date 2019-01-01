@@ -84,10 +84,13 @@ function displayResult($toUserId)
   echo $_SESSION['username'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
   echo'
   <input type="text" name="email" id="email" placeholder="Email" onkeyup="checkFounded()"/><br>
-
-  <div id="msg"></div><br>
-
-
+	
+  <div id="msg"></div><br>';
+  if(isset($_SESSION['toUserId']))
+  {
+  include 'sendInvitation.php';
+  }
+echo'
      <button onclick="ReloadingPage()">Reload page</button>';
      echo"
      <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
