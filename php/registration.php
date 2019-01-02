@@ -106,15 +106,17 @@
                 $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
                 $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
 
+                    $date = date('Y-m-d H:i:s');
+
                     if($password == $confirmPassword){
 
                         if(isset($_POST['registerParent'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','2')";
+                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `status`, `ssn`, `typeId`)
+                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','3','".$ssn."','2')";
                         }
                         else if(isset($_POST['registerEmployee'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','1')";
+                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `status`, `ssn`, `typeId`)
+                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','3','".$ssn."','1')";
                         }
 
                         if (mysqli_query($conn,$sql1)) {
@@ -214,16 +216,11 @@
                     else{
                         echo"Please confirm your password";
                     }
-        }
-        else {
-            echo "Please fill all the boxes";
-        }
-                }                                  
-            else {
-                echo "Please fill all the boxes";
-                echo "whyyy";
-            }
-        
+                }
+                else {
+                    echo "Please fill all the boxes";
+                }
+            }   
 
         mysqli_close($conn);
         ?>
@@ -320,9 +317,7 @@
                 <fieldset>
                     <h2 class="Form_Title">  Account Information </h2>
                     <h3 class="Form_Subtitle">Final Step </h3>
-                    <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
-                    <div id="msg"></div><br>
-
+                   
                     <legend>Account Information: </legend>
 
                     <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
@@ -456,7 +451,6 @@
                 <h2 class="Form_Title">  Account Information </h2>
                 <h3 class="Form_Subtitle">Final Step </h3>
 
-                <input type="text" name="email" placeholder="Email">
                 <input type="text" name="email" placeholder="Email"/><br>
                 <div id="msg"></div>
 

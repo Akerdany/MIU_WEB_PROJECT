@@ -32,13 +32,36 @@
                 $_SESSION["homeNumber"]=$row["homeTelephoneNumber"];
                 $_SESSION["ssn"]=$row["ssn"];
 
-                $_SESSION["type_User"]=mysqli_query($conn, "SELECT typeName FROM type WHERE id='".$row["typeId"]."'");
+                $temp=mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
+                $temp2=mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
 
-                header("Location: index.php");
-            }        
+                if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
+
+                    $_SESSION["type_User"]=$r;
+                    
+                    $status=$r2;
+                    
+                    if($status == "Active"){
+                        header("Location: index.php");
+                    }
+
+                    else if($status == "Pending"){
+                        echo"Sorry you're account isn't active yet";
+                    }   
+                }      
+                else{
+                    echo $temp;
+                    echo"<br>";
+                    echo $temp2;
+                    echo"<br>";
+                            
+                    //Underconstructing the error table for IT department
+                    printf("Errormessage: %s\n", mysqli_error($conn));
+                }  
+            }
             else{
                 echo '<script language="javascript">';
-                echo 'alert("you have entered the username or password wrong")';
+                echo 'alert("you have entered the username or password wrong or you need to register")';
                 echo '</script>';         
             }
         }
@@ -66,6 +89,7 @@
                     <input class="input-field" type="password" placeholder="Password" name="password" required>
             </div>
                 <input type="submit" class="Submit_Button" name="submit">
+                Don't have an account yet ? <a href='registration.php'>Register</a>
             </form>
         </div>  
        <style>
