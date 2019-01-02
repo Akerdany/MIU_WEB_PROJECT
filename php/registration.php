@@ -176,31 +176,24 @@
                                         $university = $_POST["university"];
                                         $universityDegree = $_POST["universityDegree"];
                                         $graduationYear = $_POST["graduationYear"];
-                                        $department = $_POST["department"];
-                                        // $cv = $_POST["cv"];
+                                        $department = $_POST["department"];       
                                         $skills = $_POST["skills"];
                                         $bankAccount = $_POST["bankAccount"];
-                                        // $medicalTest = $_POST["medicalTest"];
-                                        
-                                        $target_dir = "../upload";
-                                        $target_file = $target_dir . basename($_FILES["cv"]["name"]);
-                                        $uploadOk = 1;
-                                        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                                        // Check if image file is a actual image or fake image
-                                        if(isset($_POST["submit"])) {
-                                            $check = getimagesize($_FILES["cv"]["tmp_name"]);
-                                            if($check !== false) {
-                                                echo "File is an image - " . $check["mime"] . ".";
-                                                $uploadOk = 1;
-                                            } else {
-                                                echo "File is not an image.";
-                                                $uploadOk = 0;
-                                            }
-                                        }
-                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!=""){
+
+                                        $cv = $_FILES['cv']['temp_name'];
+                                        //$cvName = addslashes($_FILES['cv']['name']);
+                                        $cv = file_get_contents($cv);
+                                        $cv = base64_encode($cv);
+
+                                        $medicalTest = addslashes($_FILES['medicalTest']['tmp_name']);
+                                        //$medicalTestName = addslashes($_FILES['medicalTest']['name']);
+                                        $medicalTest = file_get_contents($medicalTest);
+                                        $medicalTest = base64_encode($medicalTest);   
+
+                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!="" && $cv!="" && $medicalTest1=""){
                                             
-                                            $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `department`, `skills`, `bankAccount`) 
-                                            VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."')";
+                                            $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `department`, `skills`, `bankAccount`, `medicalTest`, `cv`) 
+                                            VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."', '".$medicalTest."', '".$cv."')";
 
                                             if(mysqli_query($conn,$sqlEmployee)){
         

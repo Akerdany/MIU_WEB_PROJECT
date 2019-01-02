@@ -15,7 +15,7 @@
         session_start();
         require_once("Database_Connection.php");
 
-        $sql="SELECT * FROM child WHERE parentSsn='".$_SESSION["ssn"]."'";
+        $sql="SELECT * FROM child WHERE parentId='".$_SESSION["id"]."'";
         $result = mysqli_query($conn, $sql);
 
         if($row = mysqli_fetch_array($result)){
@@ -23,11 +23,16 @@
             $hobbies = $row["hobbies"];
             $medic = $row["medicalProblems"];
             $disability = $row["disability"];
-            $Pssn = $row["parentSsn"];
+            $parentId = $row["parentId"];
         }
         else{
-            header("Location: addChild.php");
+            echo $sql;
+            echo"<br>";
+            
+            //Underconstructing the error table for IT department
+            printf("Errormessage: %s\n", mysqli_error($conn));
         }
+        mysqli_close($conn);
     ?>
 
     <form name="dataChild" action="" method="post">
@@ -36,7 +41,4 @@
     <input type="text" name="disability" value=<?php echo $disability;?>><br>
 </body>
 </html>
-<?php
-mysqli_close($conn);
 
- ?>
