@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php 
-    echo '<link href="../css/Login_Page.css" media="screen" rel="stylesheet" type="text/css" />';	
+    //echo '<link href="../css/Login_Page.css" media="screen" rel="stylesheet" type="text/css" />';	
     echo '<link media="screen" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />';
 
     session_start();
@@ -32,22 +32,29 @@
                 $_SESSION["homeNumber"]=$row["homeTelephoneNumber"];
                 $_SESSION["ssn"]=$row["ssn"];
 
-                $temp=mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
-                $temp2=mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
+                $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
+                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
 
                 if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
 
-                    $_SESSION["type_User"]=$r;
+                    $_SESSION["type_User"]=$r["typeName"];
                     
-                    $status=$r2;
+                    $status=$r2["typeName"];
                     
-                    if($status == "Active"){
+                    $pending="Pending";
+                    if($status=="Active"){
                         header("Location: index.php");
                     }
-
-                    else if($status == "Pending"){
+                    else if($status==="Pending "){
                         echo"Sorry you're account isn't active yet";
                     }   
+                    else{
+
+                        echo $status;
+                        //Underconstructing the error table for IT department
+                        printf("Errormessage: %s\n", mysqli_error($conn));
+                        session_destroy();
+                    }
                 }      
                 else{
                     echo $temp;
