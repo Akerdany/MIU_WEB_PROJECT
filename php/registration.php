@@ -165,7 +165,7 @@
                                         $skills = $_POST["skills"];
                                         $bankAccount = $_POST["bankAccount"];
 
-                                        $cv = $_FILES['cv']['temp_name'];
+                                        $cv = addslashes($_FILES['cv']['tmp_name']);
                                         //$cvName = addslashes($_FILES['cv']['name']);
                                         $cv = file_get_contents($cv);
                                         $cv = base64_encode($cv);
@@ -175,7 +175,7 @@
                                         $medicalTest = file_get_contents($medicalTest);
                                         $medicalTest = base64_encode($medicalTest);   
 
-                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!="" && $cv!="" && $medicalTest1=""){
+                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!="" && $cv!=""){
                                             
                                             $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `department`, `skills`, `bankAccount`, `medicalTest`, `cv`) 
                                             VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."', '".$medicalTest."', '".$cv."')";
@@ -242,105 +242,105 @@
 
     <div id="parentForm" style="display:none;">
         <form  method="post">
-      <button name="backP" id="backP">Get Back</button><br> 
+            <button name="backP" id="backP">Get Back</button><br> 
 
-            <h1>New Parent Registration </h1>
+                <h1>New Parent Registration </h1>
 
-        <ul id="ProgressBar">
-            <li> Personal Information </li>
-            <li> Address Information </li>
-            <li> Work Information </li>
-            <li> Account Information </li>
-        </ul>
-            <fieldset>
-                <h2 class="Form_Title">  Personal Information </h2>
-                <h3 class="Form_Subtitle">Step 1 </h3>
-                <input type="text" name="firstName" placeholder="First name">
+            <ul id="ProgressBar">
+                <li> Personal Information </li>
+                <li> Address Information </li>
+                <li> Work Information </li>
+                <li> Account Information </li>
+            </ul>
+                <fieldset>
+                    <h2 class="Form_Title">  Personal Information </h2>
+                    <h3 class="Form_Subtitle">Step 1 </h3>
+                    <input type="text" name="firstName" placeholder="First name">
 
-                <input type="text" name="lastName" placeholder="Last name">
+                    <input type="text" name="lastName" placeholder="Last name">
 
-                <input type="text" name="familyName" placeholder="Family Name">
-                
-                <input id="Gender_Radio_Button" type="radio" name="gender" value="Male"> <label> Male </label>
+                    <input type="text" name="familyName" placeholder="Family Name">
+                    
+                    <input id="Gender_Radio_Button" type="radio" name="gender" value="Male"> <label> Male </label>
 
-                <input id="Gender_Radio_Button" type="radio" name="gender" value="Female"><label> Female </label>
+                    <input id="Gender_Radio_Button" type="radio" name="gender" value="Female"><label> Female </label>
 
-                <input type="text" name="nationality" placeholder="Nationality">
+                    <input type="text" name="nationality" placeholder="Nationality">
 
-                <input type="date" name="dateOfBirth" placeholder="Date of Birth">
+                    <input type="date" name="dateOfBirth" placeholder="Date of Birth">
 
-                <input type="number" name="phoneNumber" placeholder="Phone Number">
+                    <input type="number" name="phoneNumber" placeholder="Phone Number">
 
-                <input type="number" name="homeNumber" placeholder="Home Number">
+                    <input type="number" name="homeNumber" placeholder="Home Number">
 
-                <input type="number" name="ssn" placeholder="SSN">
+                    <input type="number" name="ssn" placeholder="SSN">
 
-                <input type="button" name="Next" class="Next" value="Next">
+                    <input type="button" name="Next" class="Next" value="Next">
 
-            </fieldset>
+                </fieldset>
 
-            <fieldset>
-          
-                <h2 class="Form_Title">  Address Information </h2>
-                <h3 class="Form_Subtitle"> Step 2 </h3>
-                 <input type="text" name="region" placeholder="Region">
+                <fieldset>
+            
+                    <h2 class="Form_Title">  Address Information </h2>
+                    <h3 class="Form_Subtitle"> Step 2 </h3>
+                    <input type="text" name="region" placeholder="Region">
 
-                <input type="text" name="streetName" placeholder="Street Name">
+                    <input type="text" name="streetName" placeholder="Street Name">
 
-                <input type="number" name="buildingNumber" placeholder="Building Number">
+                    <input type="number" name="buildingNumber" placeholder="Building Number">
 
-                <input type="number" name="flatNumber" placeholder="Flat Number">
+                    <input type="number" name="flatNumber" placeholder="Flat Number">
 
-                <input type="number" name="apartmentNumber" placeholder="Apartment Number">
+                    <input type="number" name="apartmentNumber" placeholder="Apartment Number">
 
-                <input type="number" name="postalCode" placeholder="Postal Code">
+                    <input type="number" name="postalCode" placeholder="Postal Code">
 
-                <input type="button" name="Previous" class="Previous" value="Previous" >
+                    <input type="button" name="Previous" class="Previous" value="Previous" >
 
-                <input type="button" name="Next" class="Next" value="Next" >
+                    <input type="button" name="Next" class="Next" value="Next" >
 
 
-            </fieldset>
+                </fieldset>
 
-            <fieldset>
-                <h2 class="Form_Title">  Work Information </h2>
-                <h3 class="Form_Subtitle"> Step 3 </h3>
-                 <input type="text" name="workPosition" placeholder="Work Position">
+                <fieldset>
+                    <h2 class="Form_Title">  Work Information </h2>
+                    <h3 class="Form_Subtitle"> Step 3 </h3>
+                    <input type="text" name="workPosition" placeholder="Work Position">
 
-                <input type="text" name="workPlace" placeholder="Work Residence">
+                    <input type="text" name="workPlace" placeholder="Work Residence">
 
-                <input type="number" name="workNumber" placeholder="Work Number">
+                    <input type="number" name="workNumber" placeholder="Work Number">
 
-                <input type="button" name="Previous" class="Previous" value="Previous" >
+                    <input type="button" name="Previous" class="Previous" value="Previous" >
 
-                <input type="button" name="Next" class="Next" value="Next" >
+                    <input type="button" name="Next" class="Next" value="Next" >
 
-            </fieldset>
+                </fieldset>
 
-            <fieldset>
-                <h2 class="Form_Title">  Account Information </h2>
-                <h3 class="Form_Subtitle">Final Step </h3>
-                 <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
-                <div id="msg"></div><br>
+                <fieldset>
+                    <h2 class="Form_Title">  Account Information </h2>
+                    <h3 class="Form_Subtitle">Final Step </h3>
+                    <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
+                    <div id="msg"></div><br>
 
-                <legend>Account Information: </legend>
+                    <legend>Account Information: </legend>
 
-                <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
-                <div id="msg"></div>
+                    <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
+                    <div id="msg"></div>
 
-                <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password">
 
-                <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password">
 
-                <input type="submit" name="registerParent" value="register">
+                    <input type="submit" name="registerParent" value="register">
 
-            </fieldset>
+                </fieldset>
 
         </form>
 
     </div>
 
-    <div id="employeeForm" style="display:none;" enctype="multipart/form-data">
+    <div id="employeeForm" style="display:none;">
 
         <button name="backE" id="backE">Get Back</button>
 
@@ -353,7 +353,7 @@
             <li> Account Information </li>
         </ul>
 
-        <form  method="post">
+        <form  method="post"  enctype="multipart/form-data">
 
             <fieldset>
 

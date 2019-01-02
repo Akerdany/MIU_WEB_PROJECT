@@ -17,6 +17,7 @@
 
         $sql="SELECT * FROM child WHERE parentId='".$_SESSION["id"]."'";
         $result = mysqli_query($conn, $sql);
+        
 
         if($row = mysqli_fetch_array($result)){
             $idChild = $row["id"];
