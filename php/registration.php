@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="../css/test.css">
-
+    <link rel="stylesheet" href="../css/Registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <script>
 
         $(document).ready(function(){
@@ -66,29 +69,11 @@
     </script>
 
     <meta charset="utf-8">
-        <title></title>
-
-        <style>
-            *{margin: 0px; padding:0px;  }
-            #main{ width:300px; margin: 24px auto;}
-            fieldset {
-                display: block;
-                margin-left: 2px;
-                margin-right: 2px;
-                padding-top: 0.35em;
-                padding-bottom: 0.625em;
-                padding-left: 0.75em;
-                padding-right: 0.75em;
-                border: 2px groove (internal value);
-            }
-
-            .email-ok{color:#2FC332;}
-            .email-taken{color:#D60202;}
-        </style>
-
+        <title> Registration Page </title>
     </head>
 
     <body>
+       
         <?php
             require_once("Database_Connection.php");
 
@@ -229,12 +214,16 @@
                     else{
                         echo"Please confirm your password";
                     }
+        }
+        else {
+            echo "Please fill all the boxes";
+        }
                 }                                  
             else {
                 echo "Please fill all the boxes";
                 echo "whyyy";
             }
-        }
+        
 
         mysqli_close($conn);
         ?>
@@ -249,81 +238,103 @@
 
     </div>
 
+   
+
     <div id="parentForm" style="display:none;">
-
-        <button name="backP" id="backP">Get Back</button><br>
-
         <form  method="post">
+      <button name="backP" id="backP">Get Back</button><br> 
+
+            <h1>New Parent Registration </h1>
+
+        <ul id="ProgressBar">
+            <li> Personal Information </li>
+            <li> Address Information </li>
+            <li> Work Information </li>
+            <li> Account Information </li>
+        </ul>
             <fieldset>
+                <h2 class="Form_Title">  Personal Information </h2>
+                <h3 class="Form_Subtitle">Step 1 </h3>
+                <input type="text" name="firstName" placeholder="First name">
 
-                <legend> Personal Information: </legend>
+                <input type="text" name="lastName" placeholder="Last name">
 
-                <input type="text" name="firstName" placeholder="First name"/><br>
+                <input type="text" name="familyName" placeholder="Family Name">
+                
+                <input id="Gender_Radio_Button" type="radio" name="gender" value="Male"> <label> Male </label>
 
-                <input type="text" name="lastName" placeholder="Last name"/><br>
+                <input id="Gender_Radio_Button" type="radio" name="gender" value="Female"><label> Female </label>
 
-                <input type="text" name="familyName" placeholder="Family Name"/><br>
+                <input type="text" name="nationality" placeholder="Nationality">
 
-                <input type="radio" name="gender" value="Male"/>  Male <br>
-                <input type="radio" name="gender" value="Female"/>  Female <br>
+                <input type="date" name="dateOfBirth" placeholder="Date of Birth">
 
-                <input type="text" name="nationality" placeholder="Nationality"/><br>
+                <input type="number" name="phoneNumber" placeholder="Phone Number">
 
-                <input type="date" name="dateOfBirth" placeholder="Date of Birth"/><br>
+                <input type="number" name="homeNumber" placeholder="Home Number">
 
-                <input type="number" name="phoneNumber" placeholder="Phone Number"/><br>
+                <input type="number" name="ssn" placeholder="SSN">
 
-                <input type="number" name="homeNumber" placeholder="Home Number"/><br>
-
-                <input type="number" name="ssn" placeholder="SSN"/><br>
+                <input type="button" name="Next" class="Next" value="Next">
 
             </fieldset>
 
             <fieldset>
+          
+                <h2 class="Form_Title">  Address Information </h2>
+                <h3 class="Form_Subtitle"> Step 2 </h3>
+                 <input type="text" name="region" placeholder="Region">
 
-                <legend>Address Information: </legend>
+                <input type="text" name="streetName" placeholder="Street Name">
 
-                <input type="text" name="region" placeholder="Region"/><br>
+                <input type="number" name="buildingNumber" placeholder="Building Number">
 
-                <input type="text" name="streetName" placeholder="Street Name"/><br>
+                <input type="number" name="flatNumber" placeholder="Flat Number">
 
-                <input type="number" name="buildingNumber" placeholder="Building Number"/><br>
+                <input type="number" name="apartmentNumber" placeholder="Apartment Number">
 
-                <input type="number" name="flatNumber" placeholder="Flat Number"/><br>
+                <input type="number" name="postalCode" placeholder="Postal Code">
 
-                <input type="number" name="apartmentNumber" placeholder="Apartment Number"/><br>
+                <input type="button" name="Previous" class="Previous" value="Previous" >
 
-                <input type="number" name="postalCode" placeholder="Postal Code"/><br>
+                <input type="button" name="Next" class="Next" value="Next" >
 
-            </fieldset>
-
-            <fieldset>
-
-                <legend>Work Information: </legend>
-
-                <input type="text" name="workPosition" placeholder="Work Position"/><br>
-
-                <input type="text" name="workPlace" placeholder="Work Residence"/><br>
-
-                <input type="number" name="workNumber" placeholder="Work Number"/><br>
 
             </fieldset>
 
             <fieldset>
+                <h2 class="Form_Title">  Work Information </h2>
+                <h3 class="Form_Subtitle"> Step 3 </h3>
+                 <input type="text" name="workPosition" placeholder="Work Position">
+
+                <input type="text" name="workPlace" placeholder="Work Residence">
+
+                <input type="number" name="workNumber" placeholder="Work Number">
+
+                <input type="button" name="Previous" class="Previous" value="Previous" >
+
+                <input type="button" name="Next" class="Next" value="Next" >
+
+            </fieldset>
+
+            <fieldset>
+                <h2 class="Form_Title">  Account Information </h2>
+                <h3 class="Form_Subtitle">Final Step </h3>
+                 <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
+                <div id="msg"></div><br>
 
                 <legend>Account Information: </legend>
 
                 <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
                 <div id="msg"></div>
 
-                <input type="password" name="password" placeholder="Password"/><br>
+                <input type="password" name="password" placeholder="Password">
 
-                <input type="password" name="confirmPassword" placeholder="Confirm Password"/><br>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password">
+
+                <input type="submit" name="registerParent" value="register">
 
             </fieldset>
-
-            <br>
-            <input type="submit" name="registerParent" value="register"/><br>
 
         </form>
 
@@ -333,64 +344,85 @@
 
         <button name="backE" id="backE">Get Back</button>
 
+        <h1> New Employee Registration </h1>
+
+        <ul id="ProgressBar">
+            <li> Personal Information </li>
+            <li> Address Information </li>
+            <li> Work Information </li>
+            <li> Account Information </li>
+        </ul>
+
         <form  method="post">
 
             <fieldset>
 
-                <legend> Personal Information: </legend>
+                <h2 class="Form_Title">  Personal Information </h2>
+                <h3 class="Form_Subtitle"> Step 1 </h3>
 
-                <input type="text" name="firstName" placeholder="First name"/><br>
+                <input type="text" name="firstName" placeholder="First name">
 
-                <input type="text" name="lastName" placeholder="Last name"/><br>
+                <input type="text" name="lastName" placeholder="Last name">
 
-                <input type="text" name="familyName" placeholder="Family Name"/><br>
+                <input type="text" name="familyName" placeholder="Family Name">
 
-                <input type="radio" name="gender" value="Male"/>  Male <br>
-                <input type="radio" name="gender" value="Female"/>  Female <br>
+                <input type="radio" name="gender" value="Male"/>  Male 
+                <input type="radio" name="gender" value="Female"/>  Female 
 
-                <input type="text" name="nationality" placeholder="Nationality"/><br>
+                <input type="text" name="nationality" placeholder="Nationality">
 
-                <input type="date" name="dateOfBirth" placeholder="Date of Birth"/><br>
+                <input type="date" name="dateOfBirth" placeholder="Date of Birth">
 
-                <input type="number" name="phoneNumber" placeholder="Phone Number"/><br>
+                <input type="number" name="phoneNumber" placeholder="Phone Number">
 
+                <input type="number" name="HomeNumber" placeholder="Home Number">
+
+                <input type="number" name="ssn" placeholder="SSN">
                 <input type="number" name="homeNumber" placeholder="Home Number"/><br>
 
                 <input type="number" name="workNumber" placeholder="Work Number"/><br>
 
-                <input type="number" name="ssn" placeholder="SSN"/><br>
+                <input type="button" name="NextEmployee" class="NextEmployee" value="Next">
 
             </fieldset>
 
             <fieldset>
 
-                <legend>Address Information: </legend>
+                <h2 class="Form_Title">  Address Information </h2>
+                <h3 class="Form_Subtitle"> Step 2 </h3>
 
-                <input type="text" name="region" placeholder="Region"/><br>
+                <input type="text" name="region" placeholder="Region">
 
-                <input type="text" name="streetName" placeholder="Street Name"/><br>
+                <input type="text" name="streetName" placeholder="Street Name">
 
-                <input type="number" name="buildingNumber" placeholder="Building Number"/><br>
+                <input type="number" name="buildingNumber" placeholder="Building Number">
 
-                <input type="number" name="flatNumber" placeholder="Flat Number"/><br>
+                <input type="number" name="flatNumber" placeholder="Flat Number">
 
-                <input type="number" name="apartmentNumber" placeholder="Apartment Number"/><br>
+                <input type="number" name="apartmentNumber" placeholder="Apartment Number">
 
-                <input type="number" name="postalCode" placeholder="Postal Code"/><br>
+                <input type="number" name="postalCode" placeholder="Postal Code">
+
+                <input type="button" name="PreviousEmployee" class="PreviousEmployee" value="Previous" >
+
+                <input type="button" name="NextEmployee" class="NextEmployee" value="Next" >
+
+                
 
             </fieldset>
 
             <fieldset>
 
-                <legend>Applicant Information: </legend>
+                <h2 class="Form_Title"> Applicant Information </h2>
+                <h3 class="Form_Subtitle"> Step 3 </h3>
 
-                <input type="text" name="university" placeholder="University"/><br>
+                <input type="text" name="university" placeholder="University">
 
-                <input type="text" name="universityDegree" placeholder="University Degree"/><br>
+                <input type="text" name="universityDegree" placeholder="University Degree">
 
-                <input type="number" name="graduationYear" placeholder="Graduation Year"/><br>
+                <input type="number" name="graduationYear" placeholder="Graduation Year">
 
-                <select name="department">
+                <select id="Dropdown" name="department">
                     <option value="">Select your department</option>
                     <option value="Teaching">Teaching</option>
                     <option value="PR">PR</option>
@@ -401,39 +433,187 @@
                     <option value="Marketing">Marketing</option>
                     <option value="Security">Security</option>
                     <option value="Transportation">Transportion</option>
-                </select> <br>
+                </select>
 
                 C.V:
-                <input type="file" name="cv"/><br>
+                <input id="C.V" type="file" name="cv">
 
-                <textarea rows="4" cols="50" name="skills">Skills</textarea><br>
+                <textarea rows="4" cols="50" name="skills">Skills</textarea>
 
-                <input type="number" name="bankAccount" placeholder="Bank Account"/><br>
+                <input type="number" name="bankAccount" placeholder="Bank Account">
 
                 Medical Test:
-                <input type="file" name="medicalTest"/><br>
+                <input id="MedicalTest" type="file" name="medicalTest">
+                
+                <input type="button" name="PreviousEmployee" class="PreviousEmployee" value="Previous" >
+
+                <input type="button" name="NextEmployee" class="NextEmployee" value="Next" >
 
             </fieldset>
 
             <fieldset>
 
-                <legend>Account Information: </legend>
+                <h2 class="Form_Title">  Account Information </h2>
+                <h3 class="Form_Subtitle">Final Step </h3>
 
+                <input type="text" name="email" placeholder="Email">
                 <input type="text" name="email" placeholder="Email"/><br>
                 <div id="msg"></div>
 
-                <input type="password" name="password" placeholder="Password"/><br>
+                <input type="password" name="password" placeholder="Password">
 
                 <input type="password" name="confirmPassword" placeholder="Confirm Password"/><br>
 
-            </fieldset>
+                <input type="submit" name="registerEmployee" value="register">
 
-            <br>
-            <input type="submit" name="registerEmployee" value="register"/><br>
+            </fieldset>
 
         </form>
 
     </div>
 
   </body>
+  <script>
+
+var current_fs, next_fs, previous_fs; //to detect which step is next and which is pervious and which is in now 
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".Next").click(function()
+    {
+	if(animating) return false;
+	animating = true;
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+
+	$("#ProgressBar li").eq($("fieldset").index(next_fs)).addClass("active");//bt5aly elorder bta3 progress bar INC
+	
+	next_fs.show(); //show the next fieldset
+    current_fs.hide();//hide the previous fieldset
+	
+	current_fs.animate({opacity: 0}, 
+    {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'transform': 'scale('+scale+')'});
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 1000, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		},
+	});
+});
+
+$(".Previous").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+
+	$("#ProgressBar li").eq($("fieldset").index(current_fs)).removeClass("active");//Dec of order in progressbar 
+	previous_fs.show(); //Show Previous fieldset
+	//current_fs.hide();//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({'left': left});
+			previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 1000, 
+		complete: function(){
+			current_fs.hide();
+            previous_fs.show();
+			animating = false;
+		}, 
+	});
+});
+
+
+var current_fs_employee, next_fs_employee, previous_fs_employee; //to detect which step is next and which is pervious and which is in now 
+var left_Employee, opacity_Employee, scale_Employee; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".NextEmployee").click(function()
+    {
+	if(animating) return false;
+	animating = true;
+	current_fs_employee = $(this).parent();
+	next_fs_employee = $(this).parent().next();
+
+	$("#ProgressBar li").eq($("fieldset").index(next_fs_employee)).addClass("active");//bt5aly elorder bta3 progress bar INC
+	
+	next_fs_employee.show(); //show the next fieldset
+    current_fs_employee.hide();//hide the previous fieldset
+	
+	current_fs_employee.animate({opacity: 0}, 
+    {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs_employee.css({'transform': 'scale('+scale+')'});
+			next_fs_employee.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 1000, 
+		complete: function(){
+			current_fs_employee.hide();
+			animating = false;
+		},
+	});
+});
+
+$(".PreviousEmployee").click(function(){
+	if(animating) return false;
+	animating = true;
+	
+	current_fs_employee = $(this).parent();
+	previous_fs_employee = $(this).parent().prev();
+
+	$("#ProgressBar li").eq($("fieldset").index(current_fs_employee)).removeClass("active");//Dec of order in progressbar 
+	previous_fs_employee.show(); //Show Previous fieldset
+	//current_fs.hide();//hide the current fieldset with style
+	current_fs_employee.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = ((1-now) * 50)+"%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs_employee.css({'left': left});
+			previous_fs_employee.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+		}, 
+		duration: 1000, 
+		complete: function(){
+			current_fs_employee.hide();
+            previous_fs_employee.show();
+			animating = false;
+		}, 
+	});
+});
+
+$(".registerParent").click(function(){
+	return false;
+})
+      </script>
 </html>
