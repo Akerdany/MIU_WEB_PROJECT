@@ -17,6 +17,8 @@
         else{
             
             echo '<div class="email-ok"><button type="button"  name="messageTo" id="messagingTo"  onclick="messaging()">message</button></div>';
+		
+
         }
 
     }
@@ -40,11 +42,18 @@
                   type: 'POST',
                   url: 'getId.php',
                   success: function(data) {
-
+					  
                       $("#msg").html(data);
-
+		
+				
                   }
               });
      });
   });
-  </script></html>
+  
+
+  
+  </script>
+  </html>
+
+

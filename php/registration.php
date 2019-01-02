@@ -77,8 +77,8 @@
         <?php
             require_once("Database_Connection.php");
 
-            if (isset($_POST['registerParent'])){
-                
+            if (isset($_POST['registerParent']) || isset($_POST['registerEmployee'])){
+
                 $firstName = $_POST["firstName"];
                 $lastName = $_POST["lastName"];
                 $familyName = $_POST["familyName"];
@@ -96,8 +96,6 @@
                 $apartmentNumber = $_POST["apartmentNumber"];
                 $postalCode = $_POST["postalCode"];
 
-                $workPosition = $_POST["workPosition"];
-                $workPlace = $_POST["workPlace"];
                 $workNumber = $_POST["workNumber"];
 
                 $email = $_POST["email"];
@@ -105,13 +103,19 @@
                 $confirmPassword = $_POST["confirmPassword"];
 
                 if($firstName!="" && $lastName!="" && $familyName!="" && $gender!="" && $nationality!="" && $dateOfBirth!="" && $phoneNumber!="" &&
-                   $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
-                   $workPosition!="" && $workPlace!="" && $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
+                $homeNumber!="" && $ssn != "" && $region!="" && $streetName!="" && $buildingNumber!="" && $flatNumber!="" && $apartmentNumber!="" && $postalCode!="" &&
+                $workNumber!="" && $email!="" && $password!="" && $confirmPassword!=""){
 
                     if($password == $confirmPassword){
 
-                        $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
-                        VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','2')";
+                        if(isset($_POST['registerParent'])){
+                            $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
+                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','2')";
+                        }
+                        else if(isset($_POST['registerEmployee'])){
+                            $sql1 = "INSERT INTO `user` (`id`, `email`,`password`,`firstName` ,`lastName`,`familyName` , `gender` , `nationality` ,`dateOfBirth` ,`workNumber` ,`phoneNumber`,`homeTelephoneNumber`,`ssn` ,`typeId`)
+                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$ssn."','1')";
+                        }
 
                         if (mysqli_query($conn,$sql1)) {
 
@@ -121,17 +125,85 @@
 
                                 $userID = $row2["id"];
 
-                                echo "<script type='text/javascript'>alert('$userID');</script>";
-
-                                $sqlParent = "INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES (NULL, '".$userID."', '".$workPosition."', '".$workPlace."')";
                                 $sqlAdress = "INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES (NULL, '".$region."', '".$streetName."', '".$buildingNumber."', '".$flatNumber."', '".$apartmentNumber."', '".$postalCode."', '".$userID."')";
 
-                                if(mysqli_query($conn,$sqlParent) && mysqli_query($conn,$sqlAdress)){
-                                    echo"DONE";
-                                    header("location:logIn.php");
-                                }
-                                else{
-                                    echo"Server might be offline right now";
+                                if(mysqli_query($conn,$sqlAdress)){
+
+                                    if(isset($_POST['registerParent'])){
+
+                                        $workPosition = $_POST["workPosition"];
+                                        $workPlace = $_POST["workPlace"];
+                                    
+                                        if($workPosition!="" && $workPlace!=""){
+                                            
+                                            $sqlParent = "INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES (NULL, '".$userID."', '".$workPosition."', '".$workPlace."')";
+
+                                            if(mysqli_query($conn,$sqlParent)){
+        
+                                                header("location:logIn.php");
+                                            }
+                                            else{
+                                                echo $sqlParent;
+                                                echo"<br>";
+                            
+                                                //Underconstructing the error table for IT department
+                                                printf("Errormessage: %s\n", mysqli_error($conn));
+
+                                            }
+                                        }
+                                        else{                                   
+                                            echo"Parent table might have a problem";
+                                        }
+                                    }
+
+                                    else if(isset($_POST['registerEmployee'])){
+
+                                        $university = $_POST["university"];
+                                        $universityDegree = $_POST["universityDegree"];
+                                        $graduationYear = $_POST["graduationYear"];
+                                        $department = $_POST["department"];
+                                        // $cv = $_POST["cv"];
+                                        $skills = $_POST["skills"];
+                                        $bankAccount = $_POST["bankAccount"];
+                                        // $medicalTest = $_POST["medicalTest"];
+                                        
+                                        $target_dir = "../upload";
+                                        $target_file = $target_dir . basename($_FILES["cv"]["name"]);
+                                        $uploadOk = 1;
+                                        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                                        // Check if image file is a actual image or fake image
+                                        if(isset($_POST["submit"])) {
+                                            $check = getimagesize($_FILES["cv"]["tmp_name"]);
+                                            if($check !== false) {
+                                                echo "File is an image - " . $check["mime"] . ".";
+                                                $uploadOk = 1;
+                                            } else {
+                                                echo "File is not an image.";
+                                                $uploadOk = 0;
+                                            }
+                                        }
+                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!=""){
+                                            
+                                            $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `department`, `skills`, `bankAccount`) 
+                                            VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."')";
+
+                                            if(mysqli_query($conn,$sqlEmployee)){
+        
+                                                header("location:logIn.php");
+                                            }
+                                            else{
+                                                echo $sqlEmployee;
+                                                echo"<br>";
+                            
+                                                //Underconstructing the error table for IT department
+                                                printf("Errormessage: %s\n", mysqli_error($conn));
+                                            }
+                                        }
+                                        else{                                   
+                                            echo"Employee table might have a problem";
+                                        }
+                                    }
+                    
                                 }
                             }
                             else{
@@ -140,6 +212,10 @@
                         }
                         else {
                             echo $sql1;
+                            echo"<br>";
+                            
+                            //Underconstructing the error table for IT department
+                            printf("Errormessage: %s\n", mysqli_error($conn));
                         }
                     }
                     else{
@@ -149,8 +225,14 @@
         else {
             echo "Please fill all the boxes";
         }
-        }
+                }                                  
+            else {
+                echo "Please fill all the boxes";
+                echo "whyyy";
+            }
+        
 
+        mysqli_close($conn);
         ?>
 
     <div id="choice" class="choice">
@@ -248,6 +330,11 @@
                  <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
                 <div id="msg"></div><br>
 
+                <legend>Account Information: </legend>
+
+                <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
+                <div id="msg"></div>
+
                 <input type="password" name="password" placeholder="Password">
 
                 <input type="password" name="confirmPassword" placeholder="Confirm Password">
@@ -260,7 +347,7 @@
 
     </div>
 
-    <div id="employeeForm" style="display:none;">
+    <div id="employeeForm" style="display:none;" enctype="multipart/form-data">
 
         <button name="backE" id="backE">Get Back</button>
 
@@ -298,6 +385,9 @@
                 <input type="number" name="HomeNumber" placeholder="Home Number">
 
                 <input type="number" name="ssn" placeholder="SSN">
+                <input type="number" name="homeNumber" placeholder="Home Number"/><br>
+
+                <input type="number" name="workNumber" placeholder="Work Number"/><br>
 
                 <input type="button" name="NextEmployee" class="NextEmployee" value="Next">
 
@@ -374,10 +464,12 @@
                 <h3 class="Form_Subtitle">Final Step </h3>
 
                 <input type="text" name="email" placeholder="Email">
+                <input type="text" name="email" placeholder="Email"/><br>
+                <div id="msg"></div>
 
                 <input type="password" name="password" placeholder="Password">
 
-                <input type="password" name="confirmpassword" placeholder="Confirm Password">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password"/><br>
 
                 <input type="submit" name="registerEmployee" value="register">
 
@@ -532,10 +624,3 @@ $(".registerParent").click(function(){
 })
       </script>
 </html>
-<?php
-mysqli_close($conn);
-
- ?>
-
-
-

@@ -15,22 +15,82 @@
 
 
 <?php
+date_default_timezone_set('Africa/Cairo');
 
   session_start();
     include("Database_Connection.php");
 
-
-if (isset($_SESSION['username']))
+function getMessages($conn,$toUserId)
 {
-  $toUserId= $_SESSION['toUserId'] ;
+	
+  $sql1="  SELECT user.email,user.id,messagetest.message,
+  messagetest.date,messagetest.userId FROM user INNER JOIN messagetest
+  ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId
+  ORDER BY messagetest.date ";
+  $result1= mysqli_query($conn,$sql1);
+
+
+  while ($row= mysqli_fetch_assoc($result1)) {
+      $message=$row['message'];
+      $email= $row['email'];
+      $date=$row['date'];
+      $sql4="SELECT messagetest.toUserId FROM messagetest";
+      $result4=mysqli_query($conn,$sql4);
+	  
+      while ($row4= mysqli_fetch_assoc($result4)) {
+
+      $toUserId=$row4['toUserId'];
+ 
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['toUserId']==$toUserId))
+      {
+     echo "<div class='comment-box'><p>";
+      echo '<h4 style="color:blue">'.$email.' to '.$_SESSION['TheEmail'].'</h4>';
+      echo '<p>'.$message.'</p><br>';
+      echo '<p>'.$date.'</p>';
+      echo "</p></div>";
+	  
+    }
+	
+  }
+ 
+
+}
+
+}
+function setMessages($conn,$toUserId)
+{
+  $date=$_POST['date'];
+  $message=$_POST['message'];
+  $id = $_SESSION['id'];
+  $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
+  VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '","' .$date. '",0)
+  ';
+  if(mysqli_query($conn,$sql))
+  {
+    echo "<div class='comment-box'><p>";
+    echo '<h4 style="color:blue">'.$_SESSION['username'].' to '.$_SESSION['TheEmail'].' </h4>';
+
+    echo '<p>'.$message.'</p></div>';
+
+
+    echo "</p></div>";
+
+  }
+}
+function displayResult($toUserId)
+{
+
   echo "<div class='comment-box'><p>";
   echo $_SESSION['username'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
   echo'
   <input type="text" name="email" id="email" placeholder="Email" onkeyup="checkFounded()"/><br>
-
-  <div id="msg"></div><br>
-
-
+	
+  <div id="msg"></div><br>';
+  if(isset($_SESSION['toUserId']))
+  {
+  include 'sendInvitation.php';
+  }
+echo'
      <button onclick="ReloadingPage()">Reload page</button>';
      echo"
      <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
@@ -41,36 +101,37 @@ if (isset($_SESSION['username']))
   echo '<div id="main">
   <div id="result-message-area">
   ';
-  //SELECT user.email,user.id,messagetest.message FROM user INNER JOIN messagetest ON user.id=message.userId// messagetest.toUserId='".$_SESSION["toUserId"]."'
-      $sql1="  SELECT user.email,user.id,messagetest.message FROM user INNER JOIN messagetest ON user.id='".$_SESSION["id"]."'";
-      $result1= mysqli_query($conn,$sql1);
-      while ($row= mysqli_fetch_assoc($result1)) {
-          $message=$row['message'];
-          $email= $row['email'];
-          echo "<div class='comment-box'><p>";
+}
+function getOthersMessages($conn,$toUserId) //to get other messages from other users
+{
+  $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId where '".$_SESSION["id"]."'=messagetest.toUserId ORDER BY messagetest.date ";
+  $result2= mysqli_query($conn,$sql2);
 
-          echo '<h4 style="color:blue">'.$email.' to '.$_SESSION['TheEmail'].'</h4>';
-          echo '<p>'.$message.'</p>';
-echo "</p></div>";
+  while ($row2= mysqli_fetch_assoc($result2)) {
+      $message=$row2['message'];
+      $email= $row2['email'];
+      $date=$row2['date'];
 
-      }
-      if (Isset($_POST['submit']))
-       {
+      $sql4="SELECT messagetest.toUserId FROM messagetest";
+      $result4=mysqli_query($conn,$sql4);
+      while ($row4= mysqli_fetch_assoc($result4)) {
 
-        $message=$_POST['message'];
-        $id = $_SESSION['id'];
-        $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`seen`)
-        VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '",0)
-        ';
-        if(mysqli_query($conn,$sql))
-        {
-          echo "<div class='comment-box'><p>";
-          echo '<h4 style="color:blue">'.$_SESSION['username'].' to '.$_SESSION['TheEmail'].' </h4>';
+      $toUserId=$row4['toUserId'];
 
-          echo '<p>'.$message.'</p></div>';
-          echo "</p></div>";
-        }
+      if ((isset($_SESSION['TheEmail'])) && ($_SESSION['toUserId']==$toUserId))
+      {
+      echo "<div class='comment-box'><p>";
+      echo '<h4 style="color:blue"> '.$_SESSION['TheEmail'].' to '.$email.' </h4>';
+      echo '<p>'.$message.'</p><br>';
+      echo '<p>'.$date.'</p>';
+      echo "</p></div>";
+    }
+}
   }
+}
+
+function displayMessageArea()
+{
   echo '
   <div id="message_area">
   <form  method="post">
@@ -79,11 +140,27 @@ echo "</p></div>";
 
 
   <input type="text" name="message" style="width:80%; height:10%;" placeholder="Type your message" required/>
+   <input type="hidden" name="date" value="'.date('Y-m-d H:i:s').'">
   <button type="submit" name="submit" onclick="ReloadingPage()"  style="width:10%; height:10%;" >Send</button>
 
   </form>
 </div>
   </div>';
+}
+if (isset($_SESSION['username']))
+{
+  $toUserId= $_SESSION['toUserId'];
+  displayResult($toUserId);
+
+    getMessages($conn,$toUserId);
+    getOthersMessages($conn,$toUserId);
+
+      if (Isset($_POST['submit']))
+       {
+        setMessages($conn,$toUserId);
+
+       }
+      displayMessageArea();
 
  $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 /*if( $_SESSION['page'] =="http://127.0.0.1:8080/MIU_Web_Project/php/DisplayingMessageToManager.php"){
