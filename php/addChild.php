@@ -20,7 +20,7 @@
             $photo = base64_encode($photo);
 
             $sql = "INSERT INTO `child` (`id`, `photo`,`name`, `hobbies`,`medicalProblems`,`disability`,`parentId`)
-                    VALUES (NULL, '".$photo."','".$_POST['name']."','".$_POST['hobbies']."','".$_POST['medicalProblem']."','".$_POST['disabilty']."','".$_SESSION["id"]."')";
+                    VALUES (NULL, '".$photo."','".$_POST['name']."','".$_POST['hobbies']."','".$_POST['medicalProblem']."','".$_POST['disabilty']."','".$_SESSION["parentId"]."')";
 
             if (mysqli_query($conn,$sql)) {
                 header("location:child.php");

@@ -2,12 +2,10 @@
 <html lang="en">
 
 <?php 
-   echo '<link href="C:\wamp64\www\MIU_Web_Project\css\Login_Page.css" media="screen" rel="stylesheet" type="text/css" />';	
-   echo '<link media="screen" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />';
-?>
+    echo '<link href="../css/Login_Page.css" media="screen" rel="stylesheet" type="text/css" />';	
+    echo '<link media="screen" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />';
 
-  <?php 
-  session_start();
+    session_start();
     require_once("Database_Connection.php");
 
     if (isset($_POST['submit'])) {
@@ -20,7 +18,7 @@
             $result = mysqli_query($conn, $sql);
 
             if($row = mysqli_fetch_array($result)){
-                $_SESSION["id"]=$row["id"];
+                $_SESSION["parentId"]=$row["id"];
                 $_SESSION["username"]=$row["email"];
                 $_SESSION["password"]=$row["password"];
                 $_SESSION["firstName"]=$row["firstName"];
@@ -29,8 +27,12 @@
                 $_SESSION["gender"]=$row["gender"];
                 $_SESSION["nationality"]=$row["nationality"];
                 $_SESSION["dateOfBirth"]=$row["dateOfBirth"];
+                $_SESSION["workNumber"]=$row["workNumber"];
+                $_SESSION["phoneNumber"]=$row["phoneNumber"];
+                $_SESSION["homeNumber"]=$row["homeTelephoneNumber"];
                 $_SESSION["ssn"]=$row["ssn"];
-                $_SESSION["type_User"]=$row["type"];
+
+                $_SESSION["type_User"]=mysqli_query($conn, "SELECT typeName FROM type WHERE id='".$row["typeId"]."'");
 
                 header("Location: index.php");
             }        
@@ -69,74 +71,73 @@
        <style>
 
            
-body
-{
-    font-family: Verdana, sans-serif;
-    background-image: URL("../pictures/Background.jpg"); 
-    background-size: cover ;/* Set The image in Full size*/
+    body
+    {
+        font-family: Verdana, sans-serif;
+        background-image: URL("../pictures/Background.jpg"); 
+        background-size: cover ;/* Set The image in Full size*/
+        
+    }
+    .Login_Field
+    {
+        /*background-image: linear-gradient( snow,aqua ,skyblue , pink ,hotpink , coral , teal ,green, yellow, orange,violet,pink);*/
     
-}
-.Login_Field
-{
-    /*background-image: linear-gradient( snow,aqua ,skyblue , pink ,hotpink , coral , teal ,green, yellow, orange,violet,pink);*/
- 
-    background-color:transparent; 
-    width: 500px;
-    border-radius: 20px;
-    margin: center;    
-    height: 180px;  
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    left: 15px;
-    top: 300px;
-}
-#Form_Buttons
-{
-    background-color:Transparent;   
-}
-* {box-sizing: border-box;}
+        background-color:transparent; 
+        width: 500px;
+        border-radius: 20px;
+        margin: center;    
+        height: 180px;  
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        left: 15px;
+        top: 300px;
+    }
+    #Form_Buttons
+    {
+        background-color:Transparent;   
+    }
+    * {box-sizing: border-box;}
 
-.input-container {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    width: 100%;
-    margin-bottom: 15px;
-}
+    .input-container {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
 
-.icon {
-    padding: 10px;
-    background: teal;
-    color: white;
-    min-width: 50px;
-    text-align: center;
-}
+    .icon {
+        padding: 10px;
+        background: teal;
+        color: white;
+        min-width: 50px;
+        text-align: center;
+    }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    outline: none;
-}
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        outline: none;
+    }
 
-.input-field:focus {
-    border: 2px solid dodgerblue;
-}
+    .input-field:focus {
+        border: 2px solid dodgerblue;
+    }
 
-/* Set a style for the submit button */
-.Submit_Button {
-    background-color: teal;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
+    /* Set a style for the submit button */
+    .Submit_Button {
+        background-color: teal;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
 
-.Submit_Button:hover {
-    opacity: 1;
-}
-</style>
-
+    .Submit_Button:hover {
+        opacity: 1;
+    }
+    </style>
 
 </html>

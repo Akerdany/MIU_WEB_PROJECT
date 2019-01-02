@@ -2,6 +2,6 @@
 <?php
     session_start();
     if(session_destroy()){
-        header("Location: ../html/Nursery Website.php");
+        header("Location: ../html/Welcome_Page");
     }
 ?>
