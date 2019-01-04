@@ -5,7 +5,7 @@
     $password = "";
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password,"nursery website");
+    $conn = new mysqli($servername, $username, $password,"nursery_website");
 
     // Check connection
     if ($conn->connect_error) {
