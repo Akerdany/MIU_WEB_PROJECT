@@ -2,9 +2,9 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 04, 2019 at 06:23 PM
--- Server version: 10.1.36-MariaDB
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 04, 2019 at 06:36 PM
+-- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `accounting`
 --
 
-CREATE TABLE `accounting` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `accounting`;
+CREATE TABLE IF NOT EXISTS `accounting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `taxes/year` int(11) NOT NULL,
   `expenses/year` int(11) NOT NULL,
   `fees/child` int(11) NOT NULL,
@@ -37,8 +38,9 @@ CREATE TABLE `accounting` (
   `profit/year` int(11) NOT NULL,
   `expenseDate/year` date NOT NULL,
   `paymentDescription` varchar(100) NOT NULL,
-  `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `total` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -46,16 +48,19 @@ CREATE TABLE `accounting` (
 -- Table structure for table `address`
 --
 
-CREATE TABLE `address` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `Region` varchar(100) NOT NULL,
   `streetName` varchar(100) NOT NULL,
   `buildingNumber` int(11) NOT NULL,
   `floorNumber` int(11) NOT NULL,
   `appartment` int(11) NOT NULL,
   `postalCode` int(11) NOT NULL,
-  `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `userId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `address`
@@ -71,8 +76,9 @@ INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNum
 -- Table structure for table `child`
 --
 
-CREATE TABLE `child` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `child`;
+CREATE TABLE IF NOT EXISTS `child` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `hobbies` varchar(100) NOT NULL,
   `medicalProblems` varchar(100) NOT NULL,
@@ -80,8 +86,11 @@ CREATE TABLE `child` (
   `gender` varchar(100) NOT NULL,
   `dateOfBirth` date NOT NULL,
   `parentId` int(11) NOT NULL,
-  `scheduleId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `scheduleId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `parentId` (`parentId`),
+  KEY `scheduleId` (`scheduleId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -89,12 +98,15 @@ CREATE TABLE `child` (
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
-  `cid` int(11) NOT NULL,
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE IF NOT EXISTS `comments` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `message` text NOT NULL,
+  PRIMARY KEY (`cid`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -102,10 +114,12 @@ CREATE TABLE `comments` (
 -- Table structure for table `department`
 --
 
-CREATE TABLE `department` (
-  `id` int(11) NOT NULL,
-  `departmentName` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE IF NOT EXISTS `department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `departmentName` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `department`
@@ -128,8 +142,9 @@ INSERT INTO `department` (`id`, `departmentName`) VALUES
 -- Table structure for table `employee`
 --
 
-CREATE TABLE `employee` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `employee`;
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `workingHours` int(11) NOT NULL,
   `workingDays` int(11) NOT NULL,
   `departmentId` int(11) NOT NULL,
@@ -146,8 +161,13 @@ CREATE TABLE `employee` (
   `university` varchar(100) NOT NULL,
   `skills` varchar(100) NOT NULL,
   `cv` blob NOT NULL,
-  `medicalInsuranceId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `medicalInsuranceId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `departmentId` (`departmentId`,`positionId`),
+  KEY `positionId` (`positionId`),
+  KEY `medicalInsuranceId` (`medicalInsuranceId`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
@@ -162,7 +182,8 @@ INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `departmentId`, `sa
 -- Table structure for table `inventory`
 --
 
-CREATE TABLE `inventory` (
+DROP TABLE IF EXISTS `inventory`;
+CREATE TABLE IF NOT EXISTS `inventory` (
   `id` int(11) NOT NULL,
   `itemName` varchar(100) NOT NULL,
   `itemSerialNumber` int(11) NOT NULL,
@@ -175,7 +196,8 @@ CREATE TABLE `inventory` (
   `expireDate` date NOT NULL,
   `bought` int(11) NOT NULL,
   `rented` int(11) NOT NULL,
-  `department` varchar(100) NOT NULL COMMENT 'each item is categeriozed to somethnig(cleaning equipments etc)'
+  `department` varchar(100) NOT NULL COMMENT 'each item is categeriozed to somethnig(cleaning equipments etc)',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -184,14 +206,17 @@ CREATE TABLE `inventory` (
 -- Table structure for table `maintenance`
 --
 
-CREATE TABLE `maintenance` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `maintenance`;
+CREATE TABLE IF NOT EXISTS `maintenance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(100) NOT NULL,
   `price` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   `durability` int(11) NOT NULL,
-  `itemId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `itemId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `itemId` (`itemId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -199,13 +224,16 @@ CREATE TABLE `maintenance` (
 -- Table structure for table `marketing`
 --
 
-CREATE TABLE `marketing` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `marketing`;
+CREATE TABLE IF NOT EXISTS `marketing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `advertisementType` varchar(100) NOT NULL,
   `region` varchar(100) NOT NULL,
   `contact` varchar(100) NOT NULL,
-  `advertisementCost` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `advertisementCost` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `advertisementCost` (`advertisementCost`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -213,14 +241,16 @@ CREATE TABLE `marketing` (
 -- Table structure for table `medicalinsurance`
 --
 
-CREATE TABLE `medicalinsurance` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `medicalinsurance`;
+CREATE TABLE IF NOT EXISTS `medicalinsurance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `disease` varchar(100) NOT NULL,
   `medicineType` varchar(100) NOT NULL,
   `medicalCardNumber` int(11) NOT NULL,
   `medicinePrice` int(11) NOT NULL,
-  `maximumInsuranceCost` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `maximumInsuranceCost` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `medicalinsurance`
@@ -235,12 +265,14 @@ INSERT INTO `medicalinsurance` (`id`, `disease`, `medicineType`, `medicalCardNum
 -- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
   `email` varchar(100) NOT NULL,
   `toUserId` int(11) NOT NULL,
-  `seen` tinyint(1) NOT NULL
+  `seen` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -249,14 +281,18 @@ CREATE TABLE `message` (
 -- Table structure for table `messagetest`
 --
 
-CREATE TABLE `messagetest` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `messagetest`;
+CREATE TABLE IF NOT EXISTS `messagetest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` text NOT NULL,
   `userId` int(11) DEFAULT NULL,
   `toUserId` int(11) NOT NULL COMMENT 'it is the id of the person you are sending to him the message',
   `date` datetime NOT NULL,
-  `seen` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `seen` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `toUserId` (`toUserId`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -264,12 +300,15 @@ CREATE TABLE `messagetest` (
 -- Table structure for table `parent`
 --
 
-CREATE TABLE `parent` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `parent`;
+CREATE TABLE IF NOT EXISTS `parent` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
   `workPosition` varchar(100) NOT NULL,
-  `workPlace` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `workPlace` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `parent`
@@ -284,10 +323,12 @@ INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES
 -- Table structure for table `position`
 --
 
-CREATE TABLE `position` (
-  `id` int(11) NOT NULL,
-  `positionName` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `position`;
+CREATE TABLE IF NOT EXISTS `position` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `positionName` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `position`
@@ -303,19 +344,22 @@ INSERT INTO `position` (`id`, `positionName`) VALUES
 -- Table structure for table `schedule`
 --
 
-CREATE TABLE `schedule` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE IF NOT EXISTS `schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `class` varchar(100) NOT NULL,
   `timeFrom` int(11) NOT NULL,
   `timeTo` int(11) NOT NULL,
   `teacherName` int(11) NOT NULL,
-  `dayOff` varchar(100) NOT NULL,
   `makeUpClass` varchar(100) NOT NULL,
   `limitOfChildren` int(11) NOT NULL,
   `room` varchar(100) NOT NULL,
   `subject` varchar(100) NOT NULL,
-  `scheduleId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `scheduleId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `teacherName` (`teacherName`),
+  KEY `scheduleId` (`scheduleId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -323,9 +367,11 @@ CREATE TABLE `schedule` (
 -- Table structure for table `scheduletypes`
 --
 
-CREATE TABLE `scheduletypes` (
+DROP TABLE IF EXISTS `scheduletypes`;
+CREATE TABLE IF NOT EXISTS `scheduletypes` (
   `id` int(11) NOT NULL,
-  `scheduleName` varchar(100) NOT NULL
+  `scheduleName` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -334,10 +380,12 @@ CREATE TABLE `scheduletypes` (
 -- Table structure for table `status`
 --
 
-CREATE TABLE `status` (
-  `id` int(11) NOT NULL,
-  `statusName` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `status`;
+CREATE TABLE IF NOT EXISTS `status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `statusName` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `status`
@@ -354,10 +402,12 @@ INSERT INTO `status` (`id`, `statusName`) VALUES
 -- Table structure for table `type`
 --
 
-CREATE TABLE `type` (
-  `id` int(11) NOT NULL,
-  `typeName` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `typeName` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `type`
@@ -374,8 +424,9 @@ INSERT INTO `type` (`id`, `typeName`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `firstName` varchar(100) NOT NULL,
@@ -390,8 +441,13 @@ CREATE TABLE `user` (
   `dateJoined` datetime NOT NULL,
   `statusId` int(11) NOT NULL,
   `ssn` int(11) NOT NULL,
-  `typeId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `typeId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ssn` (`ssn`),
+  UNIQUE KEY `ssn_2` (`ssn`),
+  KEY `typeId` (`typeId`),
+  KEY `statusId` (`statusId`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -400,249 +456,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`) VALUES
 (22, 'manager@gmail.com', 'pass', 'Manager', 'Last', 'Family', 'Male', 'Egyptian', '1988-12-08', 2646888, 122657377, 22746255, '2019-01-04 16:05:14', 2, 2147483647, 1),
 (24, 'test', '12345', 'sdfsfsd', '123123', '213', 'Male', '213', '2019-01-02', 213, 123123, 21323, '2019-01-04 17:48:08', 1, 123123, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `accounting`
---
-ALTER TABLE `accounting`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`);
-
---
--- Indexes for table `child`
---
-ALTER TABLE `child`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `parentId` (`parentId`),
-  ADD KEY `scheduleId` (`scheduleId`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`cid`),
-  ADD KEY `userId` (`userId`);
-
---
--- Indexes for table `department`
---
-ALTER TABLE `department`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`),
-  ADD KEY `departmentId` (`departmentId`,`positionId`),
-  ADD KEY `positionId` (`positionId`),
-  ADD KEY `medicalInsuranceId` (`medicalInsuranceId`);
-
---
--- Indexes for table `inventory`
---
-ALTER TABLE `inventory`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `maintenance`
---
-ALTER TABLE `maintenance`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `itemId` (`itemId`);
-
---
--- Indexes for table `marketing`
---
-ALTER TABLE `marketing`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `advertisementCost` (`advertisementCost`);
-
---
--- Indexes for table `medicalinsurance`
---
-ALTER TABLE `medicalinsurance`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `messagetest`
---
-ALTER TABLE `messagetest`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`),
-  ADD KEY `toUserId` (`toUserId`);
-
---
--- Indexes for table `parent`
---
-ALTER TABLE `parent`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`);
-
---
--- Indexes for table `position`
---
-ALTER TABLE `position`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `schedule`
---
-ALTER TABLE `schedule`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `teacherName` (`teacherName`),
-  ADD KEY `scheduleId` (`scheduleId`) USING BTREE;
-
---
--- Indexes for table `scheduletypes`
---
-ALTER TABLE `scheduletypes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `status`
---
-ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `type`
---
-ALTER TABLE `type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `ssn` (`ssn`),
-  ADD UNIQUE KEY `ssn_2` (`ssn`),
-  ADD KEY `typeId` (`typeId`),
-  ADD KEY `statusId` (`statusId`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `accounting`
---
-ALTER TABLE `accounting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `address`
---
-ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `child`
---
-ALTER TABLE `child`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `department`
---
-ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `maintenance`
---
-ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `marketing`
---
-ALTER TABLE `marketing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `medicalinsurance`
---
-ALTER TABLE `medicalinsurance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `message`
---
-ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `messagetest`
---
-ALTER TABLE `messagetest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
-
---
--- AUTO_INCREMENT for table `parent`
---
-ALTER TABLE `parent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `position`
---
-ALTER TABLE `position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `schedule`
---
-ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `status`
---
-ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `type`
---
-ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
