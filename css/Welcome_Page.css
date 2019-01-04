@@ -17,7 +17,7 @@ img
 
 /* Slideshow container */
 .slideshow-container {
-    max-width: 700px;
+    max-width: 600px;
     position: relative;
     margin: auto;
 }
@@ -27,7 +27,7 @@ img
 .fade 
 {
     -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
+    -webkit-animation-duration: 12.0s;
     animation-name: fade;
     animation-duration: 1.5s;
 }
@@ -67,14 +67,15 @@ img
     }
 }
 
-.topnav/*setting of nagbar place */
+.topnav/*setting of navbar place */
 {
     overflow: hidden;
     background-color :indigo;
-    width: 1500px;  
+    border-radius: 10px;
+    width: 1520px;  
     height: 50px;
     position:relative;/*bt-apply width height top left position*/
-    left: 0px;/*starts after 1000pixel */
+    left: -10px;/*starts after 1000pixel */
     top: -10px;
 }
 
@@ -96,11 +97,11 @@ img
 {
     overflow: hidden;
     background-color:indigo;
-    width: 1500px;  
-    height: 100px;
+    width: 1520px;  
+    height: 120px;
     position:relative;/*bt-apply width height top left position*/
-    left: -px;/*sratrs after 1000pixel */
-    top: -10px;
+    left: -10px;/*sratrs after 1000pixel */
+    top: 10px;
     bottom:0px;
 }
 

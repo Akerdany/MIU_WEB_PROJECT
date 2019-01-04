@@ -2,7 +2,7 @@
     session_start();
     require_once("Database_Connection.php");
 
-    $sql="select * from user";
+    $sql = "select * from user";
     $result = mysqli_query($conn,$sql);
     if(mysqli_num_rows($result) > 0){
         echo"<table border='1'>
@@ -12,7 +12,7 @@
             <td>First Name</td>
             <td>Last Name</td>
             <td>Family Name</td>
-            <td>Gender/td>
+            <td>Gender</td>
             <td>Nationality</td>
             <td>Date of Birth</td>
             <td>Work Number</td>
@@ -28,7 +28,6 @@
             echo "<tr>";
             echo "<td>" .$row['id']. "</td>";
             echo "<td>" .$row['email']. "</td>";
-            echo "<td>".$row['password']."</td>";
             echo "<td>" .$row['firstName']. "</td>";
             echo "<td>".$row['lastName']."</td>";
             echo "<td>" .$row['familyName']. "</td>";
@@ -39,9 +38,15 @@
             echo "<td>" .$row['phoneNumber']. "</td>";
             echo "<td>" .$row['homeTelephoneNumber']. "</td>";
             echo "<td>".$row['dateJoined']."</td>";
-            echo "<td>" .$row['status']. "</td>";
+            $status = mysqli_query($conn,"SELECT * FROM status WHERE id='".$row["statusId"]."'");
+            if($r = mysqli_fetch_array($status)){
+                echo "<td>" .$r['statusName']. "</td>";
+            }
             echo "<td>".$row['ssn']."</td>";
-            echo "<td>".$row['typeId']."</td>";
+            $type = mysqli_query($conn,"SELECT * FROM type WHERE id='".$row["typeId"]."'");
+            if($r1 = mysqli_fetch_array($type)){
+                echo "<td>" .$r1['typeName']. "</td>";
+            }
             echo "</tr>";
         }
             echo "</table>";
