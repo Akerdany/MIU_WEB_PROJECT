@@ -4,10 +4,11 @@
                 echo"<table border='1'>
                     <tr>
                     <td>ID</td>
-                    <td>Hobbies</td>
-                    <td>Medical Problems</td>
-                    <td>Disability</td>
-                    <td>ParentId</td>
+                    <td>Disease</td>
+                    <td>Medicine Type </td>
+                    <td>Medical Card Number</td>
+                    <td>Medicine Price</td>
+					<td>Maximum Insurance Cost</td>
                     </tr>";
                 while($row = mysqli_fetch_array($result)){
                     echo "<tr>";
