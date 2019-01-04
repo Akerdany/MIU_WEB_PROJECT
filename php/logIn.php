@@ -30,6 +30,8 @@
                 $_SESSION["phoneNumber"]=$row["phoneNumber"];
                 $_SESSION["homeNumber"]=$row["homeTelephoneNumber"];
                 $_SESSION["ssn"]=$row["ssn"];
+                $_SESSION["status"]=$row["status"];
+                $_SESSION["typeId"]=$row["typeId"];
 
                 $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
                 $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");//getting status of user even accepted .. pending .. rejected 
@@ -37,18 +39,18 @@
                 if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
                     $_SESSION["type_User"]=$r["typeName"];
                     
-                    $status=$r2["typeName"];
+                    $_SESSION["statusName"]=$r2["typeName"];
                     
-                    $pending="Pending";
-                    if($status=="Active"){
+                    if($_SESSION["status"]=='4'){
                         header("Location: index.php");
                     }
-                    else if($status==="Pending "){
+                    else if($_SESSION["status"]=='3'){
                         echo"Sorry you're account isn't active yet";
                     }   
                     else{
 
-                        echo $status;
+                        echo $_SESSION["type_User"];
+                        echo $_SESSION["status"];
                         //Underconstructing the error table for IT department
                         printf("Errormessage: %s\n", mysqli_error($conn));
                         session_destroy();
