@@ -69,6 +69,8 @@
     </script>
 
     <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+
         <title> Registration Page </title>
     </head>
 
@@ -317,8 +319,6 @@
                 <fieldset>
                     <h2 class="Form_Title">  Account Information </h2>
                     <h3 class="Form_Subtitle">Final Step </h3>
-                   
-                    <legend>Account Information: </legend>
 
                     <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()"/><br>
                     <div id="msg"></div>
@@ -326,6 +326,8 @@
                     <input type="password" name="password" placeholder="Password">
 
                     <input type="password" name="confirmPassword" placeholder="Confirm Password">
+
+                    <input type="button" name="Previous" class="Previous" value="Previous">
 
                     <input type="submit" name="registerParent" value="register">
 
@@ -457,6 +459,8 @@
                 <input type="password" name="password" placeholder="Password">
 
                 <input type="password" name="confirmPassword" placeholder="Confirm Password"/><br>
+
+                <input type="button" name="Previous" class="Previous" value="Previous">
 
                 <input type="submit" name="registerEmployee" value="register">
 

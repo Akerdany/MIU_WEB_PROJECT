@@ -1,12 +1,17 @@
 
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
-* {margin: 0; padding: 0;}
+* 
+{
+	margin: 0; padding: 0;
+}
 body
 {
-	background: url("../pictures/Background.jpg" );
+	margin: 0; font-size: 100%; line-height: 1.231; 
+
+	background-image: url("../pictures/Background.jpg" );
+	background-repeat: no-repeat;
     font-family: montserrat, arial, verdana;
 }
-
 
 .choice
 {

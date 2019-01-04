@@ -2,7 +2,6 @@
 <html lang="en">
 
 <?php 
-    //echo '<link href="../css/Login_Page.css" media="screen" rel="stylesheet" type="text/css" />';	
     echo '<link media="screen" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />';
 
     session_start();
@@ -33,10 +32,9 @@
                 $_SESSION["ssn"]=$row["ssn"];
 
                 $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
-                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
-
+                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");//getting status of user even accepted .. pending .. rejected 
+                
                 if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
-
                     $_SESSION["type_User"]=$r["typeName"];
                     
                     $status=$r2["typeName"];
