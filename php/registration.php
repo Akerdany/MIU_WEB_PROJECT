@@ -421,15 +421,15 @@
 
                 <select id="Dropdown" name="department">
                     <option value="">Select your department</option>
-                    <option value="Teaching">Teaching</option>
-                    <option value="PR">PR</option>
-                    <option value="HR">HR</option>
-                    <option value="IT">IT</option>
-                    <option value="Medical">Medical</option>
-                    <option value="Accounting">Accounting</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Security">Security</option>
-                    <option value="Transportation">Transportion</option>
+                    <option value="1">Accounting</option>
+                    <option value="2">HR</option>
+                    <option value="3">IT</option>
+                    <option value="4">Marketing</option>
+                    <option value="5">Medical</option>
+                    <option value="6">PR</option>
+                    <option value="7">Security</option>
+                    <option value="8">Teaching</option>
+                    <option value="9">Transportation</option>
                 </select>
 
                 C.V:
