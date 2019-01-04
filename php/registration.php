@@ -462,6 +462,8 @@
 
                 <input type="button" name="Previous" class="Previous" value="Previous">
 
+                <input type="button" name="Previous" class="Previous" value="Previous">
+
                 <input type="submit" name="registerEmployee" value="register">
 
             </fieldset>
