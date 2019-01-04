@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2019 at 03:37 PM
+-- Generation Time: Jan 04, 2019 at 03:30 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -83,16 +83,9 @@ CREATE TABLE `child` (
   `hobbies` varchar(100) NOT NULL,
   `medicalProblems` varchar(100) NOT NULL,
   `disability` varchar(100) NOT NULL,
-  `parentId` int(11) NOT NULL
+  `parentId` int(11) NOT NULL,
+  `scheduleId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `child`
---
-
-INSERT INTO `child` (`id`, `name`, `hobbies`, `medicalProblems`, `disability`, `parentId`) VALUES
-(2, 'asdasd', 'asasdas', 'sadasdasd', 'asdasdasdasd', 1),
-(5, 'ahmed', 'jhgnty', 'gfgfjh', 'fglkf', 1);
 
 -- --------------------------------------------------------
 
@@ -136,6 +129,17 @@ INSERT INTO `comments` (`cid`, `userId`, `date`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `id` int(11) NOT NULL,
+  `departmentName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee`
 --
 
@@ -143,29 +147,22 @@ CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
   `workingHours` int(11) NOT NULL,
   `workingDays` int(11) NOT NULL,
-  `department` varchar(100) NOT NULL,
+  `departmentId` int(11) NOT NULL,
   `salary` int(11) NOT NULL,
   `incomeMethod` varchar(100) NOT NULL,
   `universityDegree` varchar(100) NOT NULL,
-  `position` varchar(100) NOT NULL,
+  `positionId` int(100) NOT NULL,
   `experience` varchar(100) NOT NULL,
   `bankAccount` varchar(100) NOT NULL,
   `userId` int(11) NOT NULL,
   `medicalTest` blob NOT NULL,
   `category` varchar(100) NOT NULL COMMENT 'Is the employee partime or full time',
-  `maximumInsuranceCost` int(11) NOT NULL,
   `yearOfGraduation` int(11) NOT NULL,
   `university` varchar(100) NOT NULL,
   `skills` varchar(100) NOT NULL,
-  `cv` blob NOT NULL
+  `cv` blob NOT NULL,
+  `medicalInsuranceId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `department`, `salary`, `incomeMethod`, `universityDegree`, `position`, `experience`, `bankAccount`, `userId`, `medicalTest`, `category`, `maximumInsuranceCost`, `yearOfGraduation`, `university`, `skills`, `cv`) VALUES
-(1, 11, 11, '11', 11, '11', '11', '11', '11', '11', 10, 0x3131, '11', 11, 0, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -251,15 +248,8 @@ CREATE TABLE `medicalinsurance` (
   `medicineType` varchar(100) NOT NULL,
   `medicalCardNumber` int(11) NOT NULL,
   `medicinePrice` int(11) NOT NULL,
-  `employeeId` int(11) NOT NULL
+  `maximumInsuranceCost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `medicalinsurance`
---
-
-INSERT INTO `medicalinsurance` (`id`, `disease`, `medicineType`, `medicalCardNumber`, `medicinePrice`, `employeeId`) VALUES
-(1, 'daasdas', 'sdasda', 23232, 2232, 1);
 
 -- --------------------------------------------------------
 
@@ -323,6 +313,25 @@ INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `position`
+--
+
+CREATE TABLE `position` (
+  `id` int(11) NOT NULL,
+  `positionName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `position`
+--
+
+INSERT INTO `position` (`id`, `positionName`) VALUES
+(1, 'Head'),
+(2, 'Member');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -339,13 +348,6 @@ CREATE TABLE `schedule` (
   `subject` varchar(100) NOT NULL,
   `scheduleId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`id`, `class`, `timeFrom`, `timeTo`, `teacherName`, `dayOff`, `makeUpClass`, `limitOfChildren`, `room`, `subject`, `scheduleId`) VALUES
-(2, '1', 1, 1, 1, '1', '1', 1, '1', '1', 0);
 
 -- --------------------------------------------------------
 
@@ -368,6 +370,26 @@ INSERT INTO `scheduletypes` (`id`, `scheduleName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `statusName` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `statusName`) VALUES
+(1, 'Pending'),
+(2, 'Active'),
+(3, 'Declined');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `type`
 --
 
@@ -383,8 +405,7 @@ CREATE TABLE `type` (
 INSERT INTO `type` (`id`, `typeName`) VALUES
 (1, 'Manager'),
 (2, 'Parent'),
-(3, 'Pending\r\n'),
-(4, 'Active\r\n');
+(3, 'Employee');
 
 -- --------------------------------------------------------
 
@@ -406,7 +427,7 @@ CREATE TABLE `user` (
   `phoneNumber` int(11) NOT NULL,
   `homeTelephoneNumber` int(11) NOT NULL,
   `dateJoined` datetime NOT NULL,
-  `status` int(11) NOT NULL,
+  `statusId` int(11) NOT NULL,
   `ssn` int(11) NOT NULL,
   `typeId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -415,10 +436,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `status`, `ssn`, `typeId`) VALUES
-(10, 'foad.osama@hotmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'Egyptian', '2018-12-11', 0, 0, 0, '0000-00-00 00:00:00', 0, 0, 1),
-(17, 'foadosama1@gmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, '0000-00-00 00:00:00', 0, 2, 1),
-(21, 'foadsamy@hotmail', 'password123', 'foad', 'ryiiieteoietoiy', 'weriwueroiweur', 'Male', 'egyptian', '2018-12-04', 4337412, 345350934, 2147483647, '0000-00-00 00:00:00', 0, 749823940, 2);
+INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`) VALUES
+(10, 'foad.osama@hotmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'Egyptian', '2018-12-11', 0, 0, 0, '0000-00-00 00:00:00', 1, 0, 1),
+(17, 'foadosama1@gmail.com', 'foad1998', 'foad', 'osama', 'elamoury', 'Male', 'egyptian', '2018-12-11', 2345554, 1121555635, 9821323, '0000-00-00 00:00:00', 2, 2, 1),
+(21, 'foadsamy@hotmail', 'password123', 'foad', 'ryiiieteoietoiy', 'weriwueroiweur', 'Male', 'egyptian', '2018-12-04', 4337412, 345350934, 2147483647, '0000-00-00 00:00:00', 3, 749823940, 2);
 
 --
 -- Indexes for dumped tables
@@ -442,7 +463,8 @@ ALTER TABLE `address`
 --
 ALTER TABLE `child`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `parentId` (`parentId`);
+  ADD KEY `parentId` (`parentId`),
+  ADD KEY `scheduleId` (`scheduleId`);
 
 --
 -- Indexes for table `comments`
@@ -452,11 +474,20 @@ ALTER TABLE `comments`
   ADD KEY `userId` (`userId`);
 
 --
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`);
+  ADD KEY `userId` (`userId`),
+  ADD KEY `departmentId` (`departmentId`,`positionId`),
+  ADD KEY `positionId` (`positionId`),
+  ADD KEY `medicalInsuranceId` (`medicalInsuranceId`);
 
 --
 -- Indexes for table `inventory`
@@ -482,8 +513,7 @@ ALTER TABLE `marketing`
 -- Indexes for table `medicalinsurance`
 --
 ALTER TABLE `medicalinsurance`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `employeeId` (`employeeId`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `message`
@@ -507,6 +537,12 @@ ALTER TABLE `parent`
   ADD KEY `userId` (`userId`);
 
 --
+-- Indexes for table `position`
+--
+ALTER TABLE `position`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -518,6 +554,12 @@ ALTER TABLE `schedule`
 -- Indexes for table `scheduletypes`
 --
 ALTER TABLE `scheduletypes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -533,7 +575,8 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `ssn` (`ssn`),
   ADD UNIQUE KEY `ssn_2` (`ssn`),
-  ADD KEY `typeId` (`typeId`);
+  ADD KEY `typeId` (`typeId`),
+  ADD KEY `statusId` (`statusId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -561,7 +604,13 @@ ALTER TABLE `child`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -606,10 +655,22 @@ ALTER TABLE `parent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `position`
+--
+ALTER TABLE `position`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -637,7 +698,8 @@ ALTER TABLE `address`
 -- Constraints for table `child`
 --
 ALTER TABLE `child`
-  ADD CONSTRAINT `child_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `parent` (`id`);
+  ADD CONSTRAINT `child_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `parent` (`id`),
+  ADD CONSTRAINT `child_ibfk_2` FOREIGN KEY (`scheduleId`) REFERENCES `schedule` (`id`);
 
 --
 -- Constraints for table `comments`
@@ -649,19 +711,16 @@ ALTER TABLE `comments`
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`departmentId`) REFERENCES `department` (`id`),
+  ADD CONSTRAINT `employee_ibfk_3` FOREIGN KEY (`positionId`) REFERENCES `position` (`id`),
+  ADD CONSTRAINT `employee_ibfk_4` FOREIGN KEY (`medicalInsuranceId`) REFERENCES `medicalinsurance` (`id`);
 
 --
 -- Constraints for table `maintenance`
 --
 ALTER TABLE `maintenance`
   ADD CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`itemId`) REFERENCES `inventory` (`id`);
-
---
--- Constraints for table `medicalinsurance`
---
-ALTER TABLE `medicalinsurance`
-  ADD CONSTRAINT `medicalinsurance_ibfk_1` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`id`);
 
 --
 -- Constraints for table `messagetest`
@@ -686,7 +745,8 @@ ALTER TABLE `schedule`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`typeId`) REFERENCES `type` (`id`);
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`typeId`) REFERENCES `type` (`id`),
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`statusId`) REFERENCES `status` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
