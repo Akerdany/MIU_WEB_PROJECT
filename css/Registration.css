@@ -2,33 +2,49 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 * 
 {
-	margin: 0; padding: 0;
+	margin: 0; 
+	padding: 0;
 }
 body
 {
-	margin: 0; font-size: 100%; line-height: 1.231; 
+	margin: 0;
+	font-size: 100%;
+	line-height: 1.231; 
 
 	background-image: url("../pictures/Background.jpg" );
 	background-repeat: no-repeat;
     font-family: montserrat, arial, verdana;
 }
-
-.choice
+h1/*are you*/
 {
-    background-color:transparent;
-    top:340px;
-    left:750px;
-    border:none;
+	color:white;
+}
+h2/*or a */
+{
+	color:white;
+}
+.choice /*Parent Or Employee*/
+{
+    background-color:none;
+  
+	border:transparent;
     position:fixed;
     top: 50%;
     left: 50%;
-    width:30em;
-    height:18em;
+    width:50%;
+    height:50%;
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
-    border: 1px solid #ccc;
+   
 }
-#parent
+#backE ,  #backP
+{
+	background-color: violet ;
+	width:200px;
+    height:50px;
+
+}
+#parent /*are you or a .. button */
 {
     background-color: teal;
     width:475px;
@@ -39,12 +55,12 @@ body
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 19px;
     margin: 4px 2px;
     border-radius:10px;
     cursor: pointer;
 }
-#employee
+#employee/*are you or a .. button */
 {
     background-color: teal;
     width:475px;
@@ -55,7 +71,7 @@ body
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 19px;
     margin: 4px 2px;
     border-radius:10px;
     cursor: pointer;
@@ -72,7 +88,6 @@ body
 	background: Teal;
 	border: 0 none;
 	border-radius: 3px;
-	/*box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);*/
 	padding: 20px 30px;
 	box-sizing: border-box;
 	width: 80%;
@@ -119,7 +134,7 @@ body
 {
 	font-size:25px;
 	text-transform: uppercase;
-	color: Black;
+	color: white;
 	margin-bottom: 10px;
 }
 .Form_Subtitle/*Subtitles styling */
