@@ -14,7 +14,7 @@
             session_start();
             require_once("Database_Connection.php");
 
-            $sql="SELECT * FROM child WHERE parentId='".$_SESSION["id"]."'";
+            $sql="SELECT * FROM child WHERE userId='".$_SESSION["userId"]."'";
             $result = mysqli_query($conn, $sql);
             
             if($row = mysqli_fetch_array($result)){
@@ -43,7 +43,7 @@
             mysqli_close($conn);
         ?>
 
-        <form name="dataChild" action="" method="post">
+        <form name="dataChild" action="" method="post" enctype="multipart/form-data">
         <input type="text" name="childHobbies" value=<?php echo $hobbies;?>><br>
         <input type="text" name="medicalProblems" value=<?php echo $medic;?>><br>
         <input type="text" name="disability" value=<?php echo $disability;?>><br>

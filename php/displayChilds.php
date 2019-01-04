@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <?php
-        session_start();
-        require_once("Database_Connection.php");
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Display Childs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <script src="main.js"></script>
+    </head>
 
-    //    if($_SESSION['type_User']=="Manager"){
+    <body>
+        <?php
+            session_start();
+            require_once("Database_Connection.php");
 
             $sql="select * from child";
             $result = mysqli_query($conn,$sql);
@@ -37,16 +36,10 @@
 
 
                 }
-                  echo "</table>";
+                    echo "</table>";
             }
-              include 'Comments.php';
-        //}
-
-
-    ?>
-</body>
+            include 'Comments.php';
+            mysqli_close($conn);    
+        ?>
+    </body>
 </html>
-<?php
-//mysqli_close($conn);
-
- ?>

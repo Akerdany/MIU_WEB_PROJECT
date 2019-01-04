@@ -3,14 +3,9 @@
 
 <head>
     <link rel="stylesheet" href="../css/Welcome_Page.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--Bootstrap Links-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+   
 </head>
 
 <body>
@@ -22,13 +17,22 @@
 
 
     <div class="Header">
-        <div class="Buttons">
-            <button id="Home_Button"> <span>Home</span></button>
-            <!-- <span> deh 3chn t2bal eleffects 3leha bt3et el arrow-->
-            <button id="Aboutus_Button"><span>About Us</span></button>
-            <button id="Contactus_Button"> <span>Contact Us</span></button>
-            <button id="Branches_Button"><span>Branches</span></button>
-            <button id="Ourteam_Button"><span>Our Team</span></button>
+        <div class="Buttons"><!-- <span> deh 3chn t2bal eleffects 3leha bt3et el arrow-->
+            <button id="Home_Button" onclick="window.location.href='../html/Welcome_Page.html'">
+                 <span>Home</span>
+            </button>            
+            <button id="Aboutus_Button" onclick="window.location.href='../html/AboutUs.html'" > 
+                <span>About Us</span> 
+            </button>
+            <button id="Contactus_Button" onclick="window.location.href='../html/ContactUs.html'" > 
+                <span>Contact Us</span>
+            </button>
+            <button id="Branches_Button" onclick="window.location.href='../html/Branches.html'" >
+                <span>Branches</span>
+            </button>
+            <button id="Ourteam_Button" onclick="window.location.href='../html/OurTeam.html'" >
+                <span>Our Team</span>
+            </button>
         </div>
         <div class="Left_Bar">
 
@@ -50,12 +54,12 @@
 
             <div class="mySlides fade">
                 <div class="numbertext"></div>
-                <img src="../pictures/Children2.jpg" style="width:100%" style="height:1305px">
+               <!-- <img src="../pictures/Children2.jpg" style="width:100%" style="height:1305px">-->
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext"></div>
-                <img src="../pictures/Children.jpg" style="width:100%" style="height:1305px">
+              <!--  <img src="../pictures/Children.jpg" style="width:100%" style="height:1305px">-->
             </div>
 
         </div>
@@ -63,7 +67,6 @@
     </div>
 
     <div class="Footer">
-        <text><span>Login</span></text>
         <a href="#" class="fa fa-facebook"></a>
         <!--Social media button classes-->
         <a href="#" class="fa fa-youtube"></a>

@@ -94,6 +94,7 @@
             <?php
             if($_SESSION['typeId']=="1"){
                     echo"<a href='displayChilds.php'>Display Childs Data</a><br>";
+                    echo"<a href='displayUsers.php'>Display Users Accounts</a><br>";
                 }
                 else if($_SESSION['typeId']=="2"){
                     echo"<a href='child.php'>Your Child Page</a><br>";
