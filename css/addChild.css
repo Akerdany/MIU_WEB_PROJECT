@@ -1,0 +1,9 @@
+body
+{
+    background-image: url("../pictures/kid.jpg" );
+    background-position-x: 800px;
+    background-position-y:0px;
+    background-size: 510px;
+	background-repeat: no-repeat;
+    font-family: montserrat, arial, verdana;
+}

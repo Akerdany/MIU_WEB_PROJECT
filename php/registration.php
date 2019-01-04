@@ -254,15 +254,15 @@
                 <fieldset>
                     <h2 class="Form_Title">  Personal Information </h2>
                     <h3 class="Form_Subtitle">Step 1 </h3>
-                    <input type="text" name="firstName" placeholder="First name">
+                    <input type="text" name="firstName" placeholder="First name" >
 
                     <input type="text" name="lastName" placeholder="Last name">
 
                     <input type="text" name="familyName" placeholder="Family Name">
                     
-                    <input attr.id="Gender_Radio_Button" type="radio" name="gender" value="Male"> Male 
+                    <input type="radio" name="gender" value="Male"> Male 
 
-                    <input attr.id="Gender_Radio_Button" type="radio" name="gender" value="Female"> Female 
+                    <input  type="radio" name="gender" value="Female"> Female 
 
                     <input type="text" name="nationality" placeholder="Nationality">
 
