@@ -1,47 +1,53 @@
-
-
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Child Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
-<body>
-    <?php
-        session_start();
-        require_once("Database_Connection.php");
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Child Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <script src="main.js"></script>
+    </head>
 
-        $sql="SELECT * FROM child WHERE parentId='".$_SESSION["id"]."'";
-        $result = mysqli_query($conn, $sql);
-        
+    <body>
+        <?php
+            session_start();
+            require_once("Database_Connection.php");
 
-        if($row = mysqli_fetch_array($result)){
-            $idChild = $row["id"];
-            $name = $row["name"];
-            $photo = $row["photo"];
-            $hobbies = $row["hobbies"];
-            $medic = $row["medicalProblems"];
-            $disability = $row["disability"];
-            $parentId = $row["parentId"];
-        }
-        else{
-            echo $sql;
-            echo"<br>";
+            $sql="SELECT * FROM child WHERE userId='".$_SESSION["userId"]."'";
+            $result = mysqli_query($conn, $sql);
             
-            //Underconstructing the error table for IT department
-            printf("Errormessage: %s\n", mysqli_error($conn));
-        }
-        mysqli_close($conn);
-    ?>
+            if($row = mysqli_fetch_array($result)){
+                $idChild = $row["id"];
+                $name = $row["name"];
+                $photo = $row["photo"];
+                $hobbies = $row["hobbies"];
+                $medic = $row["medicalProblems"];
+                $disability = $row["disability"];
+                $parentId = $row["parentId"];
 
-    <form name="dataChild" action="" method="post">
-    <input type="text" name="childHobbies" value=<?php echo $hobbies;?>><br>
-    <input type="text" name="medicalProblems" value=<?php echo $medic;?>><br>
-    <input type="text" name="disability" value=<?php echo $disability;?>><br>
-</body>
+                $photo = stripslashes($_FILES['photo']['tmp_name']);
+                $photo = file_get_contents($photo);
+                $photo = base64_encode($photo);
+            }
+            else if(!$row){
+                header("location:addChild.php");
+            }
+            else{
+                echo $sql;
+                echo"<br>";
+                
+                //Underconstructing the error table for IT department
+                printf("Errormessage: %s\n", mysqli_error($conn));
+            }
+            mysqli_close($conn);
+        ?>
+
+        <form name="dataChild" action="" method="post" enctype="multipart/form-data">
+        <input type="text" name="childHobbies" value=<?php echo $hobbies;?>><br>
+        <input type="text" name="medicalProblems" value=<?php echo $medic;?>><br>
+        <input type="text" name="disability" value=<?php echo $disability;?>><br>
+        <input type="file" name="photo" value=<?php echo $photo;?>><br>
+    </body>
 </html>
 
