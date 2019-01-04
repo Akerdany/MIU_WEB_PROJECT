@@ -14,4 +14,6 @@
             echo"<div class='email-ok'>Email Available.</div>";
         }
     }
+    mysqli_close($conn);
+
 ?>
