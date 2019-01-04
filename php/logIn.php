@@ -33,26 +33,18 @@
                 $_SESSION["status"] = $row["status"];
                 $_SESSION["typeId"] = $row["typeId"];
 
+                //getting status of user even accepted .. pending .. rejected 
                 $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
                 $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
+                
                 $temp3 = mysqli_query($conn, "SELECT * FROM employee WHERE userId='".$row["id"]."'");
                 $temp4 = mysqli_query($conn, "SELECT * FROM parent WHERE userId='".$row["id"]."'");
-
-                if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
-
-                    $_SESSION["type_User"] = $r["typeName"];
-                    $_SESSION["statusName"] = $r2["typeName"];
-
-                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");//getting status of user even accepted .. pending .. rejected 
-                
-                if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
-
-                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");//getting status of user even accepted .. pending .. rejected 
                 
                 if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
 
                     $_SESSION["type_User"]=$r["typeName"];
-                    
+                    $_SESSION["statusName"] = $r2["typeName"];
+
                     if($_SESSION["typeId"] == '1'){
                         if($tempR = mysqli_fetch_array($temp3)){
                             $_SESSION["workingHours"] = $tempR["workingHours"];
