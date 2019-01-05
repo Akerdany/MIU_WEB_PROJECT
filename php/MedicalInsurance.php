@@ -1,22 +1,32 @@
 <?php 
+require_once("Database_Connection.php");
+   $sqlInsurance="select m.* ,u.email from
+   medicalinsurance m JOIN employee e ON e.medicalInsuranceId = m.id
+   JOIN user u ON u.id=e.userId   ";
 
- if(mysqli_num_rows($result) > 0){
+   $resultInsurance = mysqli_query($conn,$sqlInsurance);
+ if(mysqli_num_rows($resultInsurance) > 0){
                 echo"<table border='1'>
                     <tr>
                     <td>ID</td>
                     <td>Disease</td>
                     <td>Medicine Type </td>
-                    <td>Medical Card Number</td>
-                    <td>Medicine Price</td>
-					<td>Maximum Insurance Cost</td>
+                    <td>medicineType</td>
+                    <td>medicalCardNumber</td>
+					<td>maximumInsuranceCost</td>
+					<td>email</td>
                     </tr>";
-                while($row = mysqli_fetch_array($result)){
+                while($row = mysqli_fetch_array($resultInsurance)){
                     echo "<tr>";
                     echo "<td>" .$row['id']. "</td>";
-                    echo "<td>" .$row['hobbies']. "</td>";
-                    echo "<td>".$row['medicalProblems']."</td>";
-                    echo "<td>" .$row['disability']. "</td>";
-                    echo "<td>".$row['parentId']."</td>";
+                    echo "<td>" .$row['disease']. "</td>";
+                    echo "<td>".$row['medicineType']."</td>";
+                    echo "<td>" .$row['medicalCardNumber']. "</td>";
+                    echo "<td>".$row['medicinePrice']."</td>";
+					echo "<td>".$row['maximumInsuranceCost']."</td>";
+					echo "<td>".$row['email']."</td>";
+
+					
                     echo "</tr>";
 
 
