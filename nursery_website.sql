@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 06, 2019 at 06:30 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 06, 2019 at 06:53 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -99,7 +99,7 @@ CREATE TABLE `child` (
   `disability` varchar(100) NOT NULL,
   `gender` varchar(100) NOT NULL,
   `dateOfBirth` date NOT NULL,
-  `parentId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `scheduleTypeId` int(11) NOT NULL,
   `photo` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -469,8 +469,8 @@ ALTER TABLE `category`
 --
 ALTER TABLE `child`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `parentId` (`parentId`),
-  ADD KEY `scheduleId` (`scheduleTypeId`);
+  ADD KEY `scheduleId` (`scheduleTypeId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `comments`
@@ -711,8 +711,8 @@ ALTER TABLE `address`
 -- Constraints for table `child`
 --
 ALTER TABLE `child`
-  ADD CONSTRAINT `child_ibfk_1` FOREIGN KEY (`parentId`) REFERENCES `parent` (`id`),
-  ADD CONSTRAINT `child_ibfk_2` FOREIGN KEY (`scheduleTypeId`) REFERENCES `scheduletypes` (`id`);
+  ADD CONSTRAINT `child_ibfk_2` FOREIGN KEY (`scheduleTypeId`) REFERENCES `scheduletypes` (`id`),
+  ADD CONSTRAINT `child_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `comments`
