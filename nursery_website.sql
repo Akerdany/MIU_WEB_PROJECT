@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 04, 2019 at 08:54 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost
+-- Generation Time: Jan 06, 2019 at 06:30 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,7 +64,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES
 (2, 'Cairo', 'street', 22, 2, 20, 717295, 22),
-(3, '213123', '123123', 12, 23, 22, 22, 24);
+(4, 'Cairo', 'street', 10, 1, 10, 19073219, 27);
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,8 @@ CREATE TABLE `child` (
   `gender` varchar(100) NOT NULL,
   `dateOfBirth` date NOT NULL,
   `parentId` int(11) NOT NULL,
-  `scheduleTypeId` int(11) NOT NULL
+  `scheduleTypeId` int(11) NOT NULL,
+  `photo` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -296,7 +297,7 @@ CREATE TABLE `parent` (
 --
 
 INSERT INTO `parent` (`id`, `userId`, `workPosition`, `workPlace`) VALUES
-(2, 24, '123', '123');
+(3, 27, 'none', 'none');
 
 -- --------------------------------------------------------
 
@@ -352,7 +353,8 @@ INSERT INTO `scheduletypes` (`id`, `scheduleName`) VALUES
 (1, 'A'),
 (2, 'B'),
 (3, 'C'),
-(4, 'D');
+(4, 'D'),
+(5, 'none');
 
 -- --------------------------------------------------------
 
@@ -437,7 +439,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`) VALUES
 (22, 'manager@gmail.com', 'pass', 'Manager', 'Last', 'Family', 'Male', 'Egyptian', '1988-12-08', 2646888, 122657377, 22746255, '2019-01-04 16:05:14', 2, 2147483647, 1),
-(24, 'test', '12345', 'sdfsfsd', '123123', '213', 'Male', '213', '2019-01-02', 213, 123123, 21323, '2019-01-04 17:48:08', 1, 123123, 2);
+(27, 'parent@gmail.com', 'pass', 'Parent', 'Last', 'Family', 'Female', 'Egyptian', '2019-01-01', 138180, 896966689, 986698, '2019-01-06 19:03:00', 2, 1873612876, 2);
 
 --
 -- Indexes for dumped tables
@@ -591,13 +593,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -609,13 +611,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -627,25 +629,25 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `maintenance`
 --
 ALTER TABLE `maintenance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `marketing`
 --
 ALTER TABLE `marketing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `medicalinsurance`
 --
 ALTER TABLE `medicalinsurance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -657,13 +659,13 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `messagetest`
 --
 ALTER TABLE `messagetest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `parent`
 --
 ALTER TABLE `parent`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `position`
@@ -675,7 +677,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `scheduletypes`
 --
 ALTER TABLE `scheduletypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -687,13 +689,13 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables

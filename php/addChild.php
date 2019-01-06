@@ -16,16 +16,22 @@
         require_once("Database_Connection.php");
 
         if(isset($_POST['submit'])){
+            $name = $_POST['name'];
+            $hobbies = $_POST['hobbies'];
+            $medical = $_POST['medicalProblem'];
+            $disability = $_POST['disabilty'];
+            $gender = $_POST['gender'];
+            $dateOfBirth = $_POST['dateOfBirth'];
+
             $photo = addslashes($_FILES['photo']['tmp_name']);
-            //$childPhoto = addslashes($_FILES['photo']['name']);
             $photo = file_get_contents($photo);
             $photo = base64_encode($photo);
 
-            $sql = "INSERT INTO `child` (`id`, `photo`,`name`, `hobbies`,`medicalProblems`,`disability`,`parentId`)
-                    VALUES (NULL, '".$photo."','".$_POST['name']."','".$_POST['hobbies']."','".$_POST['medicalProblem']."','".$_POST['disabilty']."','".$_SESSION["parentId"]."')";
+            $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `parentId`, `gender`, `dateOfBirth`, `scheduleTypeId`)
+                    VALUES (NULL, '".$photo."','".$name."','".$hobbies."','".$medical."','".$disability."','".$_SESSION["userId"]."','".$gender."','".$dateOfBirth."','5')";
 
             if (mysqli_query($conn,$sql)) {
-                header("location:child.php");
+                header("location:displayChilds.php");
             }
             else {
                 echo $sql;
@@ -42,6 +48,9 @@
         <input type="text" name="name" placeholder="Child Name"/><br>
         Photo:
         <input type="file" name="photo"/><br>
+        <input type="radio" name="gender" value="Male"> Male <br>
+        <input  type="radio" name="gender" value="Female"> Female <br> 
+        <input type="date" name="dateOfBirth"/><br>
         <input type="text" name="hobbies" placeholder="Hobbies"/><br>
         <input type="text" name="medicalProblem" placeholder="Medical Problems"/><br>
         <input type="text" name="disabilty" placeholder="Disabilty"/><br>
