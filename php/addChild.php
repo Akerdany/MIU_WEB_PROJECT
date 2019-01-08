@@ -27,7 +27,7 @@
             $photo = file_get_contents($photo);
             $photo = base64_encode($photo);
 
-            $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `parentId`, `gender`, `dateOfBirth`, `scheduleTypeId`)
+            $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `userId`, `gender`, `dateOfBirth`, `scheduleTypeId`)
                     VALUES (NULL, '".$photo."','".$name."','".$hobbies."','".$medical."','".$disability."','".$_SESSION["userId"]."','".$gender."','".$dateOfBirth."','5')";
 
             if (mysqli_query($conn,$sql)) {
@@ -49,7 +49,7 @@
         Photo:
         <input type="file" name="photo"/><br>
         <input type="radio" name="gender" value="Male"> Male <br>
-        <input  type="radio" name="gender" value="Female"> Female <br> 
+        <input type="radio" name="gender" value="Female"> Female <br> 
         <input type="date" name="dateOfBirth"/><br>
         <input type="text" name="hobbies" placeholder="Hobbies"/><br>
         <input type="text" name="medicalProblem" placeholder="Medical Problems"/><br>
