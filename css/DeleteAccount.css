@@ -1,0 +1,61 @@
+body
+{
+    background-color: coral;
+}
+  
+#Form_Title
+{
+    color:black;
+    text-align:center;
+} 
+#DeleteAccountForm fieldset 
+{
+    background: linen;
+    
+    border: none;
+	border-radius: 10px;
+	padding: 20px 30px;/*centering of objects inside the fieldset*/
+	box-sizing: border-box;
+    width: 40%;
+	position: static; 
+}
+#DeleteAccountForm input  /*inside text fields colors*/
+{
+	padding: 15px;
+	border: 1px solid #ccc;/*border of textfields*/
+	border-radius: 10px;/*curves of edges */
+	margin-bottom: 20px;/*space between textfields*/
+	width: 100%;/*scale of objects inside the beige color*/
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+#DeleteAccountForm .action-button
+{
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#Submit_Button
+{
+    background-color: linen;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#Delete_Button:hover 
+    {
+        background-color:white;
+        opacity: 2.5;
+    }

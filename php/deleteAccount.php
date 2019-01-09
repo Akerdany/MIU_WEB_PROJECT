@@ -6,6 +6,7 @@
         <title>Page Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <link rel="stylesheet" href="../css/DeleteAccount.css">
         <script src="main.js"></script>
     </head>
     <body>
@@ -39,16 +40,22 @@
             }
             mysqli_close($conn);
         ?>
-        <br>
+        <div id="DeleteAccountForm">
+
+        <fieldset>
+        <h2 class="Form_Title">Delete Account  Confirmation </h2>
         <form name="deleteForm" action="" method="post">
-            Enter your password:<br>
-            <input type="password" name="password" required><br>
+           <b> Enter your password:</b>
+            <input type="password" name="password" required>
 
-            Confirm your password:<br>
-            <input type="password" name="confirmPassword" required><br><br>
+            <b>Confirm your password:</b>
+            <input type="password" name="confirmPassword" required>
 
-            <input type="submit" name="submit">
+            <input type="submit" name="submit" value="Delete Account" id="Delete_Button">
         </form>
+        </fieldset>
+        </div>
     </body>
 </html>
+
 

@@ -138,7 +138,9 @@
         </div>  
 
     <style>
-      
+       *{
+           box-sizing: border-box;
+        }
         body
         {
             font-family: Verdana, sans-serif;
@@ -148,8 +150,6 @@
         }
         .Login_Field
         {
-            /*background-image: linear-gradient( snow,aqua ,skyblue , pink ,hotpink , coral , teal ,green, yellow, orange,violet,pink);*/
-        
             background-color:transparent; 
             width: 500px;
             border-radius: 20px;
@@ -165,9 +165,8 @@
         {
             background-color:Transparent;   
         }
-        * {box-sizing: border-box;}
-
-        .input-container {
+        .input-container
+        {
             display: -ms-flexbox; /* IE10 */
             display: flex;
             width: 100%;
@@ -182,18 +181,21 @@
             text-align: center;
         }
 
-        .input-field {
+        .input-field 
+        {
             width: 100%;
             padding: 10px;
             outline: none;
         }
 
-        .input-field:focus {
+        .input-field:focus 
+        {
             border: 2px solid dodgerblue;
         }
 
-        /* Set a style for the submit button */
-        .Submit_Button {
+       
+        .Submit_Button  /* Set a style for the submit button */
+        {
             background-color: teal;
             color: white;
             padding: 15px 20px;
@@ -203,7 +205,8 @@
             opacity: 0.9;
         }
 
-        .Submit_Button:hover {
+        .Submit_Button:hover
+        {
             opacity: 1;
         }
     </style>

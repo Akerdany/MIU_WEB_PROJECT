@@ -38,7 +38,7 @@
                 }
                     echo "</table>";
             }
-            include 'Comments.php';
+         include 'Comments.php';
             mysqli_close($conn);    
         ?>
     </body>
