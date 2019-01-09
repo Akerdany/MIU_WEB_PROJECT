@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 09, 2019 at 08:45 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 10, 2019 at 12:20 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,7 +64,8 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `Region`, `streetName`, `buildingNumber`, `floorNumber`, `appartment`, `postalCode`, `userId`) VALUES
 (2, 'Cairo', 'street', 22, 2, 20, 717295, 22),
-(4, 'Cairo', 'street', 10, 1, 10, 19073219, 27);
+(4, 'Cairo', 'street', 10, 1, 10, 19073219, 27),
+(5, '23124124', '12314124', 2147483647, 123322112, 21334123, 123122, 28);
 
 -- --------------------------------------------------------
 
@@ -104,6 +105,13 @@ CREATE TABLE `child` (
   `photo` longblob NOT NULL,
   `photoExtension` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `child`
+--
+
+INSERT INTO `child` (`id`, `name`, `hobbies`, `medicalProblems`, `disability`, `gender`, `dateOfBirth`, `userId`, `scheduleTypeId`, `photo`, `photoExtension`) VALUES
+(1, '7mada', 'soccer', 'psycho', 'none', 'male', '2019-01-16', 27, 2, '', 'jpg');
 
 -- --------------------------------------------------------
 
@@ -170,6 +178,14 @@ CREATE TABLE `employee` (
   `cvId` int(11) NOT NULL COMMENT 'cv id referencing uploads id',
   `medicalInsuranceId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `departmentId`, `salary`, `incomeMethod`, `universityDegree`, `positionId`, `experience`, `bankAccount`, `userId`, `medicalTestId`, `categoryId`, `yearOfGraduation`, `university`, `skills`, `cvId`, `medicalInsuranceId`) VALUES
+(12, 121, 123, 3, 232, '231', '23112', 1, '2131', '2312', 22, 1, 1, 2010, '2312', '2312', 1, 1),
+(13, 12, 232, 8, 222, '1222', '222', 2, '22', '33', 28, 1, 1, 0000, '2322', '2232', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -315,10 +331,10 @@ INSERT INTO `position` (`id`, `positionName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Table structure for table `schedules`
 --
 
-CREATE TABLE `schedule` (
+CREATE TABLE `schedules` (
   `id` int(11) NOT NULL,
   `subjectId` int(11) NOT NULL,
   `timeFrom` time NOT NULL,
@@ -327,6 +343,13 @@ CREATE TABLE `schedule` (
   `maxChildren` int(11) NOT NULL COMMENT 'limit of the children in the schedule',
   `scheduleTypeId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`id`, `subjectId`, `timeFrom`, `timeTo`, `room`, `maxChildren`, `scheduleTypeId`) VALUES
+(1, 1, '10:14:18', '09:00:00', 'Flatter', 12, 2);
 
 -- --------------------------------------------------------
 
@@ -378,9 +401,16 @@ INSERT INTO `status` (`id`, `statusName`) VALUES
 
 CREATE TABLE `subject` (
   `id` int(11) NOT NULL,
-  `subjectName` int(11) NOT NULL,
+  `subjectName` varchar(100) NOT NULL,
   `teacherId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `subjectName`, `teacherId`) VALUES
+(1, 'English', 28);
 
 -- --------------------------------------------------------
 
@@ -418,6 +448,13 @@ CREATE TABLE `uploads` (
   `userId` int(11) NOT NULL COMMENT 'id of child or id of employee or id of user referencing employee id or referencing child id'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `uploads`
+--
+
+INSERT INTO `uploads` (`id`, `name`, `size`, `type`, `extension`, `data`, `userId`) VALUES
+(1, 'none', 0, 'none', 'none', '', 22);
+
 -- --------------------------------------------------------
 
 --
@@ -449,7 +486,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`) VALUES
 (22, 'manager@gmail.com', 'pass', 'Manager', 'Last', 'Family', 'Male', 'Egyptian', '1988-12-08', 2646888, 122657377, 22746255, '2019-01-04 16:05:14', 2, 2147483647, 1),
-(27, 'parent@gmail.com', 'pass', 'Parent', 'Last', 'Family', 'Female', 'Egyptian', '2019-01-01', 138180, 896966689, 986698, '2019-01-06 19:03:00', 2, 1873612876, 2);
+(27, 'parent@gmail.com', 'pass', 'Parent', 'Last', 'Family', 'Female', 'Egyptian', '2019-01-01', 138180, 896966689, 986698, '2019-01-06 19:03:00', 2, 1873612876, 2),
+(28, 'teacher@nursery', 'teach', 'teacher', 'professor', 'Doctor', 'Male', '1231', '2019-01-10', 123123, 213123, 12323, '2019-01-09 21:51:13', 1, 21323, 3);
 
 --
 -- Indexes for dumped tables
@@ -562,9 +600,9 @@ ALTER TABLE `position`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `schedule`
+-- Indexes for table `schedules`
 --
-ALTER TABLE `schedule`
+ALTER TABLE `schedules`
   ADD PRIMARY KEY (`id`),
   ADD KEY `scheduleId` (`scheduleTypeId`),
   ADD KEY `subjectId` (`subjectId`);
@@ -580,6 +618,13 @@ ALTER TABLE `scheduletypes`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacherId` (`teacherId`);
 
 --
 -- Indexes for table `type`
@@ -618,7 +663,7 @@ ALTER TABLE `accounting`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -630,7 +675,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -648,7 +693,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `maintenance`
@@ -705,6 +750,12 @@ ALTER TABLE `status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
@@ -714,13 +765,13 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Constraints for dumped tables
@@ -777,10 +828,17 @@ ALTER TABLE `parent`
   ADD CONSTRAINT `parent_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `schedule`
+-- Constraints for table `schedules`
 --
-ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`scheduleTypeId`) REFERENCES `scheduletypes` (`id`);
+ALTER TABLE `schedules`
+  ADD CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`scheduleTypeId`) REFERENCES `scheduletypes` (`id`),
+  ADD CONSTRAINT `schedules_ibfk_2` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`);
+
+--
+-- Constraints for table `subject`
+--
+ALTER TABLE `subject`
+  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`teacherId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `uploads`
