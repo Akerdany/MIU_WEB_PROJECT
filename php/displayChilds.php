@@ -81,6 +81,11 @@
 
                     //if the user is a Teacher he'll/she'll see all the children in his/her nursery
                     else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == '3'){
+						$sqlTeacherChildren = "u.firstName,s.subjectName,sc.room from employee e join user u on e.userId=u.id 
+						join subject s ON s.teacherId = u.userid 
+							join schedule sc on sc.subjectId=s.subjectId
+							join scheduletypes scT on sc.scheduleTypeId=scT.id
+							join child c on scT.id=c.scheduleTypeId"; //u.firstName because
                         //3ayez menak sql tetla3 el childs el 3and el teacher fel scehduele
                             while($row = mysqli_fetch_array($result)){
                                 // if(){
