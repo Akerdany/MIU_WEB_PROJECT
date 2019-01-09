@@ -21,13 +21,15 @@ require_once("Database_Connection.php");
                 while($row = mysqli_fetch_array($resultInsurance)){
                     echo "<tr>";
                     echo "<td>" .$row['id']. "</td>";
-                    echo "<td>" .$row['']. "</td>";
-                    echo "<td>".$row['medicineType']."</td>";
-                    echo "<td>" .$row['medicalCardNumber']. "</td>";
-                    echo "<td>".$row['medicinePrice']."</td>";
-					echo "<td>".$row['maximumInsuranceCost']."</td>";
-					echo "<td>".$row['email']."</td>";
-	 		 	 	 	 	 	 	 	 
+                    echo "<td>" .$row['taxes/year']. "</td>";
+                    echo "<td>".$row['expenses/year']."</td>";
+                    echo "<td>" .$row['fees/child']. "</td>";
+                    echo "<td>".$row['paymentMethod']."</td>";
+					echo "<td>".$row['profit/year']."</td>";
+					echo "<td>".$row['expenseDate/year']."</td>";
+					echo "<td>".$row['paymentMethod']."</td>";
+					echo "<td>".$row['profit/year']."</td>";
+					echo "<td>".$row['expenseDate/year']."</td>";
 					
                     echo "</tr>";
 
