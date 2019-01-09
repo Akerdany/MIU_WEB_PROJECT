@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 09, 2019 at 08:12 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Host: localhost
+-- Generation Time: Jan 09, 2019 at 08:45 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -101,7 +101,8 @@ CREATE TABLE `child` (
   `dateOfBirth` date NOT NULL,
   `userId` int(11) NOT NULL,
   `scheduleTypeId` int(11) NOT NULL,
-  `photo` blob NOT NULL
+  `photo` longblob NOT NULL,
+  `photoExtension` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
