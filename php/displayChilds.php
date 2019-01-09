@@ -83,7 +83,8 @@
                     else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == '3'){
 						$sqlTeacherChildren = "SELECT u.firstName FROM employee e join user u on e.userId=u.id 
 											   join subject s ON s.teacherId = u.id 
-											   join schedule sc on sc.subjectId=s.id
+                                               AND s.teacherId=28
+											   join schedules sc on sc.subjectId=s.id
 											   join scheduletypes scT on sc.scheduleTypeId=scT.id
 											   join child c on scT.id=c.scheduleTypeId"; //u.firstName because
                         //3ayez menak sql tetla3 el childs el 3and el teacher fel scehduele

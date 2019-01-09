@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2019 at 12:20 AM
+-- Generation Time: Jan 10, 2019 at 12:54 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -111,7 +111,9 @@ CREATE TABLE `child` (
 --
 
 INSERT INTO `child` (`id`, `name`, `hobbies`, `medicalProblems`, `disability`, `gender`, `dateOfBirth`, `userId`, `scheduleTypeId`, `photo`, `photoExtension`) VALUES
-(1, '7mada', 'soccer', 'psycho', 'none', 'male', '2019-01-16', 27, 2, '', 'jpg');
+(1, '7mada', 'soccer', 'psycho', 'none', 'male', '2019-01-16', 27, 2, '', 'jpg'),
+(2, 'mahmoud', 'soccer', 'none', 'none', 'male', '2019-01-16', 27, 2, '', 'png'),
+(3, 'hazem', 'asdasd', 'asda', 'asdas', 'male', '2019-01-16', 27, 3, '', 'png');
 
 -- --------------------------------------------------------
 
@@ -185,7 +187,8 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `departmentId`, `salary`, `incomeMethod`, `universityDegree`, `positionId`, `experience`, `bankAccount`, `userId`, `medicalTestId`, `categoryId`, `yearOfGraduation`, `university`, `skills`, `cvId`, `medicalInsuranceId`) VALUES
 (12, 121, 123, 3, 232, '231', '23112', 1, '2131', '2312', 22, 1, 1, 2010, '2312', '2312', 1, 1),
-(13, 12, 232, 8, 222, '1222', '222', 2, '22', '33', 28, 1, 1, 0000, '2322', '2232', 1, 1);
+(13, 12, 232, 8, 222, '1222', '222', 2, '22', '33', 28, 1, 1, 0000, '2322', '2232', 1, 1),
+(14, 231, 765, 8, 9888, 'jjjkhkh', 'bnmbn', 2, 'hghh', 'bvvvc', 29, 1, 1, 0000, 'sdsss', 'aaaxx', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -349,7 +352,8 @@ CREATE TABLE `schedules` (
 --
 
 INSERT INTO `schedules` (`id`, `subjectId`, `timeFrom`, `timeTo`, `room`, `maxChildren`, `scheduleTypeId`) VALUES
-(1, 1, '10:14:18', '09:00:00', 'Flatter', 12, 2);
+(1, 1, '10:14:18', '09:00:00', 'Flatter', 12, 2),
+(2, 2, '34:00:00', '17:00:00', 'Big', 30, 3);
 
 -- --------------------------------------------------------
 
@@ -410,7 +414,8 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id`, `subjectName`, `teacherId`) VALUES
-(1, 'English', 28);
+(1, 'English', 28),
+(2, 'French', 29);
 
 -- --------------------------------------------------------
 
@@ -487,7 +492,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`) VALUES
 (22, 'manager@gmail.com', 'pass', 'Manager', 'Last', 'Family', 'Male', 'Egyptian', '1988-12-08', 2646888, 122657377, 22746255, '2019-01-04 16:05:14', 2, 2147483647, 1),
 (27, 'parent@gmail.com', 'pass', 'Parent', 'Last', 'Family', 'Female', 'Egyptian', '2019-01-01', 138180, 896966689, 986698, '2019-01-06 19:03:00', 2, 1873612876, 2),
-(28, 'teacher@nursery', 'teach', 'teacher', 'professor', 'Doctor', 'Male', '1231', '2019-01-10', 123123, 213123, 12323, '2019-01-09 21:51:13', 1, 21323, 3);
+(28, 'teacher@nursery', 'teach', 'teacher', 'professor', 'Doctor', 'Male', '1231', '2019-01-10', 123123, 213123, 12323, '2019-01-09 21:51:13', 1, 21323, 3),
+(29, 'teacher2@nursery', 'teaching', 'teacher2', 'professor2', 'Doctor2', 'Male', '1231', '2019-01-08', 23, 23, 22, '2019-01-21 00:00:00', 2, 99333, 3);
 
 --
 -- Indexes for dumped tables
@@ -675,7 +681,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `child`
 --
 ALTER TABLE `child`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -693,7 +699,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `maintenance`
@@ -753,7 +759,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `type`
@@ -771,7 +777,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
