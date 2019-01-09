@@ -25,6 +25,8 @@
             $photo = addslashes($_FILES['photo']['tmp_name']);
             $photo = file_get_contents($photo);
             $photo = base64_encode($photo);
+            $extensionFile = pathinfo($_FILES["photo"]["name"])['extension']; 
+
 
             $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `userId`, `gender`, `dateOfBirth`, `scheduleTypeId`)
                     VALUES (NULL, '".$photo."','".$name."','".$hobbies."','".$medical."','".$disability."','".$_SESSION["userId"]."','".$gender."','".$dateOfBirth."','5')";
@@ -45,21 +47,22 @@
    
    <div id="AddChildForm">
     <form name="childForm" action="" method="post" enctype="multipart/form-data">
-    <fieldset>
-    <h2 class="Form_Title"> Child Information</h2>
-        <input type="text" name="name" placeholder="Child Name" required>
-        Photo:
-        <input type="file" name="photo" required>
-        <input type="radio" name="gender" value="Male"> Male 
-        <input type="radio" name="gender" value="Female"> Female 
-        <input type="date" name="dateOfBirth" required>
-        <input type="text" name="hobbies" placeholder="Hobbies" required>
-        <input type="text" name="medicalProblem" placeholder="Medical Problems" required>
-        <input type="text" name="disabilty" placeholder="Disabilty" required>
+        <fieldset>
+            <h2 class="Form_Title"> Child Information</h2>
 
-        <input type="submit" name="Submit"  value="Add Child" id="Submit_Button" required> 
-        
-    </fieldset>
+            <input type="text" name="name" placeholder="Child Name" required>
+            Photo:
+            <input type="file" name="photo" required>
+            <input type="radio" name="gender" value="Male"> Male 
+            <input type="radio" name="gender" value="Female"> Female 
+            <input type="date" name="dateOfBirth" required>
+            <input type="text" name="hobbies" placeholder="Hobbies" required>
+            <input type="text" name="medicalProblem" placeholder="Medical Problems" required>
+            <input type="text" name="disabilty" placeholder="Disabilty" required>
+
+            <input type="submit" name="submit"  value="Add Child" id="Submit_Button" required> 
+            
+        </fieldset>
     </form>
     </div>
 </body>

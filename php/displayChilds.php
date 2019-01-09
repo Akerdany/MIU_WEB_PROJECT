@@ -41,8 +41,7 @@
                     }
                     else if(mysqli_num_rows($result1) > 1){
 
-                    }
-                    
+                    }                    
                 }
                 else{
                     echo"<table border='1'>
