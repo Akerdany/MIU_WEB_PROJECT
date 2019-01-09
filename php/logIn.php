@@ -30,37 +30,43 @@
                 $_SESSION["phoneNumber"] = $row["phoneNumber"];
                 $_SESSION["homeNumber"] = $row["homeTelephoneNumber"];
                 $_SESSION["ssn"] = $row["ssn"];
-                $_SESSION["status"] = $row["status"];
+                $_SESSION["statusId"] = $row["statusId"];
                 $_SESSION["typeId"] = $row["typeId"];
 
-                //getting status of user even accepted .. pending .. rejected 
+                //Getthing the type of user: Manager .. Employee .. Parent
                 $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
-                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["status"]."'");
-                
-                $temp3 = mysqli_query($conn, "SELECT * FROM employee WHERE userId='".$row["id"]."'");
-                $temp4 = mysqli_query($conn, "SELECT * FROM parent WHERE userId='".$row["id"]."'");
-                
+
+                //getting status of user even accepted .. pending .. rejected 
+                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["statusId"]."'");
+
+                /*User $temp and $temp2 to get the name of the user type and status name in case instead of using
+                statusId and typeId in the session.*/
                 if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
 
-                    $_SESSION["type_User"]=$r["typeName"];
+                    $_SESSION["type_User"] = $r["typeName"];
                     $_SESSION["statusName"] = $r2["typeName"];
 
-                    if($_SESSION["typeId"] == '1'){
+                    //If the user is an employee or a manager:
+                    if($_SESSION["typeId"] == '1' || $_SESSION["typeId"] == '3'){
+
+                        $temp3 = mysqli_query($conn, "SELECT * FROM employee WHERE userId='".$row["id"]."'");
+                        
                         if($tempR = mysqli_fetch_array($temp3)){
                             $_SESSION["workingHours"] = $tempR["workingHours"];
                             $_SESSION["workingDays"] = $tempR["workingDays"];
-                            $_SESSION["department"] = $tempR["department"];
+                            $_SESSION["departmentId"] = $tempR["department"];
                             $_SESSION["salary"] = $tempR["salary"];
                             $_SESSION["incomeMethod"] = $tempR["incomeMethod"];
                             $_SESSION["universityDegree"] = $tempR["universityDegree"];
-                            $_SESSION["position"] = $tempR["position"];
+                            $_SESSION["positionId"] = $tempR["position"];
                             $_SESSION["experience"] = $tempR["experience"];
                             $_SESSION["bankAccount"] = $tempR["bankAccount"];
-                            $_SESSION["category"] = $tempR["category"];
+                            $_SESSION["categoryId"] = $tempR["category"];
                             $_SESSION["yearOfGraduation"] = $tempR["yearOfGraduation"];
                             $_SESSION["university"] = $tempR["university"];
                             $_SESSION["skills"] = $tempR["skills"];
-
+                            $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
+                            
                             // $_SESSION["medicalTest"] = $tempR["medicalTest"];
                             // $_SESSION["cv"] = $tempR["cv"];
                         }
@@ -70,7 +76,10 @@
                             session_destroy();
                         }
                     }
+                    //If the user is a parent:
                     else if($_SESSION["typeId"] == '2'){
+
+                        $temp4 = mysqli_query($conn, "SELECT * FROM parent WHERE userId='".$row["id"]."'");
                         if($tempR = mysqli_fetch_array($temp4)){
                             $_SESSION["workPosition"] = $tempR["workPosition"];
                             $_SESSION["workPlace"] = $tempR["workPlace"];
@@ -81,12 +90,19 @@
                             session_destroy();
                         }
                     }
-                    if($_SESSION["status"] == '4'){
+                    
+                    //If the account is active:
+                    if($_SESSION["statusId"] == '2'){
                         header("Location: index.php");
                     }
-                    else if($_SESSION["status"] == '3'){
-                        echo"Sorry you're account isn't active yet";
+                    //If the account is pending:
+                    else if($_SESSION["statusId"] == '1'){
+                        echo"Sorry, you're account isn't active yet";
                     }   
+                    //If the account has been deleted:
+                    else if($_SESSION["statusId"] == '3'){
+                        echo"Sorry, you're account has been deleted";
+                    }
                     else{
                         //Underconstructing the error table for IT department
                         printf("Errormessage: %s\n", mysqli_error($conn));

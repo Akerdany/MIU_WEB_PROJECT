@@ -97,7 +97,7 @@
                     echo"<a href='displayUsers.php'>Display Users Accounts</a><br>";
                 }
                 else if($_SESSION['typeId']=="2"){
-                    echo"<a href='child.php'>Your Child Page</a><br>";
+                    echo"<a href='displayChilds.php'>Your Child Page</a><br>";
                 }
             ?>
             <a href='editAccount.php'>Edit Your Account</a><br>
