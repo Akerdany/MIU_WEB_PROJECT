@@ -101,6 +101,8 @@
                             }
                         echo "</table>";
                     }
+
+                    //Medical missing
                 }
             }
             else if(mysqli_num_rows($result) == 0 && $_SESSION["typeId"] == '2'){
