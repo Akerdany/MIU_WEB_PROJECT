@@ -1,12 +1,6 @@
 /* The code that is for the portfolio gallery with filters (The New One) */
-*
-{
-   font-family: 'Yatra One';font-size: 22px;
-}
-html {
-  overflow-y: scroll;
 
-}
+
 .bar a
 {
   display: inline;
