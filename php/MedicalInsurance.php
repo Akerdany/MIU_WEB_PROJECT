@@ -4,12 +4,12 @@ require_once("Database_Connection.php");
    $sqlInsurance="select m.*,u.firstName  from
    medicalinsurance m JOIN employee e ON e.medicalInsuranceId = m.id
    JOIN user u ON u.id=e.userId";
-	//will be in a function, it is when the HR employee enters the table of the medical insurance
+	//will be in a function, it is when any employee except HR enters the table of the medical insurance
 	
 	$sqlInsuranceEmployee="select u.firstName  from
     employee e 
    JOIN user u ON u.id=e.userId
-   AND e.departmentId !=2
+   AND e.departmentId NOT IN (2,10)
    
    AND e.userId='".$_SESSION['userId']."'";
     $resultInsuranceEmployee = mysqli_query($conn,$sqlInsuranceEmployee);
