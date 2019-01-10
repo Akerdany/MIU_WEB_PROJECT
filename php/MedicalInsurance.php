@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once("Database_Connection.php");
    $sqlInsurance="select m.*,u.firstName  from
    medicalinsurance m JOIN employee e ON e.medicalInsuranceId = m.id
@@ -7,7 +8,16 @@ require_once("Database_Connection.php");
 	
 	$sqlInsuranceEmployee="select u.firstName  from
     employee e 
-   JOIN user u ON u.id=e.userId";
+   JOIN user u ON u.id=e.userId
+   AND e.departmentId !=2
+   
+   AND e.userId='".$_SESSION['userId']."'";
+    $resultInsuranceEmployee = mysqli_query($conn,$sqlInsuranceEmployee);
+    if(mysqli_num_rows($resultInsuranceEmployee) > 0)
+	{	
+
+		$sqlInsurance=$sqlInsurance."  AND e.userId='".$_SESSION['userId']."'";
+	}
 	
 	//ends here
    $resultInsurance = mysqli_query($conn,$sqlInsurance);
