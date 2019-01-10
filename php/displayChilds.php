@@ -81,7 +81,7 @@
 
                     //if the user is a Teacher he'll/she'll see all the children in his/her nursery
                     else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == '3'){
-						$sqlTeacherChildren = "SELECT u.firstName FROM employee e join user u on e.userId=u.id 
+						$sqlTeacherChildren = "SELECT c.* FROM employee e join user u on e.userId=u.id 
 											   join subject s ON s.teacherId = u.id 
                                                AND s.teacherId=28
 											   join schedules sc on sc.subjectId=s.id
