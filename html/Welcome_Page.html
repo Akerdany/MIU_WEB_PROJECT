@@ -5,12 +5,7 @@
     <link rel="stylesheet" href="../css/Welcome_Page.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
-     <link rel="stylesheet" href="../css/normalize.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/styleTemp.css">
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
 
 </head>
 
@@ -48,81 +43,47 @@
     <div class="Rest_Of_Page">
        <div class="slideshow-container">
 
-      <div class="mySlides fade">
+              <div class="mySlides fade">
+                <div class="numbertext"></div>
+                <img src="../pictures/nursery.jpg" style="width:100%" style="height:1300px">
+            </div>
+        <div class="mySlides fade">
+                <div class="numbertext"></div>
+                <img src="../pictures/Preschool 5.jpg" style="width:100%" style="height:1300px">
+            </div>
 
-        <img class="object-fit-cover" src="../pictures/nursery.jpg" alt="Mountains" style="height:500px">
+       <div class="mySlides fade">
+                <div class="numbertext"></div>
+               <!-- <img src="../pictures/Children2.jpg" style="width:100%" style="height:1305px">-->
+            </div>
+
+        <div class="mySlides fade">
+                <div class="numbertext"></div>
+              <!--  <img src="../pictures/Children.jpg" style="width:100%" style="height:1305px">-->
+            </div>
+     
+
+    </div>
     
-      </div>
-
-      <div class="mySlides fade">
-        <img class="object-fit-cover" src="../pictures/Preschool 5.jpg" alt="Mountains" style="height:500px">
-      
-      </div>
-
-      <div class="mySlides fade">
-  <img class="object-fit-cover" src="../pictures/welcomeTemporary2.jpg" alt="Mountains" style="height:500px">
-    
-      </div>
-
-      <div class="mySlides fade">
-	   <img src="../pictures/welcomeTemporary.jpg" style="width:100%" style="height:1305px">
-	
-</div>
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    </div>
-    <br>
-
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
-    </div>
-
-    <div class="Footer">
-        <!--Social media button classes-->
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-youtube"></a>
-        <a href="#" class="fa fa-instagram"></a>
-    </div>
-
 
     <script>
-      var slideIndex = 1;
-var timer = null;
-showSlides(slideIndex);
+    var slideIndex = 0;
+        showSlides();
 
-function plusSlides(n) {
-  clearTimeout(timer);
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  clearTimeout(timer);
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n==undefined){n = ++slideIndex}
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  timer = setTimeout(showSlides, 5000);
-}
-
+        function showSlides() 
+		{
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {
+                slideIndex = 1
+            }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
     </script>
 
     <!-- End of the slideshow -->
