@@ -25,7 +25,7 @@ function getMessages($conn,$toUserId)
 	
   $sql1="  SELECT user.email,user.id,messagetest.message,
   messagetest.date,messagetest.userId FROM user INNER JOIN messagetest
-  ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId
+  ON user.id=messagetest.userId where '".$_SESSION["userId"]."'=messagetest.userId
   ORDER BY messagetest.date ";
   $result1= mysqli_query($conn,$sql1);
 
