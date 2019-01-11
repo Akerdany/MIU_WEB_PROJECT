@@ -61,7 +61,7 @@ function setMessages($conn,$toUserId)
 {
   $date=$_POST['date'];
   $message=$_POST['message'];
-  $id = $_SESSION['id'];
+  $id = $_SESSION['userId'];
   $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
   VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '","' .$date. '",0)
   ';

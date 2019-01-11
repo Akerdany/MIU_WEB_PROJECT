@@ -3,26 +3,23 @@
 date_default_timezone_set('Africa/Cairo');
  
 
-     
-echo "<form method='post' action='sendInvitation.php'>";
+echo "<form id='invitationForm' method='post'  action='messages.php'>";
  
 	 
  echo '<input type="hidden" name="date" value="'.date('Y-m-d H:i:s').'">';
- echo '<div class="send-invitation"><button type="button"  name="sendInvitation" 
-			id="sendingInvitation"  onclick="sendInvite()">
-			send Invitation</button></div>';
+ 
  echo "</form>";
  $date=$_POST['date'];
+   if (isset($_POST['submit'])) {
  $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
   VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.$date.'",0)
   ';
- 
+
+   }
 		
 	
-	echo '<div class="send-invitation"><button type="button"  name="sendInvitation" 
-			id="sendingInvitation"  onclick="sendInvite()">
-			send Invitation</button></div>';
-			
+	echo 	'<div class="send-invitation"><button type="button"  name="sendInvitation" 
+			id="sendingInvitation"  onclick="submitform()">send Invitation</button></div>';
 
 ?>
 <!DOCTYPE html>
@@ -53,6 +50,11 @@ echo "<form method='post' action='sendInvitation.php'>";
               });
      });
   });
+  function submitform()
+{
+ document.getElementById('invitationForm').submit();
+
+}
 
 
 
