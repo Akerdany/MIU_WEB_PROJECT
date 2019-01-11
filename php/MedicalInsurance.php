@@ -23,7 +23,7 @@ $HDR=false;        //head of doctors
 	AND e.positionId=1
    AND e.userId='".$_SESSION['userId']."'";
     $resultInsuranceDoctor = mysqli_query($conn,$sqlInsuranceDoctor);
-	 if(mysqli_num_rows($resultInsuranceEmployee) > 0)
+	 if(mysqli_num_rows($resultInsuranceDoctor) > 0)
 	{
 			$HDR=true;
 	}
@@ -35,7 +35,10 @@ $HDR=false;        //head of doctors
 		{
 		$sqlInsurance=$sqlInsurance."  AND e.userId='".$_SESSION['userId']."'";
 		}
+		
+		
 	}
+	
 	
 	//ends here
    $resultInsurance = mysqli_query($conn,$sqlInsurance);
