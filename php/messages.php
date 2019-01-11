@@ -104,7 +104,7 @@ echo'
 }
 function getOthersMessages($conn,$toUserId) //to get other messages from other users
 {
-  $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId where '".$_SESSION["id"]."'=messagetest.toUserId ORDER BY messagetest.date ";
+  $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId where '".$_SESSION["userId"]."'=messagetest.toUserId ORDER BY messagetest.date ";
   $result2= mysqli_query($conn,$sql2);
 
   while ($row2= mysqli_fetch_assoc($result2)) {
