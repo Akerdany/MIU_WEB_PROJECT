@@ -5,7 +5,7 @@
 
     $sql = "select * from user";
     $result = mysqli_query($conn,$sql);
-    
+
     if(mysqli_num_rows($result) > 0){
         echo"<table border='1' class='Table_Of_Users'>
             <tr>
@@ -54,7 +54,7 @@
             echo "</table>";
     }
     include 'Comments.php';
-    mysqli_close($conn);    
+    // mysqli_close($conn);    
 ?>
 
 <style>
