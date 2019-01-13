@@ -22,8 +22,7 @@
             session_start();
             require_once("Database_Connection.php");
             require("sidebar.php");
-        echo $_SESSION["typeId"];
-        echo $_SESSION["departmentId"];
+            
             $sql="SELECT * FROM child";
             $result = mysqli_query($conn,$sql);
 

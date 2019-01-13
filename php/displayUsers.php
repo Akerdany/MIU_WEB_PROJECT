@@ -9,7 +9,7 @@
     if(mysqli_num_rows($result) > 0){
         echo"<table border='1' class='Table_Of_Users'>
             <tr>
-            <th>ID</th>
+            <th border: 5px solid black >ID</th>
             <th>Email</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -66,9 +66,12 @@
         .Table_Of_Users
         {
             background-color:linen;
-            border:5px;
+            border :5px solid linen;
+            border: inner
             top:20px;
             left:20px;
+            width:static;
+            height:static;
             width:1520px;
             height:300px;
             text-align:center;
