@@ -15,27 +15,21 @@
             require_once("Database_Connection.php");
 
             if(isset($_POST['submit'])){
-                if($_POST['password']==$_POST['confirmPassword']){
+                if($_SESSION['password']==$_POST['password']){
+                    $sql="DELETE FROM user WHERE id = '".$_SESSION['id']."'";
+                    mysqli_query($conn,$sql);
+                    echo"Account deleted";
 
-                    if($_SESSION['password']==$_POST['password']){
-                        $sql="DELETE FROM user WHERE id = '".$_SESSION['id']."'";
-                        mysqli_query($conn,$sql);
-                        echo"Account deleted";
-
-                        if(mysqli_close($conn)){
-                            session_destroy();
-                            header("location:../html/NurseryWebsite.html");
-                        }
-                        else{
-                            echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
-                        }
+                    if(mysqli_close($conn)){
+                        session_destroy();
+                        header("location:../html/NurseryWebsite.html");
                     }
                     else{
-                        echo"Sorry, you have entered the password wrong<br>";
+                        echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
                     }
                 }
                 else{
-                    echo"You must enter the confirmation code right<br>";
+                    echo"Sorry, you have entered the password wrong<br>";
                 }
             }
             mysqli_close($conn);

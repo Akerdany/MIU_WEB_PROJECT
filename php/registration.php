@@ -113,13 +113,14 @@
                     if($password == $confirmPassword){
 
                         if(isset($_POST['registerParent'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','2')";
+                            $typeId = 2; 
                         }
                         else if(isset($_POST['registerEmployee'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','3')";
+                            $typeId = 3;
                         }
+
+                        $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
+                        VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','".$typeId."')";
 
                         if (mysqli_query($conn,$sql1)) {
 
@@ -152,7 +153,6 @@
                             
                                                 //Underconstructing the error table for IT department
                                                 printf("Errormessage: %s\n", mysqli_error($conn));
-
                                             }
                                         }
                                         else{                                   
@@ -170,12 +170,10 @@
                                         $bankAccount = $_POST["bankAccount"];
 
                                         $cv = addslashes($_FILES['cv']['tmp_name']);
-                                        //$cvName = addslashes($_FILES['cv']['name']);
                                         $cv = file_get_contents($cv);
                                         $cv = base64_encode($cv);
 
                                         $medicalTest = addslashes($_FILES['medicalTest']['tmp_name']);
-                                        //$medicalTestName = addslashes($_FILES['medicalTest']['name']);
                                         $medicalTest = file_get_contents($medicalTest);
                                         $medicalTest = base64_encode($medicalTest);   
 
