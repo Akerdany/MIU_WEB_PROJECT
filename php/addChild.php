@@ -71,9 +71,10 @@
 body
 {
     background-image: url("../pictures/kid.jpg" );
-    background-position-x: 1000px;
-    background-position-y:-50px;
-    background-size: 550px;
+
+    background-position-x: 900px;
+    background-position-y: 60px;
+    background-size: 380px;
     background-color:coral;
     background-attachment: static;
     background-repeat: no-repeat;

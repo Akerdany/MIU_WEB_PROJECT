@@ -4,69 +4,36 @@ body
     background-image: linear-gradient( snow,pink);
  
 }
-
-.mySlides
+.Middle_Of_Page
 {
-    display: none;
-}
-
-img 
-{
-    vertical-align: middle;
-}
-
-/* Slideshow container */
-.slideshow-container {
-    max-width: 600px;
+    background-color: snow;  
+    width: 800px; 
+    height: 550px;
+    border-radius: 20px;
+    margin: center;   
+    margin-left: auto;
+    margin-right: auto;
     position: relative;
-    margin: auto;
+    left: 0%;
+    top: 0%;
 }
-
-
-/* Fading animation */
-.fade 
+h1
 {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 12.0s;
-    animation-name: fade;
-    animation-duration: 1.5s;
+   font-size:30px; 
+   text-align: center;
 }
-
-@-webkit-keyframes fade
+h2
 {
-    from 
-    {
-        opacity: .4
-    }
-
-    to 
-    {
-        opacity: 1
-    }
+    font-size:25px;
+    text-align:left;/*text starts from left */
+    margin-left: 15px;/*starst from left and add 10 pixels to the start */
 }
-
-@keyframes fade
+p
 {
-    from 
-    {
-        opacity: .4
-    }
-
-    to 
-    {
-        opacity: 1
-    }
+    font-size:15px;
+    text-align:left;/*text starts from left */
+    margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
 }
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) 
-{
-    .text 
-    {
-        font-size: 11px
-    }
-}
-
 .topnav/*setting of navbar place */
 {
     overflow: hidden;
@@ -74,7 +41,7 @@ img
     border-radius: 10px;
     width: 1520px;  
     height: 50px;
-    position:static;
+    position:relative;
     left: -10px;/*starts after 1000pixel */
     top: -10px;
 }
@@ -89,7 +56,8 @@ img
     font-size: 17px;
 }
 
-.topnav a:hover {
+.topnav a:hover /*lma 2a2af 3ala elbutton feh eltopnav*/
+{
     background-color:none;
     color: white;
 }
@@ -97,12 +65,12 @@ img
 {
     overflow: hidden;
     background-color:indigo;
+    border-radius:20px;
     width: 1520px;  
     height: 120px;
-    position:static;/*bt-apply width height top left position*/
+    position:relative;/*bt-apply width height top left position*/
     left: -10px;/*sratrs after 1000pixel */
-    top: 10px;
-    bottom:0px;
+    top: 30px; 
 }
 
 .Footer a /*inside the world font settings*/
@@ -118,23 +86,7 @@ img
 .Footer a:hover {
     background-color:none;
     color: white;
-}
-.fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 30px;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 2px;
-    border-radius: 50%;
-  }
-  
-.fa:hover 
-{
-      opacity: 0.7;
-}
-
-  
+}  
 .Header
 {
     background-image: transparent;
@@ -147,7 +99,7 @@ img
     left: 0px;
     top: 0px;
 }
-div#Buttons/* mkan buttons feen feh header*/
+#Buttons/* mkan buttons feen feh header*/
 {
     width: 510px;  
     height: 50px;
@@ -156,20 +108,6 @@ div#Buttons/* mkan buttons feen feh header*/
     top: 15px;
   
 }
-.Rest_Of_Page
-{
-    background-color: transparent;  
-    width: 1200px;
-    border-radius: 20px;
-    margin: center;    
-    height: 1550px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    left: 100px;
-    top: 0px;
-}
-
 #Home_Button /*Button Settings*/
 {
     border-radius: 5px;/*smooth of edges*/
@@ -193,7 +131,7 @@ div#Buttons/* mkan buttons feen feh header*/
     transition: 0.5s;
 }
   
-#Home_Button span:after 
+#Home_Button span:after /* lma 2a2af 3ala elbutton eleffects elly bttla3*/
 {
     content: '\00bb';
     position: absolute;

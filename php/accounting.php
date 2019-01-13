@@ -1,10 +1,10 @@
 <?php 
 require_once("Database_Connection.php");
-   $sqlInsurance="select a.*  from
+   $sqlAccounting="select a.*  from
    accounting a ";
 
-   $resultInsurance = mysqli_query($conn,$sqlInsurance);
- if(mysqli_num_rows($resultInsurance) > 0){
+   $resultAccounting = mysqli_query($conn,$sqlAccounting);
+ if(mysqli_num_rows($resultAccounting) > 0){
                 echo"<table border='1'>
                     <tr>
                     <td>ID</td>
@@ -18,7 +18,7 @@ require_once("Database_Connection.php");
 					<td>total</td>
 					<td>year</td>
                     </tr>";
-                while($row = mysqli_fetch_array($resultInsurance)){
+                while($row = mysqli_fetch_array($resultAccounting)){
                     echo "<tr>";
                     echo "<td>" .$row['id']. "</td>";
                     echo "<td>" .$row['taxes/year']. "</td>";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2019 at 12:54 AM
+-- Generation Time: Jan 11, 2019 at 03:06 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -40,6 +40,13 @@ CREATE TABLE `accounting` (
   `total` int(11) NOT NULL,
   `year` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounting`
+--
+
+INSERT INTO `accounting` (`id`, `taxes/year`, `expenses/year`, `fees/child`, `paymentMethod`, `profit/year`, `expenseDate/year`, `paymentDescription`, `total`, `year`) VALUES
+(1, 1000, 1000, 1000, 'paypal', 1000, '2019-01-08', 'NA', 1231, 2012);
 
 -- --------------------------------------------------------
 
@@ -152,7 +159,8 @@ INSERT INTO `department` (`id`, `departmentName`) VALUES
 (6, 'PR'),
 (7, 'Security'),
 (8, 'Teaching'),
-(9, 'Transportation');
+(9, 'Transportation'),
+(10, 'Management');
 
 -- --------------------------------------------------------
 
@@ -186,9 +194,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `workingHours`, `workingDays`, `departmentId`, `salary`, `incomeMethod`, `universityDegree`, `positionId`, `experience`, `bankAccount`, `userId`, `medicalTestId`, `categoryId`, `yearOfGraduation`, `university`, `skills`, `cvId`, `medicalInsuranceId`) VALUES
-(12, 121, 123, 3, 232, '231', '23112', 1, '2131', '2312', 22, 1, 1, 2010, '2312', '2312', 1, 1),
-(13, 12, 232, 8, 222, '1222', '222', 2, '22', '33', 28, 1, 1, 0000, '2322', '2232', 1, 1),
-(14, 231, 765, 8, 9888, 'jjjkhkh', 'bnmbn', 2, 'hghh', 'bvvvc', 29, 1, 1, 0000, 'sdsss', 'aaaxx', 1, 1);
+(12, 121, 123, 10, 232, '231', '23112', 1, '2131', '2312', 22, 1, 1, 2010, '2312', '2312', 1, 1),
+(13, 12, 232, 8, 222, '1222', '222', 2, '22', '33', 28, 1, 1, 2010, '2322', '2232', 1, 1),
+(14, 231, 765, 8, 9888, 'jjjkhkh', 'bnmbn', 2, 'hghh', 'bvvvc', 29, 1, 1, 2010, 'sdsss', 'aaaxx', 1, 1),
+(15, 2, 3, 2, 2, '1', '32', 2, '2322', '2222', 30, 1, 1, 1999, '222', '3322', 1, 1),
+(16, 23, 232, 5, 222, '1', '32', 1, '232', '211', 31, 1, 1, 2010, '222', '333', 1, 1),
+(17, 333, 21, 1, 2344, 'dfsfh', 'as;ldja;d', 2, 'meen', 'mfeesh', 35, 1, 1, 1999, 'dfjspodfj', 'q', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -240,6 +251,13 @@ CREATE TABLE `marketing` (
   `contact` varchar(100) NOT NULL,
   `advertisementCost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marketing`
+--
+
+INSERT INTO `marketing` (`id`, `advertisementType`, `region`, `contact`, `advertisementCost`) VALUES
+(1, 'Internet ads', 'Egypt', 'wa7ed keda', 1111);
 
 -- --------------------------------------------------------
 
@@ -493,7 +511,10 @@ INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyN
 (22, 'manager@gmail.com', 'pass', 'Manager', 'Last', 'Family', 'Male', 'Egyptian', '1988-12-08', 2646888, 122657377, 22746255, '2019-01-04 16:05:14', 2, 2147483647, 1),
 (27, 'parent@gmail.com', 'pass', 'Parent', 'Last', 'Family', 'Female', 'Egyptian', '2019-01-01', 138180, 896966689, 986698, '2019-01-06 19:03:00', 2, 1873612876, 2),
 (28, 'teacher@nursery', 'teach', 'teacher', 'professor', 'Doctor', 'Male', '1231', '2019-01-10', 123123, 213123, 12323, '2019-01-09 21:51:13', 1, 21323, 3),
-(29, 'teacher2@nursery', 'teaching', 'teacher2', 'professor2', 'Doctor2', 'Male', '1231', '2019-01-08', 23, 23, 22, '2019-01-21 00:00:00', 2, 99333, 3);
+(29, 'teacher2@nursery', 'teaching', 'teacher2', 'professor2', 'Doctor2', 'Male', '1231', '2019-01-08', 23, 23, 22, '2019-01-21 00:00:00', 2, 99333, 3),
+(30, 'HR@gmail', 'HR', 'h', 'r', 'HR', 'male', 'egyptian', '2019-01-07', 123, 321, 312, '2019-01-09 00:00:00', 2, 222, 3),
+(31, 'Doctor@nursery', 'dr', 'doc', 'tor', 'DR', 'male', 'egpytian', '2019-01-07', 22, 33, 44, '2019-01-16 00:00:00', 2, 55, 3),
+(35, 'accounting@nursery', 'accounting', 'acc', 'ounting', 'ACCOUNT', 'male', 'egyptian', '2019-01-06', 123, 321, 312, '2019-01-23 00:00:00', 2, 444, 3);
 
 --
 -- Indexes for dumped tables
@@ -663,7 +684,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -693,13 +714,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `maintenance`
@@ -711,7 +732,7 @@ ALTER TABLE `maintenance`
 -- AUTO_INCREMENT for table `marketing`
 --
 ALTER TABLE `marketing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `medicalinsurance`
@@ -777,7 +798,7 @@ ALTER TABLE `uploads`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

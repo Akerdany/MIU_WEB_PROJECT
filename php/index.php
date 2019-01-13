@@ -55,7 +55,29 @@
             <?php
                 session_start();
                 //echo $_SESSION['type_User'];
-
+				//the accounting button  section#1
+				require_once("Database_Connection.php");
+				
+	$sqlShowButtonAccounting="select *  from
+    employee e 
+   JOIN user u ON u.id=e.userId
+   AND e.departmentId  IN (1,10)
+	
+   AND e.userId='".$_SESSION['userId']."'";
+    $resultShowButtonAccounting = mysqli_query($conn,$sqlShowButtonAccounting);
+	
+				//section#1 accounting end//////////////////////////////////////////
+			
+				//the marketing button  section#1/////////////////////////////////////
+				require_once("Database_Connection.php");
+					$sqlShowButtonMarketing="select *  from
+    employee e 
+   JOIN user u ON u.id=e.userId
+   AND e.departmentId  IN (4,10)
+	
+   AND e.userId='".$_SESSION['userId']."'";
+    $resultShowButtonMarketing = mysqli_query($conn,$sqlShowButtonMarketing);
+				//section#1 marketing end //////////////////////////////////////
                 if($_SESSION['typeId']=="1"){
 
                     if($_SESSION['gender']=="Male"){
@@ -103,6 +125,25 @@
             <a href='editAccount.php'>Edit Your Account</a><br>
             <a href='messages.php'>Messages</a><br>
             <a href='logOut.php'>Sign Out</a><br>
+			<a href='medicalInsurance.php'>Medical Insurance</a><br>
+			<?php 
+			//section #2 accounting
+			 if(mysqli_num_rows($resultShowButtonAccounting) > 0)
+	{
+		echo "<a href='accounting.php'>Accounting</a><br>"	;
+	}
+	//ends section#2 accounting
+			?>
+			<?php 
+			//section #2 Marketing
+			 if(mysqli_num_rows($resultShowButtonMarketing) > 0)
+			{	
+				
+				echo "<a href='marketing.php'>Advertisments</a><br>";
+			}
+			//ends section#2 Marketing
+			?>
+			
             <!--<a href="DisplayingMessageToManager.php">Messages</a>-->
         </div>
 
