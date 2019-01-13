@@ -31,7 +31,7 @@
     ?>
 
     <form name="editForm" action="" method="post">
-
+        <fieldset>
        <b> First Name: </b>
         <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.."><br>
 
@@ -44,7 +44,7 @@
         <input type="submit" name="submit">
         <input type="submit" name="deleteAccount" value="Delete your Account">
     </form>
-
+    </fieldset>
 </body>
 
 </html>

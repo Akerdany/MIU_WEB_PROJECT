@@ -25,9 +25,7 @@
                     echo"<h1>Welcome  Mrs. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
                 }
 
-                echo"<h2>Account Information: <h2> <br>";
-                echo"Type: ".$_SESSION["typeId"]."<br> <br>";
-                echo"Work: ".$_SESSION["workPosition"]."<br> <br>";
+                echo"<h2>Account Information: <h2> <br>"; 
 
                 
                 echo"Email: ".$_SESSION["username"]."<br> <br>";
