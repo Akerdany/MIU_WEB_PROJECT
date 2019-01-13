@@ -54,21 +54,21 @@
                         if($tempR = mysqli_fetch_array($temp3)){
                             $_SESSION["workingHours"] = $tempR["workingHours"];
                             $_SESSION["workingDays"] = $tempR["workingDays"];
-                            $_SESSION["departmentId"] = $tempR["department"];
+                            $_SESSION["departmentId"] = $tempR["departmentId"];
                             $_SESSION["salary"] = $tempR["salary"];
                             $_SESSION["incomeMethod"] = $tempR["incomeMethod"];
                             $_SESSION["universityDegree"] = $tempR["universityDegree"];
                             $_SESSION["positionId"] = $tempR["position"];
                             $_SESSION["experience"] = $tempR["experience"];
                             $_SESSION["bankAccount"] = $tempR["bankAccount"];
+                            $_SESSION["medicalTestId"] = $tempR["medicalTestId"];
                             $_SESSION["categoryId"] = $tempR["category"];
                             $_SESSION["yearOfGraduation"] = $tempR["yearOfGraduation"];
                             $_SESSION["university"] = $tempR["university"];
                             $_SESSION["skills"] = $tempR["skills"];
+                            $_SESSION["cvId"] = $tempR["cvId"];
                             $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
                             
-                            // $_SESSION["medicalTest"] = $tempR["medicalTest"];
-                            // $_SESSION["cv"] = $tempR["cv"];
                         }
                         else{
                             //Underconstructing the error table for IT department

@@ -150,7 +150,10 @@ function displayMessageArea()
 }
 if (isset($_SESSION['username']))
 {
-  $toUserId= $_SESSION['toUserId'];
+  if(!empty($_SESSION['toUserId'])){
+    $toUserId= $_SESSION['toUserId'];
+
+  }
   displayResult($toUserId);
 
     getMessages($conn,$toUserId);

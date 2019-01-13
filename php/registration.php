@@ -69,9 +69,9 @@
     </script>
 
     <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
 
-        <title> Registration Page </title>
+    <title> Registration Page </title>
     </head>
 
     <body>
