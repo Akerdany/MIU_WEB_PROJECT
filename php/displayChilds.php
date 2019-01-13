@@ -22,7 +22,10 @@
                 //if the user is a Parent he'll see only his children
                 if($_SESSION["typeId"] == '2'){
                     $result1 = mysqli_query($conn, "SELECT * FROM child WHERE userId='".$_SESSION["userId"]."'");
-                    
+                    if(mysqli_num_rows($result1) == 0){
+                        echo"<a href='addChild.php'>add your child now ?</a><br>";
+                    }
+
                     if(mysqli_num_rows($result1) == 1){
                         if($row = mysqli_fetch_array($result1)){
                             // $photo = $row['photo'];
@@ -33,7 +36,7 @@
                             // header("content-type: $row['content_type']");
                             // echo $photo;
                             echo '<form method="post" action="" enctype="multipart/form-data">';
-                            echo "<img width = '20%' src = 'data: image/*; base64, ".base64_encode($row["photo"])."'><br>";
+                            echo "<img width = '20%' src = 'data: image/PNG; base64, ".base64_encode($row["photo"])."'><br>";
                             echo '<input type="text" id="name" name="name" value='.$row["name"].'><br>';
                             echo '<input type="text" id="gender" name="gender" value='.$row["gender"].'><br>';
                             echo '<input type="date" id="dateOfBirth" name="dateOfBirth" value='.$row["dateOfBirth"].'><br>';
