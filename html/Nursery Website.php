@@ -2,6 +2,7 @@
 <html>
 <link rel="stylesheet" href="../css/style1.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Nursery </title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
@@ -19,8 +20,6 @@ position: relative;
 display: inline-block;
 border-radius: 2px;
 }
-
-
 
 .notification .badge {
 position: absolute;

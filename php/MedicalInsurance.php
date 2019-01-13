@@ -44,15 +44,15 @@ $HDR=false;        //head of doctors
    $resultInsurance = mysqli_query($conn,$sqlInsurance);
  if(mysqli_num_rows($resultInsurance) > 0){
 	 
-                echo"<table border='1'>
+                echo"<table border='1' class='Table_Of_Medical_Insurance'>
                     <tr>
-                    <td>ID</td>
-					<td>First Name</td>
-                    <td>Disease</td>
-                    <td>Medicine Type </td>
-                    <td>medicineType</td>
-                    <td>medicalCardNumber</td>
-					<td>maximumInsuranceCost</td>
+                    <th>ID</th>
+					<th>First Name</th>
+                    <th>Disease</th>
+                    <th>Medicine Type </th>
+                    <th>medicineType</th>
+                    <th>medicalCardNumber</th>
+					<th>maximumInsuranceCost</th>
 					
                     </tr>";
                 while($row = mysqli_fetch_array($resultInsurance)){
@@ -76,3 +76,18 @@ $HDR=false;        //head of doctors
 
 
 ?>
+<style>
+        body
+        {
+            background-color:teal;
+        }
+        
+        .Table_Of_Medical_Insurance
+        {
+            background-color:linen; 
+            width:1520px;
+            height:300px;
+            text-align:center;
+            font-size:15px;
+        } 
+</style>

@@ -29,6 +29,25 @@
 
         <script>
             var table = document.getElementById("table"),rIndex;
+    if(mysqli_num_rows($result) > 0){
+        echo"<table border='1' class='Table_Of_Users'>
+            <tr>
+            <th border: 5px solid black >ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Family Name</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th>Date of Birth</th>
+            <th>Work Number</th>
+            <th>Phone Number</th>
+            <th>Home Number</th>
+            <th>Date & Time Joined</th>
+            <th>Account Status</th>
+            <th>SSN</th>
+            <th>Type of User</th>
+            </tr>";
 
             for(var i = o; i < table.rows.length; i++){
                 table.rows[i].onclick = function(){
@@ -102,3 +121,24 @@
 
     </body>
 </html>
+<style>
+        body
+        {
+            background-color:teal;
+        }
+        
+        .Table_Of_Users
+        {
+            background-color:linen;
+            border :5px solid linen;
+            border: inner
+            top:20px;
+            left:20px;
+            width:static;
+            height:static;
+            width:1520px;
+            height:300px;
+            text-align:center;
+            font-size:15px;
+        } 
+</style>

@@ -49,6 +49,7 @@
         mysqli_close($conn);
     ?>
 
+<<<<<<< HEAD
     <div id="passwordForm" style="display:none;">
         <form name="passwordEdit" action="" method="post">
             <b> Old Password: </b>
@@ -88,6 +89,13 @@
             
             <b> Phone Number: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number"><br>
+=======
+    <form id="Edit_Account_Form" name="editForm" action="" method="post">
+        <fieldset>
+            <h1 id="Form_Title"> Edit Account Information </h1>
+       <b> First Name: </b>
+        <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.."><br>
+>>>>>>> aaf0dd461569963c8a2935d3ccc897b7753a9d77
 
             <b> Home Number: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["homeNumber"];?>" placeholder="Home Number"><br>
@@ -95,6 +103,7 @@
             <b> SSN: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["ssn"];?>" placeholder="SSN"><br>
 
+<<<<<<< HEAD
             <b> Email: </b>
             <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
 
@@ -103,6 +112,75 @@
             <input type="submit" name="deleteAccount" value="Delete your Account">
         </form>
     </div>
+=======
+        <input type="submit" name="submit" value="Save" id="Submit_Button">
+        <input type="submit" name="deleteAccount" value="Delete your Account" id="Submit_Button" >
+    </form>
+    </fieldset>
+>>>>>>> aaf0dd461569963c8a2935d3ccc897b7753a9d77
 </body>
+<style>
+body
+{
+    background-color: teal;
+}
+  
+#Form_Title
+{
+    color:black;
+    text-align:center;
+} 
+#Edit_Account_Form fieldset 
+{
+    background: linen; 
+    border: none;
+	border-radius: 10px;
+	padding: 20px 30px;/*centering of objects inside the fieldset*/
+	box-sizing: border-box;
+    width: 40%;
+	position: static; 
+}
+#Edit_Account_Form input  /*inside text fields colors*/
+{
+    padding: 15px;
+    top:100px;
+	border: 1px solid #ccc;/*border of textfields*/
+	border-radius: 10px;/*curves of edges */
+	margin-bottom: 20px;/*space between textfields*/
+	width: 100%;/*scale of objects inside the beige color*/
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+#Edit_Account_Form .action-button
+{
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#Submit_Button
+{
+    background-color: linen;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#Submit_Button:hover 
+    {
+        background-color:white;
+        opacity: 2.5;
+    }
+    </style>
 
 </html>
