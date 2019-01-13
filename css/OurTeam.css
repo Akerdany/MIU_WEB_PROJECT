@@ -6,13 +6,15 @@ body
 }
 h1
 {
-    text-align:left;/*text starts from left */ margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
+    text-align:left;/*text starts from left */ 
+    margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
     text-align: center;
     float:center;
 }
 p
 {
-    text-align:left;/*text starts from left */ margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
+    text-align:left;/*text starts from left */ 
+    margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
     text-align:center;
     float: left;/*by5aly elsoura w el text gamb b3d */ 
 }

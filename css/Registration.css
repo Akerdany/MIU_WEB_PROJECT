@@ -13,6 +13,7 @@ body
 
 	background-image: url("../pictures/Background.jpg" );
 	background-repeat: no-repeat;
+	background-size:100%;
     font-family: montserrat, arial, verdana;
 }
 h1/*are you*/
