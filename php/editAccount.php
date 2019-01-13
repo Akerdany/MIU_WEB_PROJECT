@@ -32,18 +32,19 @@
 
     <form name="editForm" action="" method="post">
 
-        First Name:
-        <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>"><br>
+       <b> First Name: </b>
+        <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.."><br>
 
-        Last Name:
-        <input type="text" name="lastName" value="<?php echo $_SESSION["lastName"];?>"><br>
+       <b> Last Name:</b>
+        <input type="text" name="lastName" value="<?php echo $_SESSION["lastName"];?>" placeholder="Last Name.."><br>
 
-        Password:
-        <input type="text" name="password" value="<?php echo $_SESSION["password"];?>"><br>
+        <b>Password:</b>
+        <input type="text" name="password" value="<?php echo $_SESSION["password"];?>" placeholder="Password"><br>
 
         <input type="submit" name="submit">
         <input type="submit" name="deleteAccount" value="Delete your Account">
     </form>
 
 </body>
+
 </html>

@@ -39,7 +39,7 @@
                     }
 
                     if(mysqli_num_rows($result1) == 1){
-                        if($row = mysqli_fetch_array($result1)){
+                        if($row = mysqli_fetch_array($result1)){ 
                             echo "<br>";
                             echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
                             echo "Name: ";
@@ -91,18 +91,18 @@
                     echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
-                    echo"<table border='1'>
+                    echo"<table border='1' class='Table_Of_Childs'>
                         <tr>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Photo</td>
-                        <td>Gender</td>
-                        <td>Date of Birth</td>
-                        <td>Scheduele Name</td>
-                        <td>Hobbies</td>
-                        <td>Medical Problems</td>
-                        <td>Disability</td>
-                        <td>Parent Name</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Gender</th>
+                        <th>Date of Birth</th>
+                        <th>Scheduele Name</th>
+                        <th>Hobbies</th>
+                        <th>Medical Problems</th>
+                        <th>Disability</th>
+                        <th>Parent Name</th>
                         </tr>";
 
                     //if the user is a Manager he'll see all the children in the nursery
@@ -165,7 +165,7 @@
                             echo "<td>".$row['userId']."</td>";
                             echo "</tr>";
                     }
-                        echo "</table>";
+                        echo "</table>"; 
                     }
                 }
             }
@@ -188,4 +188,22 @@
             //mysqli_close($conn);    
         ?>
     </body>
+    <style>
+        body
+        {
+            background-color:teal;
+        }
+        
+        .Table_Of_Childs
+        {
+            background-color:linen;
+            border:5px;
+            top:20px;
+            left:20px;
+            width:1520px;
+            height:300px;
+            text-align:center;
+            font-size:15px;
+        } 
+    </style>
 </html>
