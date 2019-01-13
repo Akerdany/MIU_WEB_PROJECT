@@ -25,7 +25,7 @@ function getMessages($conn,$toUserId)
 	
   $sql1="  SELECT user.email,user.id,messagetest.message,
   messagetest.date,messagetest.userId FROM user INNER JOIN messagetest
-  ON user.id=messagetest.userId where '".$_SESSION["id"]."'=messagetest.userId
+  ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId
   ORDER BY messagetest.date ";
   $result1= mysqli_query($conn,$sql1);
 
@@ -48,7 +48,7 @@ function getMessages($conn,$toUserId)
       echo '<p>'.$message.'</p><br>';
       echo '<p>'.$date.'</p>';
       echo "</p></div>";
-	  
+	  break;
     }
 	
   }
@@ -61,7 +61,7 @@ function setMessages($conn,$toUserId)
 {
   $date=$_POST['date'];
   $message=$_POST['message'];
-  $id = $_SESSION['id'];
+  $id = $_SESSION['userId'];
   $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
   VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '","' .$date. '",0)
   ';
@@ -104,7 +104,7 @@ echo'
 }
 function getOthersMessages($conn,$toUserId) //to get other messages from other users
 {
-  $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId where '".$_SESSION["id"]."'=messagetest.toUserId ORDER BY messagetest.date ";
+  $sql2="  SELECT user.email,user.id,messagetest.message,messagetest.date,messagetest.toUserId FROM user INNER JOIN messagetest ON user.id=messagetest.toUserId AND '".$_SESSION["userId"]."'=messagetest.toUserId ORDER BY messagetest.date ";
   $result2= mysqli_query($conn,$sql2);
 
   while ($row2= mysqli_fetch_assoc($result2)) {
@@ -125,6 +125,7 @@ function getOthersMessages($conn,$toUserId) //to get other messages from other u
       echo '<p>'.$message.'</p><br>';
       echo '<p>'.$date.'</p>';
       echo "</p></div>";
+	   break;
     }
 }
   }
@@ -149,7 +150,10 @@ function displayMessageArea()
 }
 if (isset($_SESSION['username']))
 {
-  $toUserId= $_SESSION['toUserId'];
+  if(!empty($_SESSION['toUserId'])){
+    $toUserId= $_SESSION['toUserId'];
+
+  }
   displayResult($toUserId);
 
     getMessages($conn,$toUserId);
