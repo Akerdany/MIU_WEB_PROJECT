@@ -1,0 +1,1 @@
+Using HTML5’s “formaction” attribute, you can have an unlimited number of Submit buttons in a Web form and have each button link to a different destination.
