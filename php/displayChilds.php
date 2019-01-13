@@ -23,6 +23,7 @@
                 if($_SESSION["typeId"] == '2'){
                     $result1 = mysqli_query($conn, "SELECT * FROM child WHERE userId='".$_SESSION["userId"]."'");
                     if(mysqli_num_rows($result1) == 0){
+                        echo"You didn't add your childs data yet<br>";
                         echo"<a href='addChild.php'>add your child now ?</a><br>";
                     }
 
