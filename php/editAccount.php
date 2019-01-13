@@ -77,9 +77,6 @@
             <b> Family Name: </b>
             <input type="text" name="lastName" value="<?php echo $_SESSION["familyName"];?>" placeholder="Family Name.."><br>
             
-            <b> Gender: </b>
-            <input type="text" name="lastName" value="<?php echo $_SESSION["gender"];?>" placeholder="Gender"><br>
-            
             <b> Nationality: </b>
             <input type="text" name="lastName" value="<?php echo $_SESSION["nationality"];?>" placeholder="Nationality"><br>
 
