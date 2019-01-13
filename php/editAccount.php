@@ -49,7 +49,6 @@
         mysqli_close($conn);
     ?>
 
-<<<<<<< HEAD
     <div id="passwordForm" style="display:none;">
         <form name="passwordEdit" action="" method="post">
             <b> Old Password: </b>
@@ -89,13 +88,12 @@
             
             <b> Phone Number: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number"><br>
-=======
+
     <form id="Edit_Account_Form" name="editForm" action="" method="post">
         <fieldset>
             <h1 id="Form_Title"> Edit Account Information </h1>
        <b> First Name: </b>
         <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.."><br>
->>>>>>> aaf0dd461569963c8a2935d3ccc897b7753a9d77
 
             <b> Home Number: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["homeNumber"];?>" placeholder="Home Number"><br>
@@ -103,7 +101,6 @@
             <b> SSN: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["ssn"];?>" placeholder="SSN"><br>
 
-<<<<<<< HEAD
             <b> Email: </b>
             <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
 
@@ -112,12 +109,10 @@
             <input type="submit" name="deleteAccount" value="Delete your Account">
         </form>
     </div>
-=======
         <input type="submit" name="submit" value="Save" id="Submit_Button">
         <input type="submit" name="deleteAccount" value="Delete your Account" id="Submit_Button" >
     </form>
     </fieldset>
->>>>>>> aaf0dd461569963c8a2935d3ccc897b7753a9d77
 </body>
 <style>
 body
