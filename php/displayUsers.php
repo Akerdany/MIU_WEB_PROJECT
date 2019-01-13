@@ -6,23 +6,23 @@
     $sql = "select * from user";
     $result = mysqli_query($conn,$sql);
     if(mysqli_num_rows($result) > 0){
-        echo"<table border='1'>
+        echo"<table border='1' class='Table_Of_Users'>
             <tr>
-            <td>ID</td>
-            <td>Email</td>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>Family Name</td>
-            <td>Gender</td>
-            <td>Nationality</td>
-            <td>Date of Birth</td>
-            <td>Work Number</td>
-            <td>Phone Number</td>
-            <td>Home Number</td>
-            <td>Date & Time Joined</td>
-            <td>Account Status</td>
-            <td>SSN</td>
-            <td>Type of User</td>
+            <th>ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Family Name</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th>Date of Birth</th>
+            <th>Work Number</th>
+            <th>Phone Number</th>
+            <th>Home Number</th>
+            <th>Date & Time Joined</th>
+            <th>Account Status</th>
+            <th>SSN</th>
+            <th>Type of User</th>
             </tr>";
 
         while($row = mysqli_fetch_array($result)){
@@ -55,3 +55,22 @@
     include 'Comments.php';
     mysqli_close($conn);    
 ?>
+
+<style>
+        body
+        {
+            background-color:teal;
+        }
+        
+        .Table_Of_Users
+        {
+            background-color:linen;
+            border:5px;
+            top:20px;
+            left:20px;
+            width:1520px;
+            height:300px;
+            text-align:center;
+            font-size:15px;
+        } 
+</style>
