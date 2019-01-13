@@ -2,9 +2,10 @@
     session_start();
     require_once("Database_Connection.php");
     require("sidebar.php");
-    
+
     $sql = "select * from user";
     $result = mysqli_query($conn,$sql);
+    
     if(mysqli_num_rows($result) > 0){
         echo"<table border='1' class='Table_Of_Users'>
             <tr>

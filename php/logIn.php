@@ -8,124 +8,108 @@
     require_once("Database_Connection.php");
 
     if (isset($_POST['submit'])) {
-        if (empty($_POST['email']) || empty($_POST['password'])) {
-            $error = "Username or Password is invalid";
-            echo'Error';
-        }
-        else{
-            $sql="SELECT * FROM user WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'";
-            $result = mysqli_query($conn, $sql);
+        $sql="SELECT * FROM user WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'";
+        $result = mysqli_query($conn, $sql);
 
-            if($row = mysqli_fetch_array($result)){
-                $_SESSION["userId"] = $row["id"];
-                $_SESSION["username"] = $row["email"];
-                $_SESSION["password"] = $row["password"];
-                $_SESSION["firstName"] = $row["firstName"];
-                $_SESSION["lastName"] = $row["lastName"];
-                $_SESSION["familyName"] = $row["familyName"];
-                $_SESSION["gender"] = $row["gender"];
-                $_SESSION["nationality"] = $row["nationality"];
-                $_SESSION["dateOfBirth"] = $row["dateOfBirth"];
-                $_SESSION["workNumber"] = $row["workNumber"];
-                $_SESSION["phoneNumber"] = $row["phoneNumber"];
-                $_SESSION["homeNumber"] = $row["homeTelephoneNumber"];
-                $_SESSION["ssn"] = $row["ssn"];
-                $_SESSION["statusId"] = $row["statusId"];
-                $_SESSION["typeId"] = $row["typeId"];
+        if($row = mysqli_fetch_array($result)){
+            $_SESSION["userId"] = $row["id"];
+            $_SESSION["username"] = $row["email"];
+            $_SESSION["password"] = $row["password"];
+            $_SESSION["firstName"] = $row["firstName"];
+            $_SESSION["lastName"] = $row["lastName"];
+            $_SESSION["familyName"] = $row["familyName"];
+            $_SESSION["gender"] = $row["gender"];
+            $_SESSION["nationality"] = $row["nationality"];
+            $_SESSION["dateOfBirth"] = $row["dateOfBirth"];
+            $_SESSION["workNumber"] = $row["workNumber"];
+            $_SESSION["phoneNumber"] = $row["phoneNumber"];
+            $_SESSION["homeNumber"] = $row["homeTelephoneNumber"];
+            $_SESSION["ssn"] = $row["ssn"];
+            $_SESSION["statusId"] = $row["statusId"];
+            $_SESSION["typeId"] = $row["typeId"];
 
-                //Getthing the type of user: Manager .. Employee .. Parent
-                $temp = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["typeId"]."'");
+            //If the user is an employee or a manager:
+            if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
 
-                //getting status of user even accepted .. pending .. rejected 
-                $temp2 = mysqli_query($conn, "SELECT * FROM type WHERE id='".$row["statusId"]."'");
-
-                /*User $temp and $temp2 to get the name of the user type and status name in case instead of using
-                statusId and typeId in the session.*/
-                if($r = mysqli_fetch_array($temp) && $r2 = mysqli_fetch_array($temp2)){
-
-                    $_SESSION["type_User"] = $r["typeName"];
-                    $_SESSION["statusName"] = $r2["typeName"];
-
-                    //If the user is an employee or a manager:
-                    if($_SESSION["typeId"] == '1' || $_SESSION["typeId"] == '3'){
-
-                        $temp3 = mysqli_query($conn, "SELECT * FROM employee WHERE userId='".$row["id"]."'");
-                        
-                        if($tempR = mysqli_fetch_array($temp3)){
-                            $_SESSION["workingHours"] = $tempR["workingHours"];
-                            $_SESSION["workingDays"] = $tempR["workingDays"];
-                            $_SESSION["departmentId"] = $tempR["departmentId"];
-                            $_SESSION["salary"] = $tempR["salary"];
-                            $_SESSION["incomeMethod"] = $tempR["incomeMethod"];
-                            $_SESSION["universityDegree"] = $tempR["universityDegree"];
-                            $_SESSION["positionId"] = $tempR["position"];
-                            $_SESSION["experience"] = $tempR["experience"];
-                            $_SESSION["bankAccount"] = $tempR["bankAccount"];
-                            $_SESSION["medicalTestId"] = $tempR["medicalTestId"];
-                            $_SESSION["categoryId"] = $tempR["category"];
-                            $_SESSION["yearOfGraduation"] = $tempR["yearOfGraduation"];
-                            $_SESSION["university"] = $tempR["university"];
-                            $_SESSION["skills"] = $tempR["skills"];
-                            $_SESSION["cvId"] = $tempR["cvId"];
-                            $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
-                            
-                        }
-                        else{
-                            //Underconstructing the error table for IT department
-                            printf("Errormessage: %s\n", mysqli_error($conn));
-                            session_destroy();
-                        }
-                    }
-                    //If the user is a parent:
-                    else if($_SESSION["typeId"] == '2'){
-
-                        $temp4 = mysqli_query($conn, "SELECT * FROM parent WHERE userId='".$row["id"]."'");
-                        if($tempR = mysqli_fetch_array($temp4)){
-                            $_SESSION["workPosition"] = $tempR["workPosition"];
-                            $_SESSION["workPlace"] = $tempR["workPlace"];
-                        }
-                        else{ 
-                            //Underconstructing the error table for IT department
-                            printf("Errormessage: %s\n", mysqli_error($conn));
-                            session_destroy();
-                        }
-                    }
+                $temp3 = mysqli_query($conn, "SELECT * FROM employee WHERE userId='".$row["id"]."'");
+                
+                if($tempR = mysqli_fetch_array($temp3)){
+                    $_SESSION["workingHours"] = $tempR["workingHours"];
+                    $_SESSION["workingDays"] = $tempR["workingDays"];
+                    $_SESSION["departmentId"] = $tempR["departmentId"];
+                    $_SESSION["salary"] = $tempR["salary"];
+                    $_SESSION["incomeMethod"] = $tempR["incomeMethod"];
+                    $_SESSION["universityDegree"] = $tempR["universityDegree"];
+                    $_SESSION["positionId"] = $tempR["position"];
+                    $_SESSION["experience"] = $tempR["experience"];
+                    $_SESSION["bankAccount"] = $tempR["bankAccount"];
+                    $_SESSION["medicalTestId"] = $tempR["medicalTestId"];
+                    $_SESSION["categoryId"] = $tempR["category"];
+                    $_SESSION["yearOfGraduation"] = $tempR["yearOfGraduation"];
+                    $_SESSION["university"] = $tempR["university"];
+                    $_SESSION["skills"] = $tempR["skills"];
+                    $_SESSION["cvId"] = $tempR["cvId"];
+                    $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
                     
-                    //If the account is active:
-                    if($_SESSION["statusId"] == '2'){
-                        header("Location: index.php");
-                    }
-                    //If the account is pending:
-                    else if($_SESSION["statusId"] == '1'){
-                        echo"Sorry, you're account isn't active yet";
-                    }   
-                    //If the account has been deleted:
-                    else if($_SESSION["statusId"] == '3'){
-                        echo"Sorry, you're account has been deleted";
-                    }
-                    else{
-                        //Underconstructing the error table for IT department
-                        printf("Errormessage: %s\n", mysqli_error($conn));
-                        session_destroy();
-                    }
-                }      
+                }
                 else{
-                    echo $temp;
-                    echo"<br>";
-                    echo $temp2;
-                    echo"<br>";
-                            
                     //Underconstructing the error table for IT department
                     printf("Errormessage: %s\n", mysqli_error($conn));
-                }  
+                    session_destroy();
+                }
             }
+            //If the user is a parent:
+            else if($_SESSION["typeId"] == 2){
+
+                $temp4 = mysqli_query($conn, "SELECT * FROM parent WHERE userId='".$row["id"]."'");
+                if($tempR = mysqli_fetch_array($temp4)){
+                    $_SESSION["workPosition"] = $tempR["workPosition"];
+                    $_SESSION["workPlace"] = $tempR["workPlace"];
+                }
+                else{ 
+                    //Underconstructing the error table for IT department
+                    printf("Errormessage: %s\n", mysqli_error($conn));
+                    session_destroy();
+                }
+            }
+            
+            //If the account is active:
+            if($_SESSION["statusId"] == 2){
+                header("Location: index.php");
+            }
+
+            //If the account is pending:
+            else if($_SESSION["statusId"] == 1){
+                echo"Sorry, you're account isn't active yet";
+            }   
+
+            //If the account has been deleted:
+            else if($_SESSION["statusId"] == 3){
+                echo"Sorry, you're account has been deleted";
+            }
+
             else{
-                echo '<script language="javascript">';
-                echo 'alert("you have entered the username or password wrong or you need to register")';
-                echo '</script>';         
+                //Underconstructing the error table for IT department
+                printf("Errormessage: %s\n", mysqli_error($conn));
+                session_destroy();
             }
-        }
+        }      
+        else{
+            echo $temp;
+            echo"<br>";
+            echo $temp2;
+            echo"<br>";
+                    
+            //Underconstructing the error table for IT department
+            printf("Errormessage: %s\n", mysqli_error($conn));
+        }  
     }
+    // else{
+    //     echo '<script language="javascript">';
+    //     echo 'alert("you have entered the username or password wrong or you need to register")';
+    //     echo '</script>';         
+    // }     
+    
 ?>
     <head>
         <meta charset="utf-8" />
