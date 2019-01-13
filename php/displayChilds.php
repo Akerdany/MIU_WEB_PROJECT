@@ -37,7 +37,7 @@
                             // header("content-type: $row['content_type']");
                             // echo $photo;
                             echo '<form method="post" action="" enctype="multipart/form-data">';
-                            echo "<img width = '20%' src = 'data: image/PNG; base64, ".base64_encode($row["photo"])."'><br>";
+                            echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
                             echo '<input type="text" id="name" name="name" value='.$row["name"].'><br>';
                             echo '<input type="text" id="gender" name="gender" value='.$row["gender"].'><br>';
                             echo '<input type="date" id="dateOfBirth" name="dateOfBirth" value='.$row["dateOfBirth"].'><br>';
@@ -87,13 +87,11 @@
                     else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == '3'){
 						$sqlTeacherChildren = "SELECT c.* FROM employee e join user u on e.userId=u.id 
 											   join subject s ON s.teacherId = u.id 
-                                               AND s.teacherId=28
+                                               AND s.teacherId='".$_SESSION["userId"]."'
 											   join schedules sc on sc.subjectId=s.id
 											   join scheduletypes scT on sc.scheduleTypeId=scT.id
-											   join child c on scT.id=c.scheduleTypeId"; //u.firstName because
-                        //3ayez menak sql tetla3 el childs el 3and el teacher fel scehduele
-                            while($row = mysqli_fetch_array($result)){
-                                // if(){
+											   join child c on scT.id=c.scheduleTypeId"; 
+                            while($row = mysqli_fetch_array($sqlTeacherChildren)){
                                     echo "<tr>";
                                     echo "<td>" .$row['id']. "</td>";
                                     echo "<td>" .$row['hobbies']. "</td>";
@@ -101,12 +99,23 @@
                                     echo "<td>" .$row['disability']. "</td>";
                                     echo "<td>".$row['parentId']."</td>";
                                     echo "</tr>";
-                                // }
                             }
                         echo "</table>";
                     }
 
-                    //Medical missing
+                    //if the user is a Doctor he'll see all the children in the nursery
+                    else if($_SESSION["departmentId"] == '5' && $_SESSION["typeId"] == '3'){
+                        while($row = mysqli_fetch_array($result)){
+                            echo "<tr>";
+                            echo "<td>" .$row['id']. "</td>";
+                            echo "<td>" .$row['hobbies']. "</td>";
+                            echo "<td>".$row['medicalProblems']."</td>";
+                            echo "<td>" .$row['disability']. "</td>";
+                            echo "<td>".$row['parentId']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    }
                 }
             }
             else if(mysqli_num_rows($result) == 0 && $_SESSION["typeId"] == '2'){
