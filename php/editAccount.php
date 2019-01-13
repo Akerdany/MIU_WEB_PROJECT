@@ -27,6 +27,7 @@
         else if(isset($_POST['deleteAccount'])){
             header("Location: deleteAccount.php");
         }
+        mysqli_close($conn);
     ?>
 
     <form name="editForm" action="" method="post">
@@ -46,7 +47,3 @@
 
 </body>
 </html>
-<?php
-mysqli_close($conn);
-
- ?>

@@ -23,13 +23,14 @@
             require_once("Database_Connection.php");
             require("sidebar.php");
         echo $_SESSION["typeId"];
+        echo $_SESSION["departmentId"];
             $sql="SELECT * FROM child";
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
 
                 //if the user is a Parent he'll see only his children
-                if($_SESSION["typeId"] == '2'){
+                if($_SESSION["typeId"] == 2){
                     $result1 = mysqli_query($conn, "SELECT * FROM child WHERE userId='".$_SESSION["userId"]."'");
 
                     if(mysqli_num_rows($result1) == 0){
@@ -105,7 +106,7 @@
                         </tr>";
 
                     //if the user is a Manager he'll see all the children in the nursery
-                    if($_SESSION["typeId"] == '1'){
+                    if($_SESSION["typeId"] == 1){
                         while($row = mysqli_fetch_array($result)){
                             echo "<tr>";
                             echo "<td>" .$row['id']. "</td>";
@@ -124,7 +125,7 @@
                     }
 
                     //if the user is a Teacher he'll/she'll see all the children in his/her nursery
-                    else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == '3'){
+                    else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == 3){
 						$sqlTeacherChildren = mysqli_query($conn, "SELECT c.*,scT.scheduleName,u.firstName,u.lastName FROM employee e join user u on e.userId=u.id 
 											   join subject s ON s.teacherId = u.id 
                                                AND s.teacherId='".$_SESSION["userId"]."'
