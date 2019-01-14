@@ -24,7 +24,7 @@
     <button  type='submit' name='commentSubmit'>Comment</button>
     <button onclick='ReloadingPage()'>Reload page</button>
     <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
-    <a href='../html/Welcome_Page.html'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
+    <a href='../html/Welcome_Page.php'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
 
     </form>";
     getComments($conn);

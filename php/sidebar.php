@@ -53,19 +53,22 @@
     <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <?php
-                if($_SESSION['typeId']==1 || $_SESSION['typeId']==3){
+                if($_SESSION['typeId']==1 || $_SESSION['typeId']==3 || $_SESSION['departmentId']==3){
                     echo"<a href='displayChilds.php'>Display Childs Data</a><br>";
                     echo"<a href='displayUsers.php'>Display Users Accounts</a><br>";
                 }
                 else if($_SESSION['typeId']==2){
                     echo"<a href='displayChilds.php'>Your Child Page</a><br>";
                 }
+
+                if($_SESSION['typeId']==1 || $_SESSION['typeId']==3){
+                    echo"<a href='medicalInsurance.php'>Medical Insurance</a><br>";
+                }
             ?>
             <a href='index.php'>Profile</a><br>
             <a href='editAccount.php'>Edit Your Account</a><br>
             <a href='messages.php'>Messages</a><br>
             <a href='logOut.php'>Sign Out</a><br>
-            <a href='medicalInsurance.php'>Medical Insurance</a><br>
         </div>
         
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
