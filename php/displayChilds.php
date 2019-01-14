@@ -50,6 +50,7 @@
                     if(mysqli_num_rows($result1) == 1){
                         if($row = mysqli_fetch_array($result1)){ 
                             echo "<br>";
+                            echo "<div class='View_Childs'>";
                             echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
                             echo "Name: ";
                             echo $row["name"];
@@ -60,7 +61,7 @@
                             echo "Date Of Birth: ";
                             echo $row["dateOfBirth"];
                             echo "<br>";
-                            echo "Gobbies: ";
+                            echo "Hobbies: ";
                             echo $row["hobbies"];
                             echo "<br>";
                             echo "Medical Problems: ";
@@ -68,7 +69,8 @@
                             echo "<br>";
                             echo "Disability: ";
                             echo $row["disability"];
-                            echo "<br>";
+                            echo "<br>"; 
+                            echo "</div>";
                         }              
                     }
 
@@ -221,5 +223,30 @@
             font-size:15px;
             display: inline-block;
         } 
+        #addChild_Button , #editChild_Button
+        {
+            background-color: bisque;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 50px ;
+            border:none;
+            margin-bottom:10px; 
+            margin-top:50px;
+            margin-left:50px;
+            cursor: pointer;
+            width: 20;
+        }
+        #addChild_Button:hover ,  #editChild_Button:hover /*when standing on the buttons*/
+        {
+            background-color:linen;
+            opacity: 2.5;
+        } 
+        .View_Childs
+        {
+            background-color:red;
+        }
+        
     </style>
 </html>

@@ -51,6 +51,7 @@
 
     <div id="passwordForm" style="display:none;">
         <form name="passwordEdit" action="" method="post">
+            <fieldset>
             <b> Old Password: </b>
             <input type="password" name="oldPassword" placeholder="Old Password"><br>
 
@@ -60,9 +61,11 @@
             <b> Confirm New Password: </b>
             <input type="password" name="confirmNewPassword" placeholder="Confirm New Password"><br>
 
-            <input type="submit" name="newPass">
+            <input id="Change_Password_Button"type="submit" name="newPass" value="Change Password">
+    
         </form>
         <button id='getBack' name='getBack' type='button'>Get Back</button><br>
+        </fieldset>
     </div>
 
     <div id="Form">
@@ -160,22 +163,85 @@ body
 	padding: 10px 5px;
 	margin: 10px 5px;
 }
-#Submit_Button
+#Submit_Button  
 {
-    background-color: linen;
-    color: white;
-    font-size: 50px;
+    background-color: bisque;
+    color: black;
+    font-size: 12px;
     font-weight: bold;
     padding: 15px 20px;
-    border: none;
+    border-radius: 50px ;
+    border:none; 
+    margin-bottom:10px; 
+    margin-top:20px;
+    margin-left:50px;
     cursor: pointer;
-    width: 100%;
+    width: 200px;
 }
-#Submit_Button:hover 
-    {
-        background-color:white;
-        opacity: 2.5;
-    }
-    </style>
+#Change_Password_Button , #getBack
+{
+    background-color: bisque;
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 50px ;
+    border:none; 
+    margin-bottom:10px; 
+    margin-top:20px;
+    margin-left:0px;
+    cursor: pointer;
+    width: 200px;  
+}
+#Submit_Button:hover , #Change_Password_Button:hover , #getBack:hover  /*when standing on the buttons*/
+{
+background-color:linen;
+opacity: 2.5;
+} 
 
+#passwordForm /*whole parent form */
+{
+	width: 500px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#passwordForm fieldset /*each form of registration */
+{
+	background: bisque;
+    border: 0 none;
+	border-radius: 15px;
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	
+	/*stacking fieldsets above each other*/
+	position: absolute;
+} 
+/*inputs*/
+#passwordForm input, #passwordForm textarea
+{
+	padding: 15px;
+	border: 1px solid #ccc;/*color of border inside teh text field*/
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+/*buttons*/
+#passwordForm .action-button
+{
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+} 
 </html>
