@@ -5,13 +5,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Display Childs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-       <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />-->
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+        <!--bootstrtap links -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
         <script src="main.js"></script>
         <script type="text/javascript">
-        function redirect() {
+        function redirect()
+        {
             window.location = "addChild.php";
         }
-        function redirect2() {
+        function redirect2() 
+        {
             window.location = "editChild.php";
         }
         </script>
@@ -91,7 +101,7 @@
                 }
                 else{
                     echo"<form method='post' action=''>";
-                    echo"<table border='1' class='Table_Of_Childs'>
+                    echo"<table border='1' class='Table_Of_Childs table-hover'>
                         <tr>
                         <th>#</th>
                         <th>ID</th>
@@ -186,8 +196,9 @@
                 //Underconstructing the error table for IT department
                 printf("Errormessage: %s\n", mysqli_error($conn));
             }
-            
-            include 'Comments.php';
+            if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
+                include 'Comments.php';
+            }
             //mysqli_close($conn);    
         ?>
     </body>
@@ -200,13 +211,14 @@
         .Table_Of_Childs
         {
             background-color:linen;
-            border:5px;
+            border:5px solid black;
             top:20px;
             left:20px;
-            width:1520px;
-            height:300px;
+            width:static;
+            height:static;
             text-align:center;
             font-size:15px;
+            display: inline-block;
         } 
     </style>
 </html>
