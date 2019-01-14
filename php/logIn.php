@@ -52,7 +52,9 @@
                     $_SESSION["skills"] = $tempR["skills"];
                     $_SESSION["cvId"] = $tempR["cvId"];
                     $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
-                    
+                    $_SESSION["toChildId"]=0;
+                    $_SESSION["toUserId"]=0;
+
                 }
                 else{
                     //Underconstructing the error table for IT department

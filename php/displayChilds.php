@@ -34,6 +34,10 @@
             require("sidebar.php");
             
             $sql="SELECT * FROM child";
+            if($_SESSION["toChildId"]!=0)
+            {
+                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+            }
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
@@ -144,6 +148,11 @@
                             echo "<td>".$row['disability']."</td>";
                             echo "<td>".$row['userId']."</td>";
                             print '<td><center><a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a></center></td>';
+                            //to comment on one child
+
+                            $_SESSION["toChildId"] =$row['id'];
+                            
+                            //ends (to comment on one child)
                             echo "</tr>";
                         }
                     }
