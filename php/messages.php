@@ -15,6 +15,7 @@
 
 
 <?php
+
 date_default_timezone_set('Africa/Cairo');
 
   session_start();
@@ -62,6 +63,7 @@ function setMessages($conn,$toUserId)
   $date=$_POST['date'];
   $message=$_POST['message'];
   $id = $_SESSION['userId'];
+ 
   $sql='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
   VALUES ("","'.$message.'","'.$id.'","'.$toUserId. '","' .$date. '",0)
   ';
@@ -88,7 +90,9 @@ function displayResult($toUserId)
   <div id="msg"></div><br>';
   if(isset($_SESSION['toUserId']))
   {
-  include 'sendInvitation.php';
+  //include 'sendInvitation.php';
+  echo' <button type="button"  name="sendInvitation" 
+			id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
   }
 echo'
      <button onclick="ReloadingPage()">Reload page</button>';
@@ -135,7 +139,7 @@ function displayMessageArea()
 {
   echo '
   <div id="message_area">
-  <form  method="post">
+  <form id="invitationForm"  method="post">
   </div>
     <br>
 
@@ -187,9 +191,56 @@ else
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../js/Reload.js"></script>
 <script src="../js/ajax.js"></script>
+<script>
+//   function submitform()
+// {
 
+//   document.getElementById('invitationForm').submit();
+
+// }
+
+ $(document).ready(function(){
+   $("#sendingInvitation").click(function(){
+
+       $.ajax({
+           type: 'POST',
+           url: 'sendInvitation.php',
+           success: function() {
+    
+              
+  
+
+           },
+           error:function()
+           {
+            alert("error");
+           }
+       });
+ });
+ });
+
+</script>
 </html>
 <?php
 mysqli_close($conn);
 
+// $('#newForm').submit(function(e)
+//  { // handle the submit event
+//   e.preventDefault();
+//   let formData = $(this).serialize();
+
+//   $.post({
+//     type: 'POST',
+//     url: '/api/pois/',
+//     data: formData
+//   })
+// })
+
+// $('#sendingInvitation').click(function() {
+//   // $('#confirm-object').modal('hide');
+//   $('#invitationForm').submit(); // trigger the submit event
+// });
+
+
  ?>
+
