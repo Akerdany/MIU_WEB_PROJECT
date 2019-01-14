@@ -3,44 +3,33 @@
 date_default_timezone_set('Africa/Cairo');
  
 
-echo "<form id='invitationForm' method='post'  action='messages.php'>";
+
  
 	 
- echo '<input type="hidden" name="date" value="'.date('Y-m-d H:i:s').'">';
- 
- echo "</form>";
- $date=$_POST['date'];
-   if (isset($_POST['submit'])) {
+session_start();
+include("Database_Connection.php");
+
  $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`seen`)
-  VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.$date.'",0)
+  VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'",0)
   ';
-    $resultInvitation = mysqli_query($conn,$sqlInvitation);
-	 if(mysqli_num_rows($resultInvitation) > 0)
-	{	
-		echo  $sqlInvitation;
-				echo  "In";
+  if(mysqli_query($conn,$sqlInvitation))
+  {
+  echo 'done';
 
-	}
-	else
-	{
-		echo  $sqlInvitation;
-				echo  "not IN";
+  }
 
-	}
-	
-echo  "not IN1";
-   }
 		
 	//echo  "not IN2";
-	echo 	'<div class="send-invitation"><button type="button"  name="sendInvitation" 
-			id="sendingInvitation"  onclick="submitform()">send Invitation</button></div>';
+	// echo 	'<div class="send-invitation"><button type="button"  name="sendInvitation" 
+	// 		id="sendingInvitation"  onclick="submitform()">send Invitation</button></div>';
 
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title> Nursery </title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <title></title>
   </head>
   <body>
 
@@ -49,26 +38,45 @@ echo  "not IN1";
 
   <script type="text/javascript">
     
-  			  $(document).ready(function(){
-          $("#sendingInvitation").click(function(){
+//   			  $(document).ready(function(){
+//           $("#sendingInvitation").click(function(){
 
-              $.ajax({
-                  type: 'POST',
-                  url: 'sendInvitation.php',
-                  success: function(data) {
+//               $.ajax({
+//                   type: 'POST',
+//                   url: 'sendInvitation.php',
+//                   success: function(data) {
 					  
-                      $("#msg").html(data);
+//                       $("#msg").html(data);
 		
 				
-                  }
-              });
-     });
-  });
-  function submitform()
-{
- document.getElementById('invitationForm').submit();
+//                   }
+//               });
+//      });
+//   });
+//   //////////////////////////////////////////////////////////////////
+//   $(document).ready(function(){
+//           $("#sendingInvitation").click(function(){
+// $('form').on('submit', function (e) {
 
-}
+//   e.preventDefault();
+
+//   $.ajax({
+//     type: 'post',
+//     url: 'messages.php',
+//     data: $('form').serialize(),
+//     success: function () {
+//       alert('form was submitted');
+//     }
+//   });
+
+// });
+
+// });
+// //   function submitform()
+// // {
+// //  document.getElementById('invitationForm').submit();
+
+// // }
 
 
 
