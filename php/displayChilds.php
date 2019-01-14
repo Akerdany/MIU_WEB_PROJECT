@@ -6,6 +6,16 @@
         <title>Display Childs</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+        <!--bootstrtap links -->
+
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
         <script src="main.js"></script>
         <script type="text/javascript">
         function redirect() {
@@ -90,7 +100,8 @@
                     echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
-                    echo"<table border='1' class='Table_Of_Childs'>
+                    //deh table hover deh bt3et bootstrap
+                    echo"<table border='1' class='Table_Of_Childs table-hover'> 
                         <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -195,11 +206,11 @@
         .Table_Of_Childs
         {
             background-color:linen;
-            border:5px;
+            border:5px solid black;
             top:20px;
             left:20px;
-            width:1520px;
-            height:300px;
+            width:static;
+            height:static;
             text-align:center;
             font-size:15px;
         } 

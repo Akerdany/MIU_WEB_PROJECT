@@ -6,6 +6,14 @@
         <title>Display Users</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <!--bootstrtap links -->
+
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
         <script src="main.js"></script>
         
         <style>
@@ -25,26 +33,7 @@
                 text-align:center;
                 font-size:15px;
             } 
-        </style>
-    <!-- // if(mysqli_num_rows($result) > 0){
-    //     echo"<table border='1' class='Table_Of_Users'>
-    //         <tr>
-    //         <th border: 5px solid black >ID</th>
-    //         <th>Email</th>
-    //         <th>First Name</th>
-    //         <th>Last Name</th>
-    //         <th>Family Name</th>
-    //         <th>Gender</th>
-    //         <th>Nationality</th>
-    //         <th>Date of Birth</th>
-    //         <th>Work Number</th>
-    //         <th>Phone Number</th>
-    //         <th>Home Number</th>
-    //         <th>Date & Time Joined</th>
-    //         <th>Account Status</th>
-    //         <th>SSN</th>
-    //         <th>Type of User</th>
-    //         </tr>"; -->
+        </style> 
     </head>
 
     <body>
@@ -70,7 +59,7 @@
                     // echo "<input type='submit' id='Show_Account' name='Show_Account' value='Show Account'>";
                     echo "<input type='submit' id='Activate_Account' name='Activate_Account' value='Activate Account'>";
                     echo "<input type='submit' id='Decline_Account' name='Decline_Account' value='Decline Account'>";
-                    echo"<table id='table' border='1' class='Table_Of_Users'>
+                    echo"<table id='table' border='1' class='Table_Of_Users table-hover'>
                         <tr>
                         <th>#</th>
                         <th>ID</th>
@@ -188,14 +177,11 @@
         .Table_Of_Users
         {
             background-color:linen;
-            border :5px solid linen;
-            border: inner
+            border :5px solid black;
             top:20px;
             left:20px;
             width:static;
             height:static;
-            width:1520px;
-            height:300px;
             text-align:center;
             font-size:15px;
         } 
