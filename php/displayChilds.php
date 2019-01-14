@@ -34,6 +34,10 @@
             require("sidebar.php");
             
             $sql="SELECT * FROM child";
+            if($_SESSION["toChildId"]!=0)
+            {
+                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+            }
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
@@ -50,12 +54,7 @@
                     if(mysqli_num_rows($result1) == 1){
                         if($row = mysqli_fetch_array($result1)){ 
                             echo "<br>";
-<<<<<<< HEAD
-                            echo "<div class='View_Childs'>";
-                            echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
-=======
                             echo "<img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
->>>>>>> 200c48b684a78a9d84178bd689e8ca04a4a159de
                             echo "Name: ";
                             echo $row["name"];
                             echo "<br>";
@@ -148,6 +147,12 @@
                             echo "<td>" .$row['medicalProblems']. "</td>";
                             echo "<td>".$row['disability']."</td>";
                             echo "<td>".$row['userId']."</td>";
+                           
+                            //to comment on one child
+
+                            $_SESSION["toChildId"] =$row['id'];
+                            
+                            //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
                             echo "</tr>";
                         }
