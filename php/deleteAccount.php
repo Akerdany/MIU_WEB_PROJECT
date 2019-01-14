@@ -23,7 +23,7 @@
                     if( $_SESSION["typeId"] == 2   )
                      {
                        $sql=$sql." ,address,parent,child FROM user INNER JOIN address INNER JOIN parent INNER JOIN child
-                       WHERE user.id=address.userid AND address.userId=parent.userId AND parent.userId=child.userId";
+                       WHERE user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId";
                      }
                      else if( $_SESSION["typeId"] == 3 )
                      {
