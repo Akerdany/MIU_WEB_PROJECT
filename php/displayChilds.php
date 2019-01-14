@@ -34,6 +34,10 @@
             require("sidebar.php");
             
             $sql="SELECT * FROM child";
+            if($_SESSION["toChildId"]!=0)
+            {
+                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+            }
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
@@ -60,7 +64,7 @@
                             echo "Date Of Birth: ";
                             echo $row["dateOfBirth"];
                             echo "<br>";
-                            echo "Gobbies: ";
+                            echo "Hobbies: ";
                             echo $row["hobbies"];
                             echo "<br>";
                             echo "Medical Problems: ";
@@ -69,7 +73,7 @@
                             echo "Disability: ";
                             echo $row["disability"];
                             echo "<br>";
-                            print '<a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a>';
+                            print '<a href="editChild.php?id='.$row['id'].'" >Edit</a>';
                             echo "<br>";
                         }              
                     }
@@ -96,7 +100,7 @@
                             echo "Disability: ";
                             echo $row["disability"];
                             echo "<br>";
-                            print '<a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a>';
+                            print '<a href="editChild.php?id='.$row['id'].'">Edit</a>';
                             echo "<br>";
                         }
                         echo"<br><br>";
@@ -143,7 +147,13 @@
                             echo "<td>" .$row['medicalProblems']. "</td>";
                             echo "<td>".$row['disability']."</td>";
                             echo "<td>".$row['userId']."</td>";
-                            print '<td><center><a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a></center></td>';
+                           
+                            //to comment on one child
+
+                            $_SESSION["toChildId"] =$row['id'];
+                            
+                            //ends (to comment on one child)
+                            print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
                             echo "</tr>";
                         }
                     }
@@ -269,5 +279,30 @@
             font-size:15px;
             display: inline-block;
         } 
+        #addChild_Button , #editChild_Button
+        {
+            background-color: bisque;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 50px ;
+            border:none;
+            margin-bottom:10px; 
+            margin-top:50px;
+            margin-left:50px;
+            cursor: pointer;
+            width: 20;
+        }
+        #addChild_Button:hover ,  #editChild_Button:hover /*when standing on the buttons*/
+        {
+            background-color:linen;
+            opacity: 2.5;
+        } 
+        .View_Childs
+        {
+            background-color:red;
+        }
+        
     </style>
 </html>
