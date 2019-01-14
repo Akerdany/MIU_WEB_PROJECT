@@ -100,9 +100,10 @@
                     echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
-                    //deh table hover deh bt3et bootstrap
-                    echo"<table border='1' class='Table_Of_Childs table-hover'> 
+                    echo"<form method='post' action=''>";
+                    echo"<table border='1' class='Table_Of_Childs'>
                         <tr>
+                        <th>#</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Photo</th>
@@ -119,6 +120,7 @@
                     if($_SESSION["typeId"] == 1){
                         while($row = mysqli_fetch_array($result)){
                             echo "<tr>";
+                            echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                             echo "<td>" .$row['id']. "</td>";
                             echo "<td>" .$row['name']. "</td>";
                             echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
@@ -131,7 +133,6 @@
                             echo "<td>".$row['userId']."</td>";
                             echo "</tr>";
                         }
-                        echo "</table>";
                     }
 
                     //if the user is a Teacher he'll/she'll see all the children in his/her nursery
@@ -147,6 +148,7 @@
                                                 join child c on scT.id=c.scheduleTypeId"); 
                             while($row = mysqli_fetch_array($sqlTeacherChildren)){
                                 echo "<tr>";
+                                echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                                 echo "<td>" .$row['id']. "</td>";
                                 echo "<td>" .$row['name']. "</td>";
                                 echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
@@ -162,6 +164,7 @@
                         }
                         else if($_SESSION["departmentId"] == 5 && $_SESSION["departmentId"] == 2){
                             echo "<tr>";
+                            echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                             echo "<td>" .$row['id']. "</td>";
                             echo "<td>" .$row['name']. "</td>";
                             echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
@@ -174,8 +177,9 @@
                             echo "<td>".$row['userId']."</td>";
                             echo "</tr>";
                         }
-                        echo "</table>";
                     }
+                    echo "</table>";
+                    echo "</form>";
                 }
             }
             else if(mysqli_num_rows($result) == 0 && $_SESSION["typeId"] == '2'){
