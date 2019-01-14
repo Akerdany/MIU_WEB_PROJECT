@@ -8,20 +8,20 @@
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 
         <!--bootstrtap links -->
-
-        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
         <script src="main.js"></script>
         <script type="text/javascript">
-        function redirect() {
+        function redirect()
+        {
             window.location = "addChild.php";
         }
-        function redirect2() {
+        function redirect2() 
+        {
             window.location = "editChild.php";
         }
         </script>
@@ -101,7 +101,7 @@
                 }
                 else{
                     echo"<form method='post' action=''>";
-                    echo"<table border='1' class='Table_Of_Childs'>
+                    echo"<table border='1' class='Table_Of_Childs table-hover'>
                         <tr>
                         <th>#</th>
                         <th>ID</th>
@@ -217,6 +217,7 @@
             height:static;
             text-align:center;
             font-size:15px;
+            display: inline-block;
         } 
     </style>
 </html>

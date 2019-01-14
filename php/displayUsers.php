@@ -184,5 +184,6 @@
             height:static;
             text-align:center;
             font-size:15px;
+            float:left;
         } 
 </style>
