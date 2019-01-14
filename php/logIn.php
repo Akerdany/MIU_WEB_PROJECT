@@ -96,10 +96,10 @@
             }
         }      
         else{
-            echo $temp;
-            echo"<br>";
-            echo $temp2;
-            echo"<br>";
+            // echo $temp;
+            // echo"<br>";
+            // echo $temp2;
+            // echo"<br>";
                     
             //Underconstructing the error table for IT department
             printf("Errormessage: %s\n", mysqli_error($conn));
