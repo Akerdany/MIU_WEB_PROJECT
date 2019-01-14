@@ -10,16 +10,26 @@
 
 <body>
     <div class="topnav">
-        <a href="../php/logIn.php"> <span>Login</span></a>
-        <a href="../php/registration.php"><span>Sign Up</span></a>
-    </div>
-
+    <?php
+    session_start();
+    if(empty($_SESSION['loggedIn'])){
+        echo"<div class='topnav'>
+                <a href='../php/logIn.php'> <span>Login</span></a>
+                <a href='../php/registration.php'><span>Sign Up</span></a>
+            </div>";
+    }
+    else if($_SESSION['loggedIn']==1){
+        echo"<div class='topnav'>";
+            require("../php/sidebar.php");
+        echo"</div>";
+    }
+    ?>
 
     <div class="Header">
         <div class="Buttons">
             <!-- <span> deh 3chn t2bal eleffects 3leha bt3et el arrow-->
            
-                <button id="Home_Button" onclick="window.location.href='../html/Welcome_Page.html'">
+                <button id="Home_Button" onclick="window.location.href='../html/Welcome_Page.php'">
                     <span>Home</span>
                </button>      
                

@@ -9,16 +9,25 @@
 
 <body>
     <!-- <h1>Little Kids Nursery</h1>-->
-    <div class="topnav">
-        <a href="../php/logIn.php"> <span>Login</span></a>
-        <a href="../php/registration.php"><span>Sign Up</span></a>
-        <title> Nursery </title>
-    </div>
+    <?php
+    session_start();
+    if(empty($_SESSION['loggedIn'])){
+        echo"<div class='topnav'>
+                <a href='../php/logIn.php'> <span>Login</span></a>
+                <a href='../php/registration.php'><span>Sign Up</span></a>
+            </div>";
+    }
+    else if($_SESSION['loggedIn']==1){
+        echo"<div class='topnav'>";
+            require("../php/sidebar.php");
+        echo"</div>";
+    }
+    ?>
 
 
     <div class="Header">
         <div class="Buttons">
-            <button id="Home_Button" onclick="window.location.href='../html/Welcome_Page.html'">
+            <button id="Home_Button" onclick="window.location.href='../html/Welcome_Page.php'">
                 <span>Home</span>
            </button>      
            

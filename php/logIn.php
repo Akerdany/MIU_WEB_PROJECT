@@ -75,7 +75,8 @@
             
             //If the account is active:
             if($_SESSION["statusId"] == 2){
-                header("Location: index.php");
+                $_SESSION["loggedIn"]=1;
+                header("Location: ../html/Welcome_Page.php");
             }
 
             //If the account is pending:
@@ -95,10 +96,10 @@
             }
         }      
         else{
-            echo $temp;
-            echo"<br>";
-            echo $temp2;
-            echo"<br>";
+            // echo $temp;
+            // echo"<br>";
+            // echo $temp2;
+            // echo"<br>";
                     
             //Underconstructing the error table for IT department
             printf("Errormessage: %s\n", mysqli_error($conn));
