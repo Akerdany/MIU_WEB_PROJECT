@@ -23,12 +23,20 @@
                     if( $_SESSION["typeId"] == 2   )
                      {
                        $sql=$sql." ,address,parent,child FROM user INNER JOIN address INNER JOIN parent INNER JOIN child
-                       WHERE user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId";
+                       ON user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
                      }
                      else if( $_SESSION["typeId"] == 3 )
                      {
-                       $sql=$sql." JOIN  employee e ON e.userId=u.id JOIN subject s ON s.userId = e.userId JOIN address a ON a.userId = s.userId JOIN uploads UP ON UP.userId = s.userId";
-                        
+                        if( $_SESSION["departmentId"] == 8){
+                       $sql=$sql." ,address,employee,uploads,subject FROM user INNER JOIN address INNER JOIN employee INNER JOIN subject  INNER JOIN uploads  
+                       ON user.id=address.userId AND address.userId=employee.userId AND employee.userId=subject.userId AND subject.userId=uploads.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
+                    }
+                    else
+                    {
+                        $sql=$sql." ,address,employee,uploads FROM user INNER JOIN address INNER JOIN employee   INNER JOIN uploads  
+                        ON user.id=address.userId AND address.userId=employee.userId AND employee.userId=uploads.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
+                     
+                    }
                      }
                     
                  
