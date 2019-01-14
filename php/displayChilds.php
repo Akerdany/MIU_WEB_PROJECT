@@ -186,8 +186,9 @@
                 //Underconstructing the error table for IT department
                 printf("Errormessage: %s\n", mysqli_error($conn));
             }
-            
-            include 'Comments.php';
+            if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
+                include 'Comments.php';
+            }
             //mysqli_close($conn);    
         ?>
     </body>
