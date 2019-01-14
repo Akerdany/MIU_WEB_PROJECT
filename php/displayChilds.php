@@ -182,7 +182,7 @@
                 //Underconstructing the error table for IT department
                 printf("Errormessage: %s\n", mysqli_error($conn));
             }
-
+            
             include 'Comments.php';
             //mysqli_close($conn);    
         ?>
