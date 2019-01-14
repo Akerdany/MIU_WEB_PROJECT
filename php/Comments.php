@@ -19,13 +19,10 @@
     echo "<br>";
     echo "<form method='post' action='".setComments($conn)."'>
     <input type='hidden' name='userId'>
-
     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-    <textarea name='message'></textarea><br>
+    <textarea id='Comment_Textfield' name='message'></textarea><br>
     <button  type='submit' name='commentSubmit'>Comment</button>
-    <button onclick='ReloadingPage()'>Reload page</button>
-    <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
-    <a href='../html/Welcome_Page.php'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
+    
 
     </form>";
     getComments($conn);
@@ -36,9 +33,19 @@
   ?>
 
 </body>
-<script src="../js/Reload.js">
-
-</script>
-
+<style>
+  #Comment_Textfield
+  {
+    margin-left:10px;
+    position:static;
+    border-radius:15px;
+    resize: inherit;/*bt5aly eltextfeild mttkabrchh */
+     
+    width:500px;
+    height:
+    
+  
+  }
+  </style>
 </html>
 
