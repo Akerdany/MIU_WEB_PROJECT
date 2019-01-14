@@ -8,9 +8,9 @@ function setComments($conn)
       $id=$_SESSION['id'];
       $date=$_POST['date'];
       $message=$_POST['message'];
-
-      $sql = "INSERT INTO `comments` ( `userId`, `date`, `message`) VALUES( '".$id."'
-        ,'".$date."', '".$message."')";
+      
+      $sql = "INSERT INTO `comments` ( `userId`, `date`, `message`,`childId`) VALUES( '".$id."'
+        ,'".$date."', '".$message."','".$_SESSION["childId"] ."')";
        $result= mysqli_query($conn,$sql);
 
   }
