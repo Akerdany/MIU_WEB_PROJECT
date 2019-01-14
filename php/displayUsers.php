@@ -77,6 +77,8 @@
                         <th>Account Status</th>
                         <th>SSN</th>
                         <th>Type of User</th>
+                        <th>CV</th>
+                        <th>Medical Test</th>
                         </tr>";
 
                     while($row = mysqli_fetch_array($result)){
@@ -102,6 +104,14 @@
                         $type = mysqli_query($conn,"SELECT * FROM type WHERE id='".$row["typeId"]."'");
                         if($r1 = mysqli_fetch_array($type)){
                             echo "<td>" .$r1['typeName']. "</td>";
+                        }
+                        if($row['typeId']==3){
+                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
+                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
+                        }
+                        else{
+                            echo"<td> </td>";
+                            echo"<td> </td>";
                         }
                         echo "</tr>";
                     }
