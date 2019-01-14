@@ -92,6 +92,7 @@
                 else{
                     echo"<table border='1' class='Table_Of_Childs'>
                         <tr>
+                        <th>#</th>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Photo</th>
@@ -136,6 +137,7 @@
                                                 join child c on scT.id=c.scheduleTypeId"); 
                             while($row = mysqli_fetch_array($sqlTeacherChildren)){
                                 echo "<tr>";
+                                echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                                 echo "<td>" .$row['id']. "</td>";
                                 echo "<td>" .$row['name']. "</td>";
                                 echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
@@ -151,6 +153,7 @@
                         }
                         else if($_SESSION["departmentId"] == 5 && $_SESSION["departmentId"] == 2){
                             echo "<tr>";
+                            echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                             echo "<td>" .$row['id']. "</td>";
                             echo "<td>" .$row['name']. "</td>";
                             echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
