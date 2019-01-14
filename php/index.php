@@ -17,8 +17,7 @@
                 require_once("Database_Connection.php");
 
                 if($_SESSION['gender'] == "Male"){
-                    echo"<h1>Welcome  Mr. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>
-                    ";
+                    echo"<h1>Welcome  Mr. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
                 }
                 else{
                     echo"<h1>Welcome  Mrs. ".$_SESSION["firstName"]." ".$_SESSION["familyName"]."</h1><br>";
@@ -26,7 +25,6 @@
 
                 echo"<h2>Account Information: <h2> <br>";
                 echo"Email: ".$_SESSION["username"]."<br> <br>";
-                echo"Password: ".$_SESSION["password"]."<br> <br>";
                 echo"Gender: ".$_SESSION["gender"]."<br> <br>";
                 echo"Nationality: ".$_SESSION["nationality"]."<br> <br>";
                 echo"Date of Birth: ".$_SESSION["dateOfBirth"]."<br> <br>";
