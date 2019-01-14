@@ -205,7 +205,7 @@
     <style>
         body
         {
-            background-color:teal;
+            background-color:teal; 
         }
         
         .Table_Of_Childs
@@ -216,6 +216,7 @@
             left:20px;
             width:static;
             height:static;
+            table-layout:auto;
             text-align:center;
             font-size:15px;
             display: inline-block;
