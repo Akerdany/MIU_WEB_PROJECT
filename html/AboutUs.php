@@ -49,19 +49,24 @@
     </div>
     <div class="Middle_Of_Page">
     <img id="Kids_Pictures" src="../pictures/kids1.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P>
+    <p>Activities:</P>
+    <p1>Kids have to use their energy in useful way.</P1>
+    <p2>Next</P2>
+    
     <img id="Kids_Pictures" src="../pictures/kids3.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P>
+    <p>Socialization:</P>
+
     <img id="Kids_Pictures" src="../pictures/kids4.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P>
+    <p>Learning and gaining confidence:</P>
     <img id="Kids_Pictures" src="../pictures/kids5.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P>
+    <p>Fun time:</P>
     <img id="Kids_Pictures" src="../pictures/kids6.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P>
+    <p>Class picture:</P>
     <img id="Kids_Pictures" src="../pictures/kids7.jpg" alt="kids" height="500" width="900"> 
-    <p>hellooo </P> 
+    <p>Lunch break time:</P> 
     
     </div>
+    
      
     <div class="Footer"> 
     <a href="#" class="fa fa-facebook"></a>
@@ -73,7 +78,7 @@
 body 
 {
     font-family: Verdana, sans-serif;
-    background-image: linear-gradient( snow,pink);
+    background-image: linear-gradient(pink,snow);
  
 }
 .Middle_Of_Page
@@ -94,6 +99,17 @@ p
     float:left ;
     margin-top:20%;
 }
+p1
+{
+    float:left ;
+    margin-top:-12%;
+}
+p2
+{
+    float:left ;
+    margin-top:-1%;
+}
+
 #Kids_Pictures
 {
     float:right;
