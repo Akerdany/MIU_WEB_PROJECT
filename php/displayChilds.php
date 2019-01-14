@@ -124,14 +124,32 @@
                     }
 
                     //if the user is a Teacher he'll/she'll see all the children in his/her nursery
-                    else if($_SESSION["departmentId"] == '8' && $_SESSION["typeId"] == 3){
-						$sqlTeacherChildren = mysqli_query($conn, "SELECT c.*,scT.scheduleName,u.firstName,u.lastName FROM employee e join user u on e.userId=u.id 
-											   join subject s ON s.teacherId = u.id 
-                                               AND s.teacherId='".$_SESSION["userId"]."'
-											   join schedules sc on sc.subjectId=s.id
-											   join scheduletypes scT on sc.scheduleTypeId=scT.id
-											   join child c on scT.id=c.scheduleTypeId"); 
-                        while($row = mysqli_fetch_array($sqlTeacherChildren)){
+                    else if($_SESSION["typeId"] == 3){
+
+                        if($_SESSION["departmentId"] == 8){
+
+                            $sqlTeacherChildren = mysqli_query($conn, "SELECT c.*,scT.scheduleName,u.firstName,u.lastName FROM employee e join user u on e.userId=u.id 
+                                                join subject s ON s.teacherId = u.id 
+                                                AND s.teacherId='".$_SESSION["userId"]."'
+                                                join schedules sc on sc.subjectId=s.id
+                                                join scheduletypes scT on sc.scheduleTypeId=scT.id
+                                                join child c on scT.id=c.scheduleTypeId"); 
+                            while($row = mysqli_fetch_array($sqlTeacherChildren)){
+                                echo "<tr>";
+                                echo "<td>" .$row['id']. "</td>";
+                                echo "<td>" .$row['name']. "</td>";
+                                echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
+                                echo "<td>" .$row['gender']. "</td>";
+                                echo "<td>".$row['dateOfBirth']."</td>";
+                                echo "<td>" .$row['scheduleTypeId']. "</td>";
+                                echo "<td>".$row['hobbies']."</td>";
+                                echo "<td>" .$row['medicalProblems']. "</td>";
+                                echo "<td>".$row['disability']."</td>";
+                                echo "<td>".$row['userId']."</td>";
+                                echo "</tr>";
+                            }
+                        }
+                        else if($_SESSION["departmentId"] == 5 && $_SESSION["departmentId"] == 2){
                             echo "<tr>";
                             echo "<td>" .$row['id']. "</td>";
                             echo "<td>" .$row['name']. "</td>";
@@ -146,25 +164,6 @@
                             echo "</tr>";
                         }
                         echo "</table>";
-                    }
-
-                    //if the user is a Doctor he'll see all the children in the nursery
-                    else if($_SESSION["departmentId"] == '5' && $_SESSION["typeId"] == '3'){
-                        while($row = mysqli_fetch_array($result)){
-                            echo "<tr>";
-                            echo "<td>" .$row['id']. "</td>";
-                            echo "<td>" .$row['name']. "</td>";
-                            echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
-                            echo "<td>" .$row['gender']. "</td>";
-                            echo "<td>".$row['dateOfBirth']."</td>";
-                            echo "<td>" .$row['scheduleTypeId']. "</td>";
-                            echo "<td>".$row['hobbies']."</td>";
-                            echo "<td>" .$row['medicalProblems']. "</td>";
-                            echo "<td>".$row['disability']."</td>";
-                            echo "<td>".$row['userId']."</td>";
-                            echo "</tr>";
-                    }
-                        echo "</table>"; 
                     }
                 }
             }
