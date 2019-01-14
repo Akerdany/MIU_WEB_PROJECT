@@ -27,9 +27,8 @@
             $photo = base64_encode($photo);
             $extensionFile = pathinfo($_FILES["photo"]["name"])['extension']; 
 
-
-            $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `userId`, `gender`, `dateOfBirth`, `scheduleTypeId`)
-                    VALUES (NULL, '".$photo."','".$name."','".$hobbies."','".$medical."','".$disability."','".$_SESSION["userId"]."','".$gender."','".$dateOfBirth."','5')";
+            $sql = "INSERT INTO `child` (`id`, `photo`, `name`, `hobbies`, `medicalProblems`, `disability`, `userId`, `gender`, `dateOfBirth`, `scheduleTypeId`, `photoExtension`)
+                    VALUES (NULL, '".$photo."','".$name."','".$hobbies."','".$medical."','".$disability."','".$_SESSION["userId"]."','".$gender."','".$dateOfBirth."','5','".$extensionFile."')";
 
             if (mysqli_query($conn,$sql)) {
                 header("location:displayChilds.php");

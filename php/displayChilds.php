@@ -30,7 +30,7 @@
     <body>
         <?php
             session_start();
-            require_once("Database_Connection.php");
+            require("Database_Connection.php");
             require("sidebar.php");
             
             $sql="SELECT * FROM child";
@@ -50,7 +50,7 @@
                     if(mysqli_num_rows($result1) == 1){
                         if($row = mysqli_fetch_array($result1)){ 
                             echo "<br>";
-                            echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
+                            echo "<img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
                             echo "Name: ";
                             echo $row["name"];
                             echo "<br>";
@@ -68,6 +68,8 @@
                             echo "<br>";
                             echo "Disability: ";
                             echo $row["disability"];
+                            echo "<br>";
+                            print '<a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a>';
                             echo "<br>";
                         }              
                     }
@@ -75,7 +77,7 @@
                     else if(mysqli_num_rows($result1) > 1){
                         while($row = mysqli_fetch_array($result1)){
                             echo "<br>";
-                            echo "<img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
+                            echo "<img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'><br>";
                             echo "Name: ";
                             echo $row["name"];
                             echo "<br>";
@@ -94,13 +96,23 @@
                             echo "Disability: ";
                             echo $row["disability"];
                             echo "<br>";
+                            print '<a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a>';
+                            echo "<br>";
                         }
+                        echo"<br><br>";
                     }
                     echo"<button id='addChild_Button' name='addChild_Button' type='button' onclick='redirect();'>Add Another Child</button>";   
                     echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
                     echo"<form method='post' action=''>";
+                    if($_SESSION["typeId"] == 1){
+                        echo"<button id='Add_Child' name='Add_Child' type='button' onclick='redirect();'>Add Another Child</button>";   
+                        // echo "<input type='submit' id='Add_Child' name='Add_Child' value='Add Child' onclick='redirect()'>";
+                        echo "<input type='submit' id='Delete_Child' name='Delete_Child' value='Delete Child'>";  
+                        echo"<br>";  
+                        echo"<br>";
+                    }
                     echo"<table border='1' class='Table_Of_Childs table-hover'>
                         <tr>
                         <th>#</th>
@@ -123,7 +135,7 @@
                             echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                             echo "<td>" .$row['id']. "</td>";
                             echo "<td>" .$row['name']. "</td>";
-                            echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
+                            echo "<td><img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
                             echo "<td>" .$row['gender']. "</td>";
                             echo "<td>".$row['dateOfBirth']."</td>";
                             echo "<td>" .$row['scheduleTypeId']. "</td>";
@@ -131,6 +143,7 @@
                             echo "<td>" .$row['medicalProblems']. "</td>";
                             echo "<td>".$row['disability']."</td>";
                             echo "<td>".$row['userId']."</td>";
+                            print '<td><center><a href="editChild.php?id='.$row['id'].'" class="buttonize">Edit</a></center></td>';
                             echo "</tr>";
                         }
                     }
@@ -151,7 +164,7 @@
                                 echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
                                 echo "<td>" .$row['id']. "</td>";
                                 echo "<td>" .$row['name']. "</td>";
-                                echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
+                                echo "<td><img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
                                 echo "<td>" .$row['gender']. "</td>";
                                 echo "<td>".$row['dateOfBirth']."</td>";
                                 echo "<td>" .$row['scheduleTypeId']. "</td>";
@@ -163,19 +176,21 @@
                             }
                         }
                         else if($_SESSION["departmentId"] == 5 && $_SESSION["departmentId"] == 2){
-                            echo "<tr>";
-                            echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
-                            echo "<td>" .$row['id']. "</td>";
-                            echo "<td>" .$row['name']. "</td>";
-                            echo "<td><img width = '20%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
-                            echo "<td>" .$row['gender']. "</td>";
-                            echo "<td>".$row['dateOfBirth']."</td>";
-                            echo "<td>" .$row['scheduleTypeId']. "</td>";
-                            echo "<td>".$row['hobbies']."</td>";
-                            echo "<td>" .$row['medicalProblems']. "</td>";
-                            echo "<td>".$row['disability']."</td>";
-                            echo "<td>".$row['userId']."</td>";
-                            echo "</tr>";
+                            while($row = mysqli_fetch_array($result)){
+                                echo "<tr>";
+                                echo "<td><input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$row['id']."></td>";
+                                echo "<td>" .$row['id']. "</td>";
+                                echo "<td>" .$row['name']. "</td>";
+                                echo "<td><img width = '10%' src = 'data: image/".$row["photoExtension"]."; base64, ".base64_encode($row["photo"])."'></td>";
+                                echo "<td>" .$row['gender']. "</td>";
+                                echo "<td>".$row['dateOfBirth']."</td>";
+                                echo "<td>" .$row['scheduleTypeId']. "</td>";
+                                echo "<td>".$row['hobbies']."</td>";
+                                echo "<td>" .$row['medicalProblems']. "</td>";
+                                echo "<td>".$row['disability']."</td>";
+                                echo "<td>".$row['userId']."</td>";
+                                echo "</tr>";
+                            }
                         }
                     }
                     echo "</table>";
@@ -199,7 +214,40 @@
             if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
                 include 'Comments.php';
             }
+
             //mysqli_close($conn);    
+        ?>
+
+        <?php
+            if(isset($_POST['Delete_Child'])){
+
+                if (isset($_POST['checkbox'])){
+
+                    $count = 0;
+                    $DecID = $_POST['checkbox'];
+                    foreach ($DecID as $keys => $value){
+                        $DecSql = "DELETE FROM child WHERE id = $value";
+                        
+                        if(mysqli_query($conn,$DecSql)){
+                            $count++;
+                        }
+                        else{
+                            echo"Error with ID: '".$value."'<br>";
+                        }
+                    }
+                }
+                else{
+                    echo"Please select achild to delete";
+                }
+
+                if($count == count($DecID)){
+                    echo "Child Deleted Successfully</br>";
+                    echo "<a href='displayChilds.php'> Refresh </a>";
+                }
+                else{
+                    echo"Error occured";
+                }
+            }            
         ?>
     </body>
     <style>
