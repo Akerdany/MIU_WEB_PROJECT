@@ -23,6 +23,17 @@
         });
     </script>
     <style>
+    .buttonize {
+    text-decoration: none;
+    border: 1px solid #ccc;
+    background-color: #efefef;
+    padding: 10px 15px;
+    -moz-border-radius: 11px;
+    -webkit-border-radius: 11px;
+    border-radius: 11px;
+    text-shadow: 0 1px 0 #FFFFFF;
+    }
+
     .divider{
     width:15px;
     height:auto;
@@ -52,12 +63,12 @@
             echo"<button id='deleteChild_Button' name='deleteChild_Button' type='button'>Delete Child</button>";
             echo '</form><br>'; 
 
-            echo '<div id="deleteChoice" style="display:none;">';
+            echo '<form id="deleteChoice" method="post" action="" style="display:none;">';
             echo "Are you sure you want to delete ?<br>";
-            echo"<button id='yes_Button' name='yes_Button' type='button'>Yes</button>";
+            echo"<input id='yes_Button' name='yes' type='submit' value='Yes'>";
             echo "<div class='divider'></div>";
-            echo"<button id='no_Button' name='no_Button' type='button'>No</button>";
-            echo "</div>";
+            echo"<input id='no_Button' name='no_Button' type='button' value='No'>";
+            echo "</form>";
         }            
         else{
             echo"An error occured";
@@ -68,26 +79,26 @@
             $hobbies=$_POST["hobbies"];
             $medicalProblems=$_POST["medicalProblems"];
             $disability=$_POST["disability"];
-            $check = 0;
             
-            $previous = "javascript:history.go(-3)";
+            // $previous = "javascript:history.go(-3)";
 
             if(mysqli_query($conn, "UPDATE child SET name='$name', hobbies='$hobbies', medicalProblems='$medicalProblems', disability='$disability' WHERE id='$childId'")){
-                $check = 1;
+                echo"Edit Done<br><br><br>";
+                echo'<a href="displayChilds.php" class="buttonize">Get Back</a>';
+            }
+            else{
+                echo"Error occured<br><br>";
+            }
+        }
+
+        if(isset($_POST["yes"])){
+            if(mysqli_query($conn, "DELETE FROM child WHERE id='$childId'")){
+                echo"Delete Done<br><br><br>";
+                echo'<a href="displayChilds.php" class="buttonize">Get Back</a>';
             }
             else{
                 echo"Error occured";
             }
-
-            if($check == 1){
-                header_remove("location:displayChilds.php");
-                $previous = $_SERVER['HTTP_REFERER'];
-                header("location:displayChilds.php");
-                exit();
-            }
-        }
-        else if(isset($_POST["yes_Button"])){
-
         }
     ?>
 </body>
