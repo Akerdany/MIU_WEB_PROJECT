@@ -75,7 +75,8 @@
             
             //If the account is active:
             if($_SESSION["statusId"] == 2){
-                header("Location: index.php");
+                $_SESSION["loggedIn"]=1;
+                header("Location: ../html/Welcome_Page.php");
             }
 
             //If the account is pending:
