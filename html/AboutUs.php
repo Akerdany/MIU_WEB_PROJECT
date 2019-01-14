@@ -33,19 +33,19 @@
                     <span>Home</span>
                </button>      
                
-               <button id="Branches_Button" onclick="window.location.href='../html/Branches.html'" >
+               <button id="Branches_Button" onclick="window.location.href='../html/Branches.php'" >
                    <span>Branches</span>
                </button>          
-               <button id="Ourteam_Button" onclick="window.location.href='../html/OurTeam.html'" >
+
+               <button id="Ourteam_Button" onclick="window.location.href='../html/OurTeam.php'" >
                    <span>Our Team</span>
                </button>
-   
                
-               <button id="Aboutus_Button" onclick="window.location.href='../html/AboutUs.html'" > 
+               <button id="Aboutus_Button" onclick="window.location.href='../html/AboutUs.php'" > 
                    <span>About Us</span> 
                </button>
    
-               <button id="Contactus_Button" onclick="window.location.href='../html/ContactUs.html'" > 
+               <button id="Contactus_Button" onclick="window.location.href='../html/ContactUs.php'" > 
                    <span>Contact Us</span>
                </button>
         </div>
