@@ -5,12 +5,12 @@ function setComments($conn)
 
   if (isset($_POST['commentSubmit'])) {
 
-      $id=$_SESSION['id'];
+      $id=$_SESSION['userId'];
       $date=$_POST['date'];
       $message=$_POST['message'];
       
       $sql = "INSERT INTO `comments` ( `userId`, `date`, `message`,`childId`) VALUES( '".$id."'
-        ,'".$date."', '".$message."','".$_SESSION["childId"] ."')";
+        ,'".$date."', '".$message."','".$_SESSION["toChildId"]."')";
        $result= mysqli_query($conn,$sql);
 
   }
