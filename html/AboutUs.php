@@ -167,6 +167,92 @@ p
     font-size: 17px;
 }
 
+</body>
+<style>
+    body 
+{
+    font-family: Verdana, sans-serif;
+    background-image: linear-gradient( snow,pink);
+ 
+}
+.Schedules
+{
+    background-color: pink;  
+    width: 1200px; 
+    height: 650px;
+    border-radius: 20px;
+    margin: center;   
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: 0%;
+    top: 0%;
+}
+h1
+{
+   font-size:30px; 
+   text-align: center;
+}
+.Image_Options
+{ 
+     margin-left: 30px;/*starst from left and add 10 pixels to the start */
+     float : right;
+}
+p
+{
+    font-size:15px;
+    text-align:left;/*text starts from left */
+    margin-left: 22.5px;/*starst from left and add 10 pixels to the start */
+}
+.topnav/*setting of navbar place */
+{
+    overflow: hidden;
+    background-color :indigo;
+    border-radius: 10px;
+    width: 1520px;  
+    height: 50px;
+    position:relative;
+    left: -10px;/*starts after 1000pixel */
+    top: -10px;
+}
+
+.topnav a /*inside the world font settings*/
+{
+    float: right;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover /*lma 2a2af 3ala elbutton feh eltopnav*/
+{
+    background-color:none;
+    color: white;
+}
+.Footer/*setting of nagbar place */
+{
+    overflow: hidden;
+    background-color:indigo;
+    border-radius:20px;
+    width: 1520px;  
+    height: 120px;
+    position:relative;/*bt-apply width height top left position*/
+    left: -10px;/*sratrs after 1000pixel */
+    top: 30px; 
+}
+
+.Footer a /*inside the world font settings*/
+{
+    float: right;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
 .Footer a:hover {
     background-color:none;
     color: white;

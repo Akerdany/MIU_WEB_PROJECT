@@ -19,13 +19,11 @@
                 {
                     if($_POST['password']==$_POST['confirmPassword'] )
                     {
-                    $sql="DELETE u.*,p.*,c.*,a.*
-                    FROM user u
-                    
-                    AND u.userId = '".$_SESSION[userId]."'";
+                    $sql="DELETE user ";
                     if( $_SESSION["typeId"] == 2   )
                      {
-                       $sql=$sql." JOIN  parent p ON p.userId=u.id JOIN child c ON c.userId = p.userId JOIN address a ON a.userId = p.userId";
+                       $sql=$sql." ,address,parent,child FROM user INNER JOIN address INNER JOIN parent INNER JOIN child
+                       WHERE user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId";
                      }
                      else if( $_SESSION["typeId"] == 3 )
                      {
