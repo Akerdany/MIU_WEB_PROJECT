@@ -5,10 +5,13 @@
     <link rel="stylesheet" href="../css/ContactUs.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Nursery </title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+       
+    <title> Nursery</title>
 </head>
 
 <body>
+    
     <?php
     session_start();
     if(empty($_SESSION['loggedIn'])){
@@ -48,10 +51,20 @@
         </div>
     </div>
 <div class="Middle_Of_Page">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
+        <div id="GambIcons">
+            <p>helloo ya zbala :D</p>
+</div>
+     <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="fa fa-google"></a>
+    </div>
+
+    <div class="Footer">
+
+</div>
+
+</body>
+<style>
         .fa {
           padding: 20px;
           font-size: 30px;
@@ -61,7 +74,7 @@
           margin: 1px 2px;
        
           position: relative;
-          bottom: -470px;
+          bottom: -485px;
           border: 3px solid  white;
 
         }
@@ -86,17 +99,4 @@
         }
         
         </style>
-        </head>
-        <body>
-        
-        <h2>Keep in touch with us on</h2>
-        
-      
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-twitter"></a>
-        <a href="#" class="fa fa-google"></a>
-    </div>
-
-</body>
-
 </html>

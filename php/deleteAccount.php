@@ -15,8 +15,23 @@
             require_once("Database_Connection.php");
 
             if(isset($_POST['submit'])){
-                if($_SESSION['password']==$_POST['password']){
-                    $sql="DELETE FROM user WHERE id = '".$_SESSION['id']."'";
+                if($_SESSION['password']==$_POST['password']   )
+                {
+                    if($_POST['password']==$_POST['confirmPassword'] )
+                    {
+                    $sql="DELETE user ";
+                    if( $_SESSION["typeId"] == 2   )
+                     {
+                       $sql=$sql." ,address,parent,child FROM user INNER JOIN address INNER JOIN parent INNER JOIN child
+                       WHERE user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId";
+                     }
+                     else if( $_SESSION["typeId"] == 3 )
+                     {
+                       $sql=$sql." JOIN  employee e ON e.userId=u.id JOIN subject s ON s.userId = e.userId JOIN address a ON a.userId = s.userId JOIN uploads UP ON UP.userId = s.userId";
+                        
+                     }
+                    
+                 
                     mysqli_query($conn,$sql);
                     echo"Account deleted";
 
@@ -27,6 +42,11 @@
                     else{
                         echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
                     }
+                }
+                else
+                {
+                    echo"They are not equal<br>";
+                }
                 }
                 else{
                     echo"Sorry, you have entered the password wrong<br>";
