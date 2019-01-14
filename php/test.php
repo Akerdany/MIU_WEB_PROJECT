@@ -9,10 +9,13 @@
             $extensionFile = pathinfo($_FILES["photo"]["name"])['extension'];
             $fileSize = $_FILES["photo"]["size"]; 
             $fileName = $_FILES["photo"]["name"];
+            $D = $_POST["department"];
+            echo $D;
+            echo"<br>";
             echo $fileName;
 
-            $sql = "INSERT INTO `uploads` (`Id`, `Name`, `Type`, `Size`, `Extension`, `Data`, `userId`)
-            VALUES (NULL, '".$fileName."','".$extensionFile."','".$fileSize."','','".$photo."','27')";
+            // $sql = "INSERT INTO `uploads` (`Id`, `Name`, `Type`, `Size`, `Extension`, `Data`, `userId`)
+            // VALUES (NULL, '".$fileName."','".$extensionFile."','".$fileSize."','','".$photo."','27')";
 
             // if($row = mysqli_fetch_array($result1)){
 
@@ -47,6 +50,19 @@
 </head>
 <body>
 <form name="childForm" action="" method="post" enctype="multipart/form-data">
+<select id="Dropdown" name="department">
+                    <option value="">Select your department</option>
+                    <option value="1">Accounting</option>
+                    <option value="2">HR</option>
+                    <option value="3">IT</option>
+                    <option value="4">Marketing</option>
+                    <option value="5">Medical</option>
+                    <option value="6">PR</option>
+                    <option value="7">Security</option>
+                    <option value="8">Teaching</option>
+                    <option value="9">Transportation</option>
+                </select>
+
         
         <input type="text" name="name" placeholder="Child Name">
         Photo:

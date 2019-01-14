@@ -40,11 +40,11 @@
                     $_SESSION["salary"] = $tempR["salary"];
                     $_SESSION["incomeMethod"] = $tempR["incomeMethod"];
                     $_SESSION["universityDegree"] = $tempR["universityDegree"];
-                    $_SESSION["positionId"] = $tempR["position"];
+                    $_SESSION["positionId"] = $tempR["positionId"];
                     $_SESSION["experience"] = $tempR["experience"];
                     $_SESSION["bankAccount"] = $tempR["bankAccount"];
                     $_SESSION["medicalTestId"] = $tempR["medicalTestId"];
-                    $_SESSION["categoryId"] = $tempR["category"];
+                    $_SESSION["categoryId"] = $tempR["categoryId"];
                     $_SESSION["yearOfGraduation"] = $tempR["yearOfGraduation"];
                     $_SESSION["university"] = $tempR["university"];
                     $_SESSION["skills"] = $tempR["skills"];

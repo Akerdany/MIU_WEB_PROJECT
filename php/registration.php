@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <script>
 
@@ -113,13 +113,14 @@
                     if($password == $confirmPassword){
 
                         if(isset($_POST['registerParent'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','2')";
+                            $typeId = 2; 
                         }
                         else if(isset($_POST['registerEmployee'])){
-                            $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
-                            VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','3')";
+                            $typeId = 3;
                         }
+
+                        $sql1 = "INSERT INTO `user` (`id`, `email`, `password`, `firstName`, `lastName`, `familyName`, `gender`, `nationality`, `dateOfBirth`, `workNumber`, `phoneNumber`, `homeTelephoneNumber`, `dateJoined`, `statusId`, `ssn`, `typeId`)
+                        VALUES (NULL,'".$email."','".$password."','".$firstName."','".$lastName."','".$familyName."','".$gender."','".$nationality."','".$dateOfBirth."','".$workNumber."','".$phoneNumber."','".$homeNumber."','".$date."','1','".$ssn."','".$typeId."')";
 
                         if (mysqli_query($conn,$sql1)) {
 
@@ -152,7 +153,6 @@
                             
                                                 //Underconstructing the error table for IT department
                                                 printf("Errormessage: %s\n", mysqli_error($conn));
-
                                             }
                                         }
                                         else{                                   
@@ -170,37 +170,76 @@
                                         $bankAccount = $_POST["bankAccount"];
 
                                         $cv = addslashes($_FILES['cv']['tmp_name']);
-                                        //$cvName = addslashes($_FILES['cv']['name']);
                                         $cv = file_get_contents($cv);
                                         $cv = base64_encode($cv);
+                                        $extensionCV = pathinfo($_FILES["cv"]["name"])['extension'];
+                                        $cvSize = $_FILES["cv"]["size"]; 
+                                        $cvName = $_FILES["cv"]["name"];                            
 
                                         $medicalTest = addslashes($_FILES['medicalTest']['tmp_name']);
-                                        //$medicalTestName = addslashes($_FILES['medicalTest']['name']);
                                         $medicalTest = file_get_contents($medicalTest);
                                         $medicalTest = base64_encode($medicalTest);   
+                                        $extensionMedic = pathinfo($_FILES["medicalTest"]["name"])['extension'];
+                                        $medicSize = $_FILES["medicalTest"]["size"]; 
+                                        $medicName = $_FILES["medicalTest"]["name"];                            
 
-                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!="" && $cv!=""){
+                                        if($cv != "" && $medicalTest != ""){
+
+                                            $cvSQL = "INSERT INTO `uploads` (`id`, `name`, `size`, `type`, `extension`, `data`, `userId`) 
+                                            VALUES (NULL, '".$cvName."', '".$cvSize."', '1', '".$extensionCV."', '".$cv."', '".$userID."')";
+
+                                            $medicSQL = "INSERT INTO `uploads` (`id`, `name`, `size`, `type`, `extension`, `data`, `userId`) 
+                                            VALUES (NULL, '".$medicName."', '".$medicSize."', '2', '".$extensionMedic."', '".$medicalTest."', '".$userID."')";
+
+                                            if(mysqli_query($conn,$cvSQL) && mysqli_query($conn,$medicSQL)){
+
+                                                $sqlcvID = mysqli_query($conn,"SELECT id FROM uploads WHERE userId='".$userID."' AND type='1'");
+                                                $sqlmedicID = mysqli_query($conn,"SELECT id FROM uploads WHERE userId='".$userID."' AND type='2'");
+
+                                                if($cvEmpID = mysqli_fetch_array($sqlcvID)){
+                                                    $cvID = $cvEmpID["id"];
+
+                                                    if($medicEmpID = mysqli_fetch_array($sqlmedicID)){
+                                                        $medicID = $medicEmpID["id"];
+
+                                                        if($university!="" && $universityDegree!="" && $graduationYear!="" && $department!="" && $skills!="" && $bankAccount!=""){
+                                                            
+                                                            $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `departmentId`, `skills`, `bankAccount`, `medicalTestId`, `cvId`, `medicalInsuranceId`, `positionId`, `categoryId`) 
+                                                            VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."', '".$medicID."', '".$cvID."', '1', '3', '3')";
+
+                                                            if(mysqli_query($conn,$sqlEmployee)){
+                        
+                                                                header("location:logIn.php");
+                                                            }
+                                                            else{
+                                                                echo $sqlEmployee;
+                                                                echo"<br>";
                                             
-                                            $sqlEmployee = "INSERT INTO `employee` (`id`, `userId`, `university`, `universityDegree`, `yearOfGraduation`, `department`, `skills`, `bankAccount`, `medicalTest`, `cv`, `medicalInsuranceId`) 
-                                            VALUES (NULL, '".$userID."', '".$university."', '".$universityDegree."', '".$graduationYear."', '".$department."', '".$skills."', '".$bankAccount."', '".$medicalTest."', '".$cv."', '1')";
+                                                                //Underconstructing the error table for IT department
+                                                                printf("Errormessage: %s\n", mysqli_error($conn));
+                                                            }
+                                                        }
+                                                        else{                                   
+                                                            echo"Employee table might have a problem";
+                                                        }
+                                                    }
+                                                    else{
+                                                        echo"Problem fetching the uploads table for id of medical test";
 
-                                            if(mysqli_query($conn,$sqlEmployee)){
-        
-                                                header("location:logIn.php");
+                                                    }
+                                                }
+                                                else{
+                                                    echo"Problem fetching the uploads table for id of cv";
+                                                }
                                             }
                                             else{
-                                                echo $sqlEmployee;
-                                                echo"<br>";
-                            
-                                                //Underconstructing the error table for IT department
-                                                printf("Errormessage: %s\n", mysqli_error($conn));
+                                                echo"uploads table problem";
                                             }
                                         }
-                                        else{                                   
-                                            echo"Employee table might have a problem";
+                                        else{
+                                            echo"CV or Medical Test is empty";
                                         }
                                     }
-                    
                                 }
                             }
                             else{
@@ -374,10 +413,7 @@
                 <input type="number" name="HomeNumber" placeholder="Home Number">
 
                 <input type="number" name="ssn" placeholder="SSN">
-                <input type="number" name="homeNumber" placeholder="Home Number"><br>
 
-                <input type="number" name="workNumber" placeholder="Work Number"><br>
-                
                 <input type="button" name="backE" id="backE" value="Get Back">      
 
                 <input type="button" name="NextEmployee" class="NextEmployee" value="Next">
