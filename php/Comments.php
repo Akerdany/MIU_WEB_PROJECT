@@ -22,8 +22,6 @@
     <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
     <textarea id='Comment_Textfield' name='message'></textarea><br>
     <button  type='submit' name='commentSubmit'>Comment</button>
-    
-
     </form>";
     getComments($conn);
     $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -39,8 +37,7 @@
     margin-left:10px;
     position:static;
     border-radius:15px;
-    resize: inherit;/*bt5aly eltextfeild mttkabrchh */
-     
+    resize: inherit;/*bt5aly eltextfeild mttkabrchh*/
     width:500px;
     height:
     

@@ -294,7 +294,7 @@
 
                     <input type="text" name="nationality" placeholder="Nationality" required title="EX:Egyptian , Algerian ,.."> 
 
-                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" required title="EX:Month/Day/Year">
+                    <input type="date" class="Input_Number" name="dateOfBirth" placeholder="Date of Birth" required title="EX:Month/Day/Year">
 
                     <input type="number"  class="Input_Number" name="phoneNumber" placeholder="Phone Number" required title="EX:012365245681" > 
 
@@ -395,13 +395,13 @@
 
                 <input type="text" name="nationality" placeholder="Nationality">
 
-                <input type="date" name="dateOfBirth" placeholder="Date of Birth">
+                <input type="date" class="Input_Number" name="dateOfBirth" placeholder="Date of Birth">
 
-                <input type="number" name="phoneNumber" placeholder="Phone Number">
+                <input type="number" class="Input_Number" name="phoneNumber" placeholder="Phone Number">
 
-                <input type="number" name="HomeNumber" placeholder="Home Number">
+                <input type="number" class="Input_Number" name="HomeNumber" placeholder="Home Number">
 
-                <input type="number" name="ssn" placeholder="SSN">
+                <input type="number" class="Input_Number" name="ssn" placeholder="SSN">
 
                 <input type="button" name="backE" id="backE" value="Get Back">      
 
@@ -418,13 +418,13 @@
 
                 <input type="text" name="streetName" placeholder="Street Name">
 
-                <input type="number" name="buildingNumber" placeholder="Building Number">
+                <input type="number"  class="Input_Number" name="buildingNumber" placeholder="Building Number">
 
-                <input type="number" name="flatNumber" placeholder="Flat Number">
+                <input type="number" class="Input_Number" name="flatNumber" placeholder="Flat Number">
 
-                <input type="number" name="apartmentNumber" placeholder="Apartment Number">
+                <input type="number" class="Input_Number" name="apartmentNumber" placeholder="Apartment Number">
 
-                <input type="number" name="postalCode" placeholder="Postal Code">
+                <input type="number" class="Input_Number" name="postalCode" placeholder="Postal Code">
 
                 <input type="button" name="PreviousEmployee" class="PreviousEmployee" value="Previous" >
 
@@ -443,7 +443,7 @@
 
                 <input type="text" name="universityDegree" placeholder="University Degree">
 
-                <input type="number" name="graduationYear" placeholder="Graduation Year">
+                <input type="number" class="Input_Number" name="graduationYear" placeholder="Graduation Year">
 
                 <select id="Dropdown" name="department">
                     <option value="">Select your department</option>
@@ -463,7 +463,7 @@
 
                 <textarea rows="4" cols="50" name="skills">Skills</textarea>
 
-                <input type="number" name="bankAccount" placeholder="Bank Account">
+                <input type="number" class="Input_Number" name="bankAccount" placeholder="Bank Account">
 
                 Medical Test:
                 <input id="MedicalTest" type="file" name="medicalTest">

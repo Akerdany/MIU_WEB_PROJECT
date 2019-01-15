@@ -360,11 +360,5 @@ h2/*or a */
 	background: #27AE60;
 	color: white;
 }
-/* webkit deh bt-remove el arrows up and down */
-.Input_Number::-webkit-inner-spin-button, 
-.Input_Number::-webkit-outer-spin-button
- { 
--webkit-appearance: none; 
-margin: 0; 
-}
+
 
