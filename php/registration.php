@@ -260,7 +260,7 @@
 
                                             if(mysqli_query($conn,$sqlParent)){
         
-                                                header("location:logIn.php");
+                                                header("location:../html/Welcome_Page.php");
                                             }
                                             else{
                                                 echo $sqlParent;

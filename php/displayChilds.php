@@ -114,14 +114,12 @@
                         echo"<br><br>";
                     }
                     echo"<button id='addChild_Button' name='addChild_Button' type='button' onclick='redirect();'>Add Another Child</button>";   
-                    echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
                     echo"<form id='formDisplayChilds' method='post' action=''>";
                     if($_SESSION["typeId"] == 1){
                         echo"<button id='Add_Child' name='Add_Child' type='button' onclick='redirect();'>Add Another Child</button>";   
                         // echo "<input type='submit' id='Add_Child' name='Add_Child' value='Add Child' onclick='redirect()'>";
-                        echo "<input type='submit' id='Delete_Child' name='Delete_Child' value='Delete Child'>";  
                         echo"<br>";  
                         echo"<br>";
                     }

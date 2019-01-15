@@ -45,7 +45,7 @@
 
                     if(mysqli_close($conn)){
                         session_destroy();
-                        header("location:../html/NurseryWebsite.html");
+                        header("location:../html/Welcome_Page.php");
                     }
                     else{
                         echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
