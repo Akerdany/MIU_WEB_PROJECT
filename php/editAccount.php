@@ -82,13 +82,13 @@
         <form name="passwordEdit" action="" method="post">
             <fieldset>
             <b> Old Password: </b>
-            <input type="password" name="oldPassword" placeholder="Old Password"><br>
+            <input type="password" name="oldPassword" placeholder="Old Password" required ><br>
 
             <b> New Password: </b>
-            <input type="password" name="newPassword" placeholder="New Password"><br>
+            <input type="password" name="newPassword" placeholder="New Password" required><br>
             
             <b> Confirm New Password: </b>
-            <input type="password" name="confirmNewPassword" placeholder="Confirm New Password"><br>
+            <input type="password" name="confirmNewPassword" placeholder="Confirm New Password" required><br>
 
             <input id="Change_Password_Button" type="submit" name="newPass" value="Change Password">
     
@@ -102,28 +102,28 @@
         <fieldset>
             <h1 id="Form_Title"> Edit Account Information </h1>
             <b> First Name: </b>
-            <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.."><br>
+            <input type="text" name="firstName" value="<?php echo $_SESSION["firstName"];?>" placeholder="First Name.." required><br>
 
             <b> Last Name: </b>
-            <input type="text" name="lastName" value="<?php echo $_SESSION["lastName"];?>" placeholder="Last Name.."><br>
+            <input type="text" name="lastName" value="<?php echo $_SESSION["lastName"];?>" placeholder="Last Name.." required><br>
 
             <b> Family Name: </b>
-            <input type="text" name="lastName" value="<?php echo $_SESSION["familyName"];?>" placeholder="Family Name.."><br>
+            <input type="text" name="lastName" value="<?php echo $_SESSION["familyName"];?>" placeholder="Family Name.." required><br>
             
             <b> Nationality: </b>
-            <input type="text" name="lastName" value="<?php echo $_SESSION["nationality"];?>" placeholder="Nationality"><br>
+            <input type="text" name="lastName" value="<?php echo $_SESSION["nationality"];?>" placeholder="Nationality" required><br>
 
             <b> Home Number: </b>
-            <input type="number" name="lastName" value="<?php echo $_SESSION["homeNumber"];?>" placeholder="Home Number"><br>
+            <input type="number" name="lastName" value="<?php echo $_SESSION["homeNumber"];?>" placeholder="Home Number" required ><br>
             
             <b> Work Number: </b>
-            <input type="number" name="lastName" value="<?php echo $_SESSION["workNumber"];?>" placeholder="Work Number"><br>
+            <input type="number" name="lastName" value="<?php echo $_SESSION["workNumber"];?>" placeholder="Work Number" required><br>
             
             <b> Phone Number: </b>
-            <input type="number" name="lastName" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number"><br>
+            <input type="number" name="lastName" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number" required ><br>
 
             <b> Email: </b>
-            <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
+            <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email" required><br>
 
             <button id='editPassword' name='editPassword' type='button'>Edit your Password</button>
             <input  id='Submit'type="submit" name="submit" value="Save">

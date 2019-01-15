@@ -133,7 +133,7 @@
 
             <div class="input-container">
                     <i class="fa fa-envelope  icon"></i> <!--username icon class-->
-                    <input class="input-field" type="text" placeholder="Email" name="email" required>
+                    <input class="input-field" type="email" placeholder="Email" name="email" required>
             </div>
             <div class="input-container">
                     <i class="fa fa-key icon"></i><!--passwrod icon class-->
