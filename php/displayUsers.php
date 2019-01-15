@@ -15,7 +15,7 @@
         <script>
             $(document).ready(function(){
                 $("#search").click(function(){
-                    $("#form").fadeOut("fast");
+                    $("#forma").fadeOut("fast");
                     $("#buttondivision").fadeIn(3000);
                     $("#searchForm").fadeIn(3000);
                 });
@@ -25,20 +25,20 @@
                 $("#getBack").click(function(){
                     $("#searchForm").hide();
                     $("#buttondivision").hide();
-                    $("#form").show("slow");
+                    $("#forma").show("slow");
                 });
             });
 
-            // function search(){
-            //     jQuery.ajax({
-            //         url: "display.php",
-            //         data: 'search='+$("#Search_Textfield").val(),
-            //         type: "POST",
-            //         success: function(data){
-            //             $("#result").html(data);
-            //         }
-            //     });
-            // } 
+            function search(){
+                jQuery.ajax({
+                    url: "display.php",
+                    data: 'search='+$("#search").val(),
+                    type: "POST",
+                    success: function(data){
+                        $("#result").html(data);
+                    }
+                });
+            } 
         </script>
         
     </head>
@@ -51,9 +51,11 @@
         <div id="body" name="body"><br>
             <div id="searchForm" style="display:none;">
                 <form name="sForm" action="" id="sForm" method="post">
-                    <input id="Search_Textfield" type="text" name="searchBar" >
-                    <input id="Search_Button" type="submit" name="search"><br><br>
+                    <input id="Search_Textfield" type="text" name="searchBar" onkeyup="search()">
                 </form> 
+
+                <div id="result">
+                </div>    
             </div>   
 
             <div id="buttondivision" style="display:none;">
@@ -61,7 +63,7 @@
             </div>   
 
             <!-- <button id="forward" name="forward" onclick="window.location.href='display.php'">Search</button> -->
-        <div id="form" name="form">    
+        <div id="forma" name="forma">    
             <button id="search" name="search">Start Search</button>
 
             <?php
