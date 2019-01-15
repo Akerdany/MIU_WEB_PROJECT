@@ -79,7 +79,30 @@ function setMessages($conn,$toUserId)
 
   }
 }
-function displayResult($toUserId)
+function displayResult1()
+{
+
+  echo "<div class='comment-box'><p>";
+  echo $_SESSION['username'].'  <span  style="color: green; background-color:yellow; padding-top:10px;">Messages</span> <br>';
+  echo'
+  <input type="text" name="email" id="email" placeholder="Email" onkeyup="checkFounded()"/><br>
+	
+  <div id="msg"></div><br>';
+  
+echo'
+     <button onclick="ReloadingPage()">Reload page</button>';
+     echo"
+     <a href='logOut.php' style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='logOut'>Logout</button></a>
+     <a href='../html/Nursery Website.php'  style=' color: white; text-align: center; text-decoration: none;  display: inline-block;'><button type='button' name='Home'>Home</button></a>
+
+     ";
+     echo "</p></div>";
+  echo '<div id="main">
+  <div id="result-message-area">
+  ';
+}
+
+function displayResult2($toUserId)
 {
 
   echo "<div class='comment-box'><p>";
@@ -153,12 +176,14 @@ function displayMessageArea()
   </div>';
 }
 if (isset($_SESSION['username']))
-{
-  if(!empty($_SESSION['toUserId'])){
+
+{ if($_SESSION['toUserId']==0)
+  displayResult1();
+  if($_SESSION['toUserId']!=0){
     $toUserId= $_SESSION['toUserId'];
 
-  }
-  displayResult($toUserId);
+  
+  displayResult2($toUserId);
 
     getMessages($conn,$toUserId);
     getOthersMessages($conn,$toUserId);
@@ -168,6 +193,8 @@ if (isset($_SESSION['username']))
         setMessages($conn,$toUserId);
 
        }
+      }
+    
       displayMessageArea();
 
  $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
