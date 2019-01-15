@@ -53,18 +53,6 @@
                 });
         }
 
-        // function getResult()
-        // {
-        //     jQuery.ajax(
-        //         {
-        //             url: "backend-search.php",
-        //             data: 'term='+$("#term").val(),
-        //             type: "POST",
-        //             success:function(data2){
-        //                 $("#result").html(data2);
-        //             }
-        //         });
-        }
 
     </script>
 
