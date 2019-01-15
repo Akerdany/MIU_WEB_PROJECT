@@ -84,7 +84,7 @@ function displayAppointmentInvitation($conn,$toUserId)
       
       <button type="button"  data-toggle="modal" data-target="#myModal" style="  Background-color:yellow;
       border-radius: 15px; 
-       padding: 5px; ">Invitation details</button>
+       padding: 5px; ">Invitation </button>
     
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
