@@ -52,7 +52,7 @@
     </div>
 <div class="Middle_Of_Page">
         <div id="GambIcons">
-            <p>helloo ya zbala :D</p>
+            <p1>Keep in touch with us on:</p1>
 </div>
      <a href="#" class="fa fa-facebook"></a>
         <a href="#" class="fa fa-twitter"></a>
@@ -74,7 +74,7 @@
           margin: 1px 2px;
        
           position: relative;
-          bottom: -485px;
+          bottom: -390px;
           border: 3px solid  white;
 
         }
