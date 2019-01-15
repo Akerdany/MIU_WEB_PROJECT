@@ -258,7 +258,7 @@
                 foreach ($commentID as $keys => $value){
                     $_SESSION["toChildId"]= $value;
                     ////erase this echo
-                    echo $_SESSION["toChildId"];
+                   
                 }
             }
         }
@@ -301,7 +301,7 @@
                     echo"Error occured";
                 }
             }     
-            
+
                    
         ?>
     </body>
