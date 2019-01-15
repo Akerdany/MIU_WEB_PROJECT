@@ -74,7 +74,7 @@ function displayAppointmentInvitation($conn,$toUserId)
    FROM user INNER JOIN messagetest
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
-   WHERE messagetest.message='Interview For Child'
+   AND messagetest.message='Interview For Child'
    ";
   $resultDisplayInvitationDetails= mysqli_query($conn,$sqlDisplayInvitationDetails);
 
