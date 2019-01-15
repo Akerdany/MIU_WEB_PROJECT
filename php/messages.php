@@ -114,8 +114,13 @@ function displayResult2($toUserId)
   if(isset($_SESSION['toUserId']))
   {
   //include 'sendInvitation.php';
-  echo' <button type="button"  name="sendInvitation" 
-			id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
+  echo"<form id='formSendAppointment' method='post' action=''>";
+  echo'<input type="date" name="dateOfAppointment" placeholder="Date of Appointment" >'; 
+  echo"<td><input type='submit' id='Send_Appointment' name='Send_Appointment'  form='formSendAppointment' value='Send Appointment'><td>";
+
+  // echo' <button type="button"  name="sendInvitation" 
+  //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
+      echo"</form>";
   }
 echo'
      <button onclick="ReloadingPage()">Reload page</button>';
