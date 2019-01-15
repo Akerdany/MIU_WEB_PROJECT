@@ -36,8 +36,8 @@
             session_start();
             require("Database_Connection.php");
             require("sidebar.php");
-            echo "<input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'>";
-
+           // 
+            
                  $sql="SELECT * FROM child";
             if($_SESSION["toChildId"]!=0)
             {
@@ -162,7 +162,7 @@
                             
                             //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
-                            echo"<td><button  type='button' onclick='redirect3();'>Comment</button><td>";   
+                            echo"<td><input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'><td>";   
 
                             echo "</tr>";
                         }
