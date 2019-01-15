@@ -79,10 +79,7 @@
                 <div class="numbertext"></div>
                 <img src="../pictures/Preschool 5.jpg" style="width:100%" style="height:1300px">
             </div>
-
-       <div class="mySlides fade">
-
-     
+ 
 
     </div>
     
