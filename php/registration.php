@@ -52,7 +52,15 @@
                     }
                 });
         }
-  
+
+        function alertCV(){
+            alert("make sure to put only an image format please, Only");
+        }
+        
+        function alertMedic(){
+            alert("make sure to put only a pdf format please, Only");
+        }
+
     </script>
 
     <meta charset="utf-8">
@@ -304,7 +312,7 @@
                     
                     <input type="button" name="backP" id="backP" value="Get Back">    
 
-                    <input type="button" name="Next" class="Next" value="Next">
+                    <input type="submit" name="Next" class="Next" value="Next">
 
                 </fieldset>
 
@@ -384,24 +392,24 @@
                 <h2 class="Form_Title">  Personal Information </h2>
                 <h3 class="Form_Subtitle"> Step 1 </h3>
 
-                <input type="text" name="firstName" placeholder="First name">
+                <input type="text" name="firstName" placeholder="First name" required title="EX: Mohamed">
 
-                <input type="text" name="lastName" placeholder="Last name">
+                <input type="text" name="lastName" placeholder="Last name" required title="EX: Ahmed">
 
-                <input type="text" name="familyName" placeholder="Family Name">
+                <input type="text" name="familyName" placeholder="Family Name" required title="EX: El-Shenawy">
 
-                <input type="radio" name="gender" value="Male"/>  Male 
-                <input type="radio" name="gender" value="Female"/>  Female 
+                <input type="radio" name="gender" value="Male" />  Male 
+                <input type="radio" name="gender" value="Female" />  Female 
 
-                <input type="text" name="nationality" placeholder="Nationality">
+                <input type="text" name="nationality" placeholder="Nationality" required title="EX: Bulgarian , Ethiopian ,..">
 
-                <input type="date" class="Input_Number" name="dateOfBirth" placeholder="Date of Birth">
+                <input type="date" class="Input_Number" name="dateOfBirth" placeholder="Date of Birth" required title="EX:Month/Day/Year">
 
-                <input type="number" class="Input_Number" name="phoneNumber" placeholder="Phone Number">
+                <input type="number" class="Input_Number" name="phoneNumber" placeholder="Phone Number" required title="EX:01236879841" >
 
-                <input type="number" class="Input_Number" name="HomeNumber" placeholder="Home Number">
+                <input type="number" class="Input_Number" name="HomeNumber" placeholder="Home Number"  required title="EX:01236879841" >
 
-                <input type="number" class="Input_Number" name="ssn" placeholder="SSN">
+                <input type="number" class="Input_Number" name="ssn" placeholder="SSN"  required title="EX:27925425492572">
 
                 <input type="button" name="backE" id="backE" value="Get Back">      
 
@@ -414,7 +422,7 @@
                 <h2 class="Form_Title">  Address Information </h2>
                 <h3 class="Form_Subtitle"> Step 2 </h3>
 
-                <input type="text" name="region" placeholder="Region">
+                <input type="text" name="region" placeholder="Region"  required title="EX:Giza , Heliopolis ,...">
 
                 <input type="text" name="streetName" placeholder="Street Name">
 
@@ -459,14 +467,14 @@
                 </select>
 
                 C.V:
-                <input id="C.V" type="file" name="cv">
+                <input id="C.V" type="file" name="cv" onBlur="alertCV()">
 
                 <textarea rows="4" cols="50" name="skills">Skills</textarea>
 
                 <input type="number" class="Input_Number" name="bankAccount" placeholder="Bank Account">
 
                 Medical Test:
-                <input id="MedicalTest" type="file" name="medicalTest">
+                <input id="MedicalTest" type="file" name="medicalTest" onBlur="alertMedic()">
                 
                 <input type="button" name="PreviousEmployee" class="PreviousEmployee" value="Previous" >
 
@@ -479,7 +487,7 @@
                 <h2 class="Form_Title">  Account Information </h2>
                 <h3 class="Form_Subtitle">Final Step </h3>
 
-                <input type="text" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
+                <input type="email" name="email" id="email" placeholder="Email" onBlur="checkAvailability()">
                 <div id="msg"></div>
 
                 <input type="password" name="password" placeholder="Password">

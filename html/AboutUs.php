@@ -49,28 +49,28 @@
     </div>
     <div class="Middle_Of_Page">
     <img id="Kids_Pictures" src="../pictures/kids1.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Activities:</b></P>
+    <p class="whiteBox" ><b>Activities:</b></P>
     <p1 >Kids have to use their energy in useful way.</P1>
     
     
     <img id="Kids_Pictures" src="../pictures/kids3.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Socialization:</b></P>
+    <p class="whiteBox" ><b>Socialization:</b></P>
     <p3>We improve the kids communication skills.</P3>
     
     <img id="Kids_Pictures" src="../pictures/kids4.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Learning and gaining confidence:</b></P>
+    <p class="whiteBox" ><b>Learning and gaining confidence:</b></P>
     <p5>We insist to deliver the information clearly.</P5>
     
     <img id="Kids_Pictures" src="../pictures/kids5.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Fun time:</b></P>
+    <p class="whiteBox" ><b>Fun time:</b></P>
     <p7>Making sure that the kids enjoy their time.</P7>
     
     <img id="Kids_Pictures" src="../pictures/kids6.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Class picture:</b></P>
+    <p class="whiteBox" ><b>Class picture:</b></P>
     <p9>Nice way to express our harmony together.</P9>
     
     <img id="Kids_Pictures" src="../pictures/kids7.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Lunch break time:</b></P> 
+    <p class="whiteBox" ><b>Lunch break time:</b></P> 
     <p11>Healthy meal to improve the kids progress.</P11>
     </div>
     
