@@ -277,29 +277,29 @@
                 <li> Work Information </li>
                 <li> Account Information </li>
             </ul>
-            <form  method="post">
+            <form id="Parent_Form" method="post" onsubmit="return validate_all('results');">
                 <fieldset>
                     <h2 class="Form_Title">  Personal Information </h2>
                     <h3 class="Form_Subtitle">Step 1 </h3>
-                    <input type="text" name="firstName" placeholder="First name" >
+                    <input type="text" name="firstName" placeholder="First name" maxlength="25"  id="FirstName" onKeyUp="updatelength('FirstName', 'FirstName_length')"><br /><div id="FirstName_length"></div> 
 
-                    <input type="text" name="lastName" placeholder="Last name">
+                    <input type="text" name="lastName" placeholder="Last name" maxlength="25" id="LastName" onKeyUp="updatelength('LastName', 'LastName_length')"><br /><div id="LastName_length"></div> 
 
-                    <input type="text" name="familyName" placeholder="Family Name">
-                    
+                    <input type="text" name="familyName" placeholder="Family Name" maxlength="25" id="Family_Name" onKeyUp="updatelength('Family_Name', 'Family_Name_length')"><br /><div id="Family_Name_length"></div> 
+ 
                     <input type="radio" name="gender" value="Male"> Male 
 
                     <input  type="radio" name="gender" value="Female"> Female 
 
-                    <input type="text" name="nationality" placeholder="Nationality">
+                    <input type="text" name="nationality" placeholder="Nationality" maxlength="25" id="Nationality" onKeyUp="updatelength('Nationality', 'Nationality_length')"><br /><div id="Nationality_length"></div> 
 
-                    <input type="date" name="dateOfBirth" placeholder="Date of Birth">
+                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" > 
 
-                    <input type="number" name="phoneNumber" placeholder="Phone Number">
+                    <input type="number" name="phoneNumber" placeholder="Phone Number" maxlength="25" id="phoneNumber" onKeyUp="updatelength('phoneNumber', 'phoneNumber_length')"><br /><div id="Nationality_length"></div> 
 
-                    <input type="number" name="homeNumber" placeholder="Home Number">
+                    <input type="number" name="homeNumber" placeholder="Home Number" maxlength="25" id="Nationality" onKeyUp="updatelength('Nationality', 'Nationality_length')"><br /><div id="phoneNumber_length"></div> 
 
-                    <input type="number" name="ssn" placeholder="SSN">
+                    <input type="number" name="ssn" placeholder="SSN" maxlength="25" id="SSN" onKeyUp="updatelength('SSN', 'SSN_length')"><br /><div id="SSN_length"></div>
                     
                     <input type="button" name="backP" id="backP" value="Get Back">    
 
@@ -362,6 +362,11 @@
 
                 </fieldset>
 
+        </form>
+
+        <form action="../php/registration.php" method="post">
+        <input type="hidden" name="login" value="{login}">
+        
         </form>
 
     </div>
