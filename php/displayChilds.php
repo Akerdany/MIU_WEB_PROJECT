@@ -324,7 +324,7 @@
             font-size:15px;
             display: inline-block;
         } 
-        #addChild_Button , #editChild_Button
+        #addChild_Button , #editChild_Button , #Add_Child
         {
             background-color: bisque;
             color: black;
@@ -339,7 +339,7 @@
             cursor: pointer;
             width: 20;
         }
-        #addChild_Button:hover ,  #editChild_Button:hover /*when standing on the buttons*/
+        #addChild_Button:hover ,  #editChild_Button:hover  , #Add_Child:hover /*when standing on the buttons*/
         {
             background-color:linen;
             opacity: 2.5;
