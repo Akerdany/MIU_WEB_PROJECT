@@ -55,6 +55,8 @@ function displayAppointmentDetails($conn,$toUserId)
             </div>
             <div class="modal-body">
               <p>"'.$row['InvitationDate'].'"</p>
+              <p>The nursery invite you
+              </p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -72,7 +74,7 @@ function displayAppointmentInvitation($conn,$toUserId)
    FROM user INNER JOIN messagetest
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
-   AND messagetest.message='Interview For Child'
+   WHERE messagetest.message='Interview For Child'
    ";
   $resultDisplayInvitationDetails= mysqli_query($conn,$sqlDisplayInvitationDetails);
 
@@ -97,7 +99,10 @@ function displayAppointmentInvitation($conn,$toUserId)
               <h4 class="modal-title">Interview Details</h4>
             </div>
             <div class="modal-body">
-              <p>"'.$row['InvitationDate'].'"</p>
+              <p>"'.$row['InvitationDate'].'"
+              </p><br>
+              <p>The nursery invite your child
+              </p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
