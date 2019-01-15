@@ -45,7 +45,7 @@
                 $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
             }
             
-            echo $_SESSION["toChildId"];    
+            //echo $_SESSION["toChildId"];    
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
