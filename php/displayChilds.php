@@ -163,7 +163,7 @@
                             //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
                             echo"<td><input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'><td>";   
-
+                            echo"<td><input type='submit' id='Get_Back_Comment' name='Get_Back_Comment'  form='formDisplayChilds' value='Get Back'><td>";   
                             echo "</tr>";
                         }
                     }
@@ -257,6 +257,7 @@
                 $commentID = $_POST['checkbox'];
                 foreach ($commentID as $keys => $value){
                     $_SESSION["toChildId"]= $value;
+                    ////erase this echo
                     echo $_SESSION["toChildId"];
                 }
             }
@@ -265,6 +266,12 @@
                 echo"Please select an account to send a comment";
             }
             //commenting section ended 
+            //get back from comments
+            if(isset($_POST['Get_Back_Comment']))
+            {
+                $_SESSION["toChildId"]= 0;
+            }
+            //get back section ended (get back from comments)
             if(isset($_POST['Delete_Child'])){
 
                 if (isset($_POST['checkbox'])){
