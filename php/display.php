@@ -11,10 +11,6 @@
             } 
         </script>
 
-    <form name="search" action="" id="search" method="post">
-        <input  id="Search_Textfield"type="text" name="searchBar" >
-        <input id="Search_Button" type="submit" id="submit" name="submit" value="Search" onclick="search()"><br><br>
-    </form>    
 header("location:javascript://history.go(-1)");
 <style>
         body
@@ -64,3 +60,5 @@ header("location:javascript://history.go(-1)");
             opacity: 2.5;
         } 
 </style>
+
+
