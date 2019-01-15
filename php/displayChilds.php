@@ -34,10 +34,10 @@
             require("sidebar.php");
             
             $sql="SELECT * FROM child";
-            if($_SESSION["toChildId"]!=0)
-            {
-                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
-            }
+            // if($_SESSION["toChildId"]!=0)
+            // {
+            //     $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+            // }
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){

@@ -27,7 +27,7 @@
             $_SESSION["ssn"] = $row["ssn"];
             $_SESSION["statusId"] = $row["statusId"];
             $_SESSION["typeId"] = $row["typeId"];
-            $_SESSION["childId"] = 0;
+            $_SESSION["toChildId"] = 0;
             $_SESSION["toUserId"] = 0;
 
             //If the user is an employee or a manager:
