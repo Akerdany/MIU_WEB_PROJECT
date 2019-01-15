@@ -14,6 +14,6 @@ function checkFounded(){
             });
     }
     setTimeout(function(){
-      location.assign("../MIU_Web_Project/php/messages.php");
+      location.assign("../php/messages.php");
 
     },10000);
