@@ -36,12 +36,13 @@
             session_start();
             require("Database_Connection.php");
             require("sidebar.php");
+           // 
             
-            $sql="SELECT * FROM child";
+                 $sql="SELECT * FROM child";
             if($_SESSION["toChildId"]!=0)
             {
-                 
-                //$sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+                
+                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
             }
             
             echo $_SESSION["toChildId"];    
@@ -116,7 +117,7 @@
                     echo"<button id='editChild_Button' name='editChild_Button' type='button' onclick='redirect2();'>Edit a Child</button>";                                     
                 }
                 else{
-                    echo"<form method='post' action=''>";
+                    echo"<form id='formDisplayChilds' method='post' action=''>";
                     if($_SESSION["typeId"] == 1){
                         echo"<button id='Add_Child' name='Add_Child' type='button' onclick='redirect();'>Add Another Child</button>";   
                         // echo "<input type='submit' id='Add_Child' name='Add_Child' value='Add Child' onclick='redirect()'>";
@@ -161,7 +162,7 @@
                             
                             //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
-                            echo"<td><button  type='button' onclick='redirect3();'>Comment</button><td>";   
+                            echo"<td><input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'><td>";   
 
                             echo "</tr>";
                         }
@@ -234,7 +235,11 @@
                 printf("Errormessage: %s\n", mysqli_error($conn));
             }
             if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
+                if($_SESSION["toChildId"]!=0)
+            {
+
                 include 'Comments.php';
+            }
             }
             ////////////////////////////////////////////////////////editing this ///////////////////////////////
            // $_SESSION["toChildId"]=
@@ -243,6 +248,23 @@
         ?>
 
         <?php
+        //commenting section
+        if(isset($_POST['Comment_Child'])){
+
+            if (isset($_POST['checkbox'])){
+            
+                $count = 0;
+                $commentID = $_POST['checkbox'];
+                foreach ($commentID as $keys => $value){
+                    $_SESSION["toChildId"]= $value;
+                    echo $_SESSION["toChildId"];
+                }
+            }
+        }
+            else{
+                echo"Please select an account to send a comment";
+            }
+            //commenting section ended 
             if(isset($_POST['Delete_Child'])){
 
                 if (isset($_POST['checkbox'])){
@@ -271,7 +293,8 @@
                 else{
                     echo"Error occured";
                 }
-            }            
+            }     
+                   
         ?>
     </body>
     <style>
