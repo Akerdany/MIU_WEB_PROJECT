@@ -41,7 +41,7 @@
                  $sql="SELECT * FROM child";
             if($_SESSION["toChildId"]!=0)
             {
-       
+                
                 $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
             }
             
@@ -235,7 +235,11 @@
                 printf("Errormessage: %s\n", mysqli_error($conn));
             }
             if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
+                if($_SESSION["toChildId"]!=0)
+            {
+
                 include 'Comments.php';
+            }
             }
             ////////////////////////////////////////////////////////editing this ///////////////////////////////
            // $_SESSION["toChildId"]=
