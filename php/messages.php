@@ -157,8 +157,8 @@ function getMessages($conn,$toUserId)
  if(isset($_POST['Send_Appointment']))
  {
    $_SESSION['SETPOST']=true;
-   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`)
-   VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfAppointment"].'",0)
+   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`,`toChildId`)
+   VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfAppointment"].'",0,4)
    ';
    if(mysqli_query($conn,$sqlInvitation))
    {
@@ -172,9 +172,10 @@ function sendInvitation($conn,$toUserId)
  {
  if(isset($_POST['Send_Invitation']))
  {
+  $_SESSION["toChildId"] = $_GET['id'];
    $_SESSION['SETPOST']=true;
-   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`)
-   VALUES ("","Interview For Child","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfInvitation"].'",0)
+   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`,`toChildId`)
+   VALUES ("","Interview For Child","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfInvitation"].'",0,"'.$_SESSION["toChildId"].'")
    ';
    if(mysqli_query($conn,$sqlInvitation))
    {

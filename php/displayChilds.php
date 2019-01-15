@@ -169,7 +169,9 @@
                             mysqli_query($conn, $age);
                             echo"<td><input type='submit' id='Get_Back_Comment' name='Get_Back_Comment'  form='formDisplayChilds' value='Get Back'><td>";   
                             if($age>=5){
-                                print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
+                                print '<td><center><a href="messages.php?id='.$row['id'].'">send Interview</a></center></td>';
+                                
+                                
                             }   
                             else{
                                 echo"<td>Below 5 years</td>";
