@@ -51,24 +51,24 @@
     <img id="Kids_Pictures" src="../pictures/kids1.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Activities:</b></P>
     <p1 >Kids have to use their energy in useful way.</P1>
-    <p2>Next</P2>
+    
     
     <img id="Kids_Pictures" src="../pictures/kids3.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Socialization:</b></P>
     <p3>We improve the kids communication skills.</P3>
-    <p4>Next</P4>
+    
     <img id="Kids_Pictures" src="../pictures/kids4.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Learning and gaining confidence:</b></P>
     <p5>We insist to deliver the information clearly.</P5>
-    <p6>Next</P6>
+    
     <img id="Kids_Pictures" src="../pictures/kids5.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Fun time:</b></P>
     <p7>Making sure that the kids enjoy their time.</P7>
-    <p8>Next</P8>
+    
     <img id="Kids_Pictures" src="../pictures/kids6.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Class picture:</b></P>
     <p9>Nice way to express our harmony together.</P9>
-    <p10>Next</P10>
+    
     <img id="Kids_Pictures" src="../pictures/kids7.jpg" alt="kids" height="500" width="900"> 
     <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Lunch break time:</b></P> 
     <p11>Healthy meal to improve the kids progress.</P11>
@@ -111,51 +111,31 @@ p1
     float:left ;
     margin-top:-12%;
 }
-p2
-{
-    float:left ;
-    margin-top:-1%;
-}
+
 p3
 {
     float:left ;
     margin-top:-12%;
 }
-p4
-{
-    float:left ;
-    margin-top:-1%;
-}
+
 p5
 {
     float:left ;
     margin-top:-12%;
 }
-p6
-{
-    float:left ;
-    margin-top:-1%;
-}
+
 p7
 {
     float:left ;
     margin-top:-12%;
 }
-p8
-{
-    float:left ;
-    margin-top:-1%;
-}
+
 p9
 {
     float:left ;
     margin-top:-12%;
 }
-p10
-{
-    float:left ;
-    margin-top:-1%;
-}
+
 p11
 {
     float:left ;

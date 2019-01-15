@@ -74,10 +74,16 @@
           margin: 1px 2px;
        
           position: relative;
-          bottom: -390px;
+          left: -210px;
+          bottom: -425px;
           border: 3px solid  white;
 
         }
+        p1
+{
+    float:left ;
+    margin-top:50%;
+}
         
         .fa:hover {
             opacity: 0.7;
