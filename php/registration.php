@@ -52,21 +52,7 @@
                     }
                 });
         }
-
-        function Validation() 
-        {
-        var inpObj = document.getElementById("FirstName");
-        if (!inpObj.checkValidity()) 
-        {
-            document.getElementById("test").innerHTML = inpObj.validationMessage;
-        } else 
-        {
-            document.getElementById("test").innerHTML = "Input empty";
-        }
-        } 
-
-      
-       
+  
     </script>
 
     <meta charset="utf-8">
@@ -266,7 +252,7 @@
 
         mysqli_close($conn);
         ?>
-
+        
        
     <div id="choice" class="choice">
 
@@ -296,29 +282,29 @@
                 <fieldset>
                     <h2 class="Form_Title">  Personal Information </h2>
                     <h3 class="Form_Subtitle">Step 1 </h3>
-                    <input type="text" name="firstName" placeholder="First name" id="FirstName" >
+                    <input type="text" name="firstName" placeholder="First name" id="FirstName" required title="EX: Alfred">  
 
-                    <input type="text" name="lastName" placeholder="Last name" >
+                    <input type="text" name="lastName" placeholder="Last name" required title="EX:Mohaned"> 
 
-                    <input type="text" name="familyName" placeholder="Family Name" >
+                    <input type="text" name="familyName" placeholder="Family Name" required title="EX:Elbechbechy">
  
                     <input type="radio" name="gender" value="Male"> Male 
 
                     <input  type="radio" name="gender" value="Female"> Female 
 
-                    <input type="text" name="nationality" placeholder="Nationality" > 
+                    <input type="text" name="nationality" placeholder="Nationality" required title="EX:Egyptian , Algerian ,.."> 
 
-                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" > 
+                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" required title="EX:Month/Day/Year">
 
-                    <input type="number" name="phoneNumber" placeholder="Phone Number" > 
+                    <input type="number"  class="Input_Number" name="phoneNumber" placeholder="Phone Number" required title="EX:012365245681" > 
 
-                    <input type="number" name="homeNumber" placeholder="Home Number"> 
+                    <input type="number"  class="Input_Number" name="homeNumber" placeholder="Home Number" required title="EX:02-25425246"> 
 
-                    <input type="number" name="ssn" placeholder="SSN" >
+                    <input type="number" class="Input_Number" name="ssn" placeholder="SSN" required title="EX:2954413655254429">
                     
                     <input type="button" name="backP" id="backP" value="Get Back">    
 
-                    <input type="button" name="Next" class="Next" value="Next" onclick="Validation()">
+                    <input type="button" name="Next" class="Next" value="Next">
 
                 </fieldset>
 
@@ -330,17 +316,17 @@
 
                     <input type="text" name="streetName" placeholder="Street Name">
 
-                    <input type="number" name="buildingNumber" placeholder="Building Number">
+                    <input type="number"  class="Input_Number" name="buildingNumber" placeholder="Building Number">
 
-                    <input type="number" name="flatNumber" placeholder="Flat Number">
+                    <input type="number"  class="Input_Number" name="flatNumber" placeholder="Flat Number">
 
-                    <input type="number" name="apartmentNumber" placeholder="Apartment Number">
+                    <input type="number"  class="Input_Number" name="apartmentNumber" placeholder="Apartment Number">
 
-                    <input type="number" name="postalCode" placeholder="Postal Code">
+                    <input type="number"  class="Input_Number" name="postalCode" placeholder="Postal Code">
 
-                    <input type="button" name="Previous" class="Previous" value="Previous" >
+                    <input type="button"  class="Input_Number" name="Previous" class="Previous" value="Previous" >
 
-                    <input type="button" name="Next" class="Next" value="Next" >
+                    <input type="button"  class="Input_Number" name="Next" class="Next" value="Next" >
 
 
                 </fieldset>
@@ -350,9 +336,9 @@
                     <h3 class="Form_Subtitle"> Step 3 </h3>
                     <input type="text" name="workPosition" placeholder="Work Position">
 
-                    <input type="text" name="workPlace" placeholder="Work Residence">
+                    <input type="text"  name="workPlace" placeholder="Work Residence">
 
-                    <input type="number" name="workNumber" placeholder="Work Number">
+                    <input type="number"  class="Input_Number" name="workNumber" placeholder="Work Number">
 
                     <input type="button" name="Previous" class="Previous" value="Previous" >
 
@@ -367,7 +353,7 @@
                     <input type="email" name="email"  attr.id="email" placeholder="Email" onBlur="checkAvailability()"><br>
                     <div id="msg"></div>
 
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password"  name="password" placeholder="Password">
 
                     <input type="password" name="confirmPassword" placeholder="Confirm Password">
 
@@ -376,18 +362,6 @@
                     <input type="submit" name="registerParent" value="register">
 
                 </fieldset>
-
-        </form>
-
-        <form action="../php/registration.php" method="post">
-        <input type="hidden" name="firstName" value="{firstName}">
-        <input type="hidden" name="lastname" value="{lastname}">
-        <input type="hidden" name="familyname" value="{familyname}"> 
-        <input type="hidden" name="nationality" value="{nationality}"> 
-        <input type="hidden" name="phonenumber" value="{phonenumber}">
-        <input type="hidden" name="homenumber" value="{homenumber}">
-        <input type="hidden" name="nationality" value="{nationality}"> 
-        <input type="hidden" name="ssn" value="{ssn}">
 
         </form>
 
@@ -667,79 +641,14 @@ $(".registerParent").click(function(){
 })
       </script>
 
-      <!--/////////////////////////////////////////////////////////////////////////-->
-      <style>
-          form {
-02
-	    background-color: #555;
-03
-	    display: block;
-04
-	    padding: 15px;
-05
-	}
-06
-	input[type=text], input[type=submit] {
-07
-	    -moz-border-radius: 2px;
-08
-	    -ms-border-radius: 2px;
-09
-	    -o-border-radius: 2px;
-10
-	    -webkit-border-radius: 2px;
-11
-	    border-radius: 2px;
-12
-	}
-13
-	input[type=text], input[type=password], select {
-14
-	    background-color: rgb(246, 254, 231);
-15
-	    border-color: rgb(180, 207, 94);
-16
-	    border-style: solid;
-17
-	    border-width: 1px;
-18
-	    font-size: 16px;
-19
-	    height: 25px;
-20
-	    margin-right: 10px;
-21
-	    width: 200px;
-22
-	}
-23
-	input[type=submit]{
-24
-	    cursor: pointer;
-25
-	    font-size: 16px;
-26
-	    height: 35px;
-27
-	    padding: 5px;
-28
-	}
-29
-	input.wrong {
-30
-	    border-color: rgb(180, 207, 94);
-31
-	    background-color: red;
-32
-	}
-33
-	input.correct {
-34
-	    border-color:green);
-35
-	    background-color: rgb(220, 251, 164);
-36
-	}
-      </style>
+<style>
+/* webkit deh bt-remove el arrows up and down */
+    .Input_Number::-webkit-inner-spin-button, 
+    .Input_Number::-webkit-outer-spin-button
+    { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+    </style>
 
 </html>
