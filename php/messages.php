@@ -246,6 +246,7 @@ function displayResult2($conn,$toUserId)
   {
   //include 'sendInvitation.php';
  // if($_SESSION['SETPOST']==true){
+  if ($_SESSION['typeId']==1){
   echo"<form id='formSendAppointment' method='post' action=''>";
   echo'<input type="date" name="dateOfAppointment" placeholder="Date of Appointment" >'; 
   echo"<td><input type='submit' id='Send_Appointment' name='Send_Appointment'  form='formSendAppointment' value='Send Appointment'><td>";
@@ -253,7 +254,9 @@ function displayResult2($conn,$toUserId)
   // echo' <button type="button"  name="sendInvitation" 
   //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
       echo"</form>";
+  }
  // }
+ if ($_SESSION['typeId']==1){
   echo"<form id='formSendInvitation' method='post' action=''>";
   echo'<input type="date" name="dateOfInvitation" placeholder="Date of Invitation" >'; 
   echo"<td><input type='submit' id='Send_Invitation' name='Send_Invitation'  form='formSendInvitation' value='Send Invitation'><td>";
@@ -261,6 +264,7 @@ function displayResult2($conn,$toUserId)
   // echo' <button type="button"  name="sendInvitation" 
   //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
       echo"</form>";
+ }
   //echo $_SESSION['SETPOST'];
   displayAppointmentInvitation($conn,$toUserId);
   displayAppointmentDetails($conn,$toUserId);
@@ -330,7 +334,7 @@ if (isset($_SESSION['username']))
   displayResult1();
   else if($_SESSION['toUserId']!=0){
     $toUserId= $_SESSION['toUserId'];
-    
+    if ($_SESSION['typeId']==1)
    echo '<a href="displaychilds.php">choose child</a>';
   displayResult2($conn,$toUserId);
   sendInvitation($conn,$toUserId);
