@@ -24,6 +24,10 @@
         {
             window.location = "editChild.php";
         }
+        function redirect3()
+        {
+            window.location="displayChilds.php"
+        }
         </script>
     </head>
 
@@ -36,9 +40,11 @@
             $sql="SELECT * FROM child";
             if($_SESSION["toChildId"]!=0)
             {
-                echo $_SESSION["toChildId"];
+                 
                 //$sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
             }
+            
+            echo $_SESSION["toChildId"];    
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) > 0){
@@ -151,10 +157,12 @@
                            
                             //to comment on one child
 
-                            $_SESSION["toChildId"] =$row['id'];
+                            
                             
                             //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
+                            echo"<td><button  type='button' onclick='redirect3();'>Comment</button><td>";   
+
                             echo "</tr>";
                         }
                     }
@@ -200,7 +208,10 @@
                                 echo "<td>" .$row['medicalProblems']. "</td>";
                                 echo "<td>".$row['disability']."</td>";
                                 echo "<td>".$row['userId']."</td>";
+                               
+                                
                                 echo "</tr>";
+                                
                             }
                         }
                     }
@@ -225,7 +236,9 @@
             if($_SESSION["typeId"] == 1 || $_SESSION["typeId"] == 3){
                 include 'Comments.php';
             }
-
+            ////////////////////////////////////////////////////////editing this ///////////////////////////////
+           // $_SESSION["toChildId"]=
+           
             //mysqli_close($conn);    
         ?>
 

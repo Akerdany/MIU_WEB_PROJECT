@@ -156,6 +156,7 @@
                         $count = 0;
                         $ActID = $_POST['checkbox'];
 		                foreach ($ActID as $keys => $value){
+                              
                             $ActSql = "UPDATE user SET statusId='2' WHERE id = $value";
                             
                             if(mysqli_query($conn,$ActSql)){
