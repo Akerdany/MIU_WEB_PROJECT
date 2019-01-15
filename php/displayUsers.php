@@ -32,7 +32,7 @@
             function search(){
                 jQuery.ajax({
                     url: "display.php",
-                    data: 'search='+$("#search").val(),
+                    data: 'search='+$("#Search_Textfield").val(),
                     type: "POST",
                     success: function(data){
                         $("#result").html(data);
