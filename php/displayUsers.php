@@ -59,7 +59,7 @@
             <button id="search" name="search">Start Search</button>
 
             <?php
-                require_once("Database_Connection.php");
+                require("Database_Connection.php");
 
                 $sql = "select * from user";
                 $result = mysqli_query($conn,$sql);
@@ -116,8 +116,27 @@
                             echo "<td>" .$r1['typeName']. "</td>";
                         }
                         if($row['typeId']==3){
-                            print '<td><center><a href="download.php?id='.$row['cvId'].'" >Download</a></center></td>';
-                            print '<td><center><a href="download.php?id='.$row['medicalTestId'].'" >Download</a></center></td>';
+                            $down = mysqli_query($conn,"SELECT * FROM employee WHERE userId='".$row["id"]."'");
+                            if($r1 = mysqli_fetch_array($down)){
+                                if($r1['cvId']==1){
+                                    echo"<td>None</td>";
+                                }
+                                else{
+                                    print '<td><center><a href="download.php?id='.$r1['cvId'].'" >Download</a></center></td>';
+                                }
+
+                                if($r1['medicalTestId']==1){
+                                    echo"<td>None</td>";
+                                }
+                                else{
+                                    print '<td><center><a href="download.php?id='.$r1['medicalTestId'].'" >Download</a></center></td>';    
+                                }
+
+                            }
+                            else{
+                                echo"<td>Error</td>";
+                                echo"<td>Error</td>";    
+                            }
                         }
                         else{
                             echo"<td> </td>";
