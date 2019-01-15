@@ -37,7 +37,7 @@
             $first = $_POST['firstName'];
             $last = $_POST['lastName'];
             $pass = $_POST['password'];
-            $id = $_SESSION['id'];
+            $id = $_SESSION['userId'];
 
             mysqli_query($conn, "UPDATE user SET firstName='$first', lastName='$last', password='$pass' WHERE id='$id'");
 
