@@ -138,6 +138,8 @@
                         <th>Parent Name</th>
                         <th>Edit</th>
                         <th>Comment</th>
+                        <th>Comment Button</th>
+                        <th>Send Appoinment</th>
                         </tr>";
 
                     //if the user is a Manager he'll see all the children in the nursery
@@ -162,8 +164,16 @@
                             
                             //ends (to comment on one child)
                             print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
-                            echo"<td><input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'><td>";   
+                            echo"<td><input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'><td>";
+                            $age="SELECT TIMESTAMPDIFF(YEAR, '".$row['dateOfBirth']."', NOW()) AS age";
+                            mysqli_query($conn, $age);
                             echo"<td><input type='submit' id='Get_Back_Comment' name='Get_Back_Comment'  form='formDisplayChilds' value='Get Back'><td>";   
+                            if($age>=5){
+                                print '<td><center><a href="editChild.php?id='.$row['id'].'">Edit</a></center></td>';
+                            }   
+                            else{
+                                echo"<td>Below 5 years</td>";
+                            }
                             echo "</tr>";
                         }
                     }
