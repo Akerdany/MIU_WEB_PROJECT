@@ -46,6 +46,35 @@
         else if(isset($_POST['deleteAccount'])){
             header("Location: deleteAccount.php");
         }
+        
+        else if(isset($_POST['newPass'])){
+            
+            $oldPass = $_POST['oldPassword'];
+            $newPassword = $_POST['newPassword'];
+            $confirmNewPassword = $_POST['confirmNewPassword'];
+
+            if($oldPass == $_SESSION['password']){
+                if($newPassword == $confirmNewPassword){
+                    $query = "UPDATE user SET password='$newPassword' WHERE id='$id'";
+                    
+                    if(mysqli_query($conn, $query)){
+                        $_SESSION['password']=$newPassword;
+                        header("Location: ../html/Welcome_Page.php");
+                    }
+                    else{
+                        echo"Error occured";
+                    }
+                }
+                else{
+                    echo"Error occured";
+                }
+            }
+            else{
+                echo"Error occured";
+            }
+
+        }
+        
         mysqli_close($conn);
     ?>
 
@@ -61,7 +90,7 @@
             <b> Confirm New Password: </b>
             <input type="password" name="confirmNewPassword" placeholder="Confirm New Password"><br>
 
-            <input id="Change_Password_Button"type="submit" name="newPass" value="Change Password">
+            <input id="Change_Password_Button" type="submit" name="newPass" value="Change Password">
     
         </form>
         <button id='getBack' name='getBack' type='button'>Get Back</button><br>
@@ -92,9 +121,6 @@
             
             <b> Phone Number: </b>
             <input type="number" name="lastName" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number"><br>
-
-            <b> SSN: </b>
-            <input type="number" name="lastName" value="<?php echo $_SESSION["ssn"];?>" placeholder="SSN"><br>
 
             <b> Email: </b>
             <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
@@ -127,7 +153,7 @@ body
     width: 40%;
 	position: static; 
 }
-#Edit_Account_Form input  /*inside text fields colors*/
+#Edit_Account_Form input, #editPassword   /*inside text fields colors*/
 {
     padding: 15px;
     top:100px;

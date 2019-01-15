@@ -13,51 +13,80 @@
         <?php
             session_start();
             require_once("Database_Connection.php");
-
+            $check = 0;
+            echo $_SESSION['userId'];
             if(isset($_POST['submit'])){
-                if($_SESSION['password']==$_POST['password']   )
-                {
-                    if($_POST['password']==$_POST['confirmPassword'] )
-                    {
-                    $sql="DELETE user ";
-                    if( $_SESSION["typeId"] == 2   )
-                     {
-                       $sql=$sql." ,address,parent,child FROM user INNER JOIN address INNER JOIN parent INNER JOIN child
-                       ON user.id=address.userId AND address.userId=parent.userId AND parent.userId=child.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
-                     }
-                     else if( $_SESSION["typeId"] == 3 )
-                     {
-                        if( $_SESSION["departmentId"] == 8){
-                       $sql=$sql." ,address,employee,uploads,subject FROM user INNER JOIN address INNER JOIN employee INNER JOIN subject  INNER JOIN uploads  
-                       ON user.id=address.userId AND address.userId=employee.userId AND employee.userId=subject.userId AND subject.userId=uploads.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
-                    }
-                    else
-                    {
-                        $sql=$sql." ,address,employee,uploads FROM user INNER JOIN address INNER JOIN employee   INNER JOIN uploads  
-                        ON user.id=address.userId AND address.userId=employee.userId AND employee.userId=uploads.userId WHERE user.email='".$_SESSION['email']."' AND user.password='".$_SESSION['password']."'";
-                     
-                    }
-                     }
-                    
-                 
-                    mysqli_query($conn,$sql);
-                    echo"Account deleted";
 
-                    if(mysqli_close($conn)){
-                        session_destroy();
-                        header("location:../html/Welcome_Page.php");
+                if($_SESSION['password']==$_POST['password']){
+
+                    if($_POST['password']==$_POST['confirmPassword']){
+
+                        $sqlAdd="DELETE FROM address WHERE userId = '".$_SESSION['userId']."' ";
+                        if(mysqli_query($conn,$sqlAdd)){
+
+                            if($_SESSION['typeId']==2){
+
+                                $sqlParent="DELETE FROM parent WHERE userId = '".$_SESSION['userId']."' ";
+                                if(mysqli_query($conn,$sqlParent)){
+
+                                    //Check if there a children for this account first:
+                                    $child="SELECT * FROM child WHERE userId='".$_SESSION['userId']."'";
+                                    if(mysqli_num_rows($child)>0){ 
+
+                                        $sqlChild="DELETE FROM child WHERE userId = '".$_SESSION['userId']."' ";
+                                        if(mysqli_query($conn,$sqlChild)){
+                                            $check = 1;
+                                        }
+                                        else{
+                                            echo "ERROR: Could not able to execute $sqlChild. ". mysqli_error($conn);
+                                        }  
+                                    }
+                                    else if(mysqli_num_rows($child)==0){
+                                        $check = 1;
+                                    }          
+                                }
+                                else{
+                                    echo "ERROR: Could not able to execute $sqlParent. ". mysqli_error($conn);
+                                }            
+                            }
+                            else if($_SESSION['typeId']==3){
+
+                                $sqlEmp="DELETE FROM employee WHERE userId = '".$_SESSION['userId']."' ";
+                                if(mysqli_query($conn,$sqlEmp)){
+
+                                    $sqlUploads="DELETE FROM uploads WHERE userId = '".$_SESSION['userId']."' ";
+                                    if(mysqli_query($conn,$sqlUploads)){
+                                        $check = 1;
+                                    }
+                                    else{
+                                        echo "ERROR: Could not able to execute $sqlUploads. ". mysqli_error($conn);
+                                    }            
+                                }
+                                else{
+                                    echo "ERROR: Could not able to execute $sqlEmp. ". mysqli_error($conn);
+                                }        
+                            }
+                        }
+                        else{
+                            echo "ERROR: Could not able to execute $sqlAdd. ". mysqli_error($conn);
+                        }
+
+                        
+                        if($check==1){
+
+                            $lastSql="DELETE FROM user WHERE id = '".$_SESSION['userId']."' ";
+                            if(mysqli_query($conn,$sqlUploads)){
+                                session_destroy();
+                                header("location:../html/Welcome_Page.php");
+                            }
+                            else{
+                                echo "ERROR: Could not able to execute $lastSql. ". mysqli_error($conn);
+                            }
+                        }
                     }
                     else{
-                        echo "ERROR: Could not able to execute $sql. ". mysqli_error($conn);
+                        echo"Sorry, you have entered the password wrong<br>";
                     }
-                }
-                else
-                {
-                    echo"They are not equal<br>";
-                }
-                }
-                else{
-                    echo"Sorry, you have entered the password wrong<br>";
                 }
             }
             mysqli_close($conn);
