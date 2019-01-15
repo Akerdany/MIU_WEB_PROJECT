@@ -36,12 +36,12 @@
             session_start();
             require("Database_Connection.php");
             require("sidebar.php");
-            echo "<input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'>";
-            $sql="SELECT * FROM child";
+                 $sql="SELECT * FROM child";
             if($_SESSION["toChildId"]!=0)
             {
-                  
-                //$sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
+                echo "<input type='submit' id='Comment_Child' name='Comment_Child'  form='formDisplayChilds' value='Comment Child'>";
+       
+                $sql=$sql." WHERE  child.id='".$_SESSION['toChildId']."'";
             }
             
             echo $_SESSION["toChildId"];    
