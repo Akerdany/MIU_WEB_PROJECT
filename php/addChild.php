@@ -52,8 +52,8 @@
             <input type="text" name="name" placeholder="Child Name" required>
             Photo:
             <input type="file" name="photo" required>
-            <input type="radio" name="gender" value="Male"> Male 
-            <input type="radio" name="gender" value="Female"> Female 
+            <input type="radio" name="gender" value="Male" required> Male 
+            <input type="radio" name="gender" value="Female" required> Female 
             <input type="date" name="dateOfBirth" required>
             <input type="text" name="hobbies" placeholder="Hobbies" required>
             <input type="text" name="medicalProblem" placeholder="Medical Problems" required>
