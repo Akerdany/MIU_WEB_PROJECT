@@ -7,13 +7,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
         <!--bootstrtap links -->
-
-        
+   
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <script>
+            $(document).ready(function(){
+                $("#search").click(function(){
+                    $("#form").fadeOut("fast");
+                    $("#searchForm").fadeIn(3000);
+                });
+            });
+
+            $(document).ready(function(){
+                $("#getBack").click(function(){
+                    $("#searchForm").hide();
+                    $("#form").show("slow");
+                });
+            });
+
             function search(){
                 jQuery.ajax({
                     url: "displayUsers.php",
@@ -35,7 +48,15 @@
         ?>
         <div id="body" name="body">
             <br>
-            <button id="forward" name="forward"onclick="window.location.href='display.php'">Search</button>
+            <form name="searchForm" action="" id="searchForm" method="post" style="display:none;">
+                <input  id="Search_Textfield"type="text" name="searchBar" >
+                <input id="Search_Button" type="submit" id="submit" name="submit" value="Search" onclick="search()"><br><br>
+                <button id="getBack" name="getBack">Get Back</button>
+            </form>    
+
+            <!-- <button id="forward" name="forward" onclick="window.location.href='display.php'">Search</button> -->
+        <div id="form" name="form">    
+            <button id="search" name="search">Start Search</button>
 
             <?php
                 require_once("Database_Connection.php");
@@ -95,8 +116,8 @@
                             echo "<td>" .$r1['typeName']. "</td>";
                         }
                         if($row['typeId']==3){
-                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
-                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
+                            print '<td><center><a href="download.php?id='.$row['cvId'].'" >Download</a></center></td>';
+                            print '<td><center><a href="download.php?id='.$row['medicalTestId'].'" >Download</a></center></td>';
                         }
                         else{
                             echo"<td> </td>";
@@ -163,7 +184,56 @@
                 include 'Comments.php';
                 // mysqli_close($conn);    
             ?>
+            </div>
         </div>
     </body>
 
 </html>
+<style>
+        body
+        {
+            background-color:teal;
+        }
+        
+        .Table_Of_Users
+        {
+            background-color:linen;
+            border :5px solid black;
+            top:20px;
+            left:20px;
+            width:1520px;
+            height:static;
+            text-align:center;
+            font-size:15px;
+            float:left;
+        } 
+        #Search_Textfield
+        {
+            margin-left:600;
+            background: white;
+            border:1px solid black;
+            padding: 20px 30px;
+            width: 200px;
+            height:5px;
+        }
+        #Activate_Account , #Decline_Account, #search, #getBack
+        {
+            background-color: bisque;
+            color: black;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 50px ;
+            border:none;
+            margin-bottom:10px; 
+            margin-top:20px;
+            margin-left:50px;
+            cursor: pointer;
+            width: 200px;
+        }
+        #Activate_Account:hover ,  #Decline_Account:hover, #search:hover, #getBack:hover /*when standing on the buttons*/
+        {
+            background-color:linen;
+            opacity: 2.5;
+        } 
+</style>
