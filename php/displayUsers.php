@@ -13,9 +13,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-        <script src="main.js"></script>
-        
+        <script>
+            function search(){
+                jQuery.ajax({
+                    url: "displayUsers.php",
+                    data: 'search='+$("#Search_Textfield").val(),
+                    type: "POST",
+                    success: function(data){
+                        $("#result").html(data);
+                    }
+                });
+            } 
+        </script>
         
     </head>
 
@@ -26,10 +35,7 @@
         ?>
         <div id="body" name="body">
             <br>
-            <form name="search" action="" id="search" method="post">
-                <input  id="Search_Textfield"type="text" name="searchBar">
-                <input id="Search_Button" type="submit" id="submit" name="submit" value="Search"><br><br>
-            </form>    
+            <button id="forward" name="forward"onclick="window.location.href='display.php'">Search</button>
 
             <?php
                 require_once("Database_Connection.php");
@@ -38,7 +44,7 @@
                 $result = mysqli_query($conn,$sql);
 
                 if(mysqli_num_rows($result) > 0){
-                    echo"<form method='post' action=''>";
+                    echo"<form id='form' name='form' method='post' action=''>";
                     // echo "<input type='submit' id='Show_Account' name='Show_Account' value='Show Account'>";
                     echo "<input type='submit' id='Activate_Account' name='Activate_Account' value='Activate Account'>";
                     echo "<input type='submit' id='Decline_Account' name='Decline_Account' value='Decline Account'>";
@@ -60,6 +66,8 @@
                         <th>Account Status</th>
                         <th>SSN</th>
                         <th>Type of User</th>
+                        <th>CV</th>
+                        <th>Medical Test</th>
                         </tr>";
 
                     while($row = mysqli_fetch_array($result)){
@@ -85,6 +93,14 @@
                         $type = mysqli_query($conn,"SELECT * FROM type WHERE id='".$row["typeId"]."'");
                         if($r1 = mysqli_fetch_array($type)){
                             echo "<td>" .$r1['typeName']. "</td>";
+                        }
+                        if($row['typeId']==3){
+                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
+                            print '<td><center><a href="download.php?id='.$row['id'].'" >Download</a></center></td>';
+                        }
+                        else{
+                            echo"<td> </td>";
+                            echo"<td> </td>";
                         }
                         echo "</tr>";
                     }
@@ -151,51 +167,3 @@
     </body>
 
 </html>
-<style>
-        body
-        {
-            background-color:teal;
-        }
-        
-        .Table_Of_Users
-        {
-            background-color:linen;
-            border :5px solid black;
-            top:20px;
-            left:20px;
-            width:1520px;
-            height:static;
-            text-align:center;
-            font-size:15px;
-            float:left;
-        } 
-        #Search_Textfield
-        {
-            margin-left:600;
-            background: white;
-            border:1px solid black;
-            padding: 20px 30px;
-            width: 200px;
-            height:5px;
-        }
-        #Activate_Account , #Decline_Account
-        {
-            background-color: bisque;
-            color: black;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 15px 20px;
-            border-radius: 50px ;
-            border:none;
-            margin-bottom:10px; 
-            margin-top:20px;
-            margin-left:50px;
-            cursor: pointer;
-            width: 200px;
-        }
-        #Activate_Account:hover ,  #Decline_Account:hover /*when standing on the buttons*/
-        {
-            background-color:linen;
-            opacity: 2.5;
-        } 
-</style>

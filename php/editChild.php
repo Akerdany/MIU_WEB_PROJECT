@@ -80,7 +80,7 @@
             $medicalProblems=$_POST["medicalProblems"];
             $disability=$_POST["disability"];
             
-            // $previous = "javascript:history.go(-3)";
+            // $previous = "javascript:history.go(-1)";
 
             if(mysqli_query($conn, "UPDATE child SET name='$name', hobbies='$hobbies', medicalProblems='$medicalProblems', disability='$disability' WHERE id='$childId'")){
                 echo"Edit Done<br><br><br>";
