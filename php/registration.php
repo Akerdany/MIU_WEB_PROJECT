@@ -52,135 +52,7 @@
                     }
                 });
         }
-        //this functions checks the number of data enterdd into textfield 
-        function updatelength(field, output)
-        {
-	    curr_length = document.getElementById(field).value.length;
-	    field_mlen = document.getElementById(field).maxLength;
-	    document.getElementById(output).innerHTML = curr_length+'/'+field_mlen;
-	    return 1;
-	}
-        //this func is for email checking of smelling
-        function check_v_mail(field) {
-
-	    fld_value = document.getElementById(field).value;
-
-	    is_m_valid = 0;
-
-	    if (fld_value.indexOf('@') >= 1) {
-
-	        m_valid_dom = fld_value.substr(fld_value.indexOf('@')+1);
-
-	        if (m_valid_dom.indexOf('@') == -1) {
-
-	            if (m_valid_dom.indexOf('.') >= 1) {
-
-	                m_valid_dom_e = m_valid_dom.substr(m_valid_dom.indexOf('.')+1);
-
-	                if (m_valid_dom_e.length >= 1) {
-
-	                    is_m_valid = 1;
-
-	                }
-
-           }
-
-	        }
-
-	    }
-
-	    if (is_m_valid) {
-
-        update_css_class(field, 2);
-
-	        m_valid_r = 1;
-
-	    } else {
-
-	        update_css_class(field, 1);
-
-	        m_valid_r = 0;
-
-	    }
-
-	    return m_valid_r;
-
-	}
-
-    //this func for checking empty text fields
-    function valid_length(field) {
-    length_df = document.getElementById(field).value.length;
-
-	    if (length_df >= 1 && length_df <= document.getElementById(field).maxLength) {
-
-	        update_css_class(field, 2);
-
-	        ret_len = 1;
-
-	    } else {
-
-	        update_css_class(field, 1);
-
-	        ret_len = 0;
-
-	    }
-
-	    return ret_len;
-
-	}
-// this function is for coloring
-    function update_css_class(field, class_index) {
-
-	    if (class_index == 1) {
-	        class_s = 'wrong';
- } else if (class_index == 2) {
-        class_s = 'correct';
-	    }
-	    document.getElementById(field).className = class_s;
-	    return 1;
-	}
-
-// this function is for checking errors and outputs it 
-    function validate_all(output) {
-
-	    t1 = valid_length('firstname');
-
-	    t2 = valid_length('lastname');
-
-	    t3 = compare_valid('password', 'c_password');
-        t4 = check_v_mail('email');
-
-	    t5 = check_v_pass('password', 'pass_result');
-	    errorlist = '';
-
-	    if (! t1) {
-
-	        errorlist += 'first name is required';
-
-	    }
-
-	    if (! t2) {
-
-	        errorlist += 'last name is required />';
-
-	    }
-
-	    if (! t3) {
-
-	        errorlist += 'Passwords are not the same<br />';
-
-	    }
-
-	    if (! t4) {
-
-	        errorlist += 'Mail is wrong<br />';
-   }
-    if (errorlist) {
-        document.getElementById(output).innerHTML = errorlist;
-        return false;
-   }
-    return true;
-	}
+  
     </script>
 
     <meta charset="utf-8">
@@ -380,82 +252,8 @@
 
         mysqli_close($conn);
         ?>
-
-        <?php 
-        // set error reporting level
-        if (version_compare(phpversion(), '5.3.0', '>=') == 1)
-          error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-        else
-          error_reporting(E_ALL & ~E_NOTICE);
-        //session_start();
-        if (isset($_POST['submit'])) {
-            $sFirstname = escape($_POST['firstname']);
-            $sLastName = escape($_POST['lastname']);
-            $sfamilyname = escape($_POST['familyname']);
-            $sEmail = escape($_POST['email']);
-            $iGender = (int)$_POST['gender'];
-            $sErrors = '';
-            if (strlen($sFirstname) >= 1 and strlen($sFirstname) <= 25) {
-                if (strlen($sLastName) >= 1 and strlen($sLastName) <= 25) {
-                    if (strlen($sEmail) >= 1 and strlen($sEmail) <= 55) {
-                        if ($sPass == $sCPass) {
-                            if (ereg('^[a-zA-Z0-9\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$', $sEmail)) {
-                                if ($iGender == '1' xor $iGender == '0') {
-                                    $sVcode = escape($_POST['vcode']);
-                                    if (! isset($_SESSION['valdiation_code'])) {
-                                        // Here you can send him some verification code (by email or any another ways)
-                                        $sCode = uniqid(rand(), true);
-                                        $_SESSION['valdiation_code'] = md5($sCode);
-                                    } elseif (md5($sVcode) == $_SESSION['valdiation_code']) {
-                                        // Here you can add him to database
-                                        // mysql_query('INSERT INTO ....
-                                        // display step 3 (final step)
-                                        echo strtr(file_get_contents('templates/step3.html'), array());
-                                        exit;
-                                    } else {
-                                        $sErrors = 'Verification code is wrong';
-                                    }
-                                } else {
-                                    $sErrors = 'Gender is wrong';
-                                }
-                            } else {
-                                $sErrors = 'Email is wrong';
-                            }
-                        } else {
-                            $sErrors = 'Passwords are not the same';
-                        }
-                    } else {
-                        $sErrors = 'Address email is too long';
-                    }
-                } else {
-                    $sErrors = 'Password is too long';
-                }
-            } else {
-                $sErrors = 'Login is too long';
-            }
-            // display step 2
-            $aParams = array(
-                '{errors}' => $sErrors,
-                '{firstname}' => $sfirstname,
-                '{gender}' => $iGender,
-                '{email}' => $sEmail,
-                '{vcode}' => $sCode
-            );
-           // echo strtr(file_get_contents('templates/step2.html'), $aParams);
-            exit;
-        }
-        // unset validation code if exists
-        unset($_SESSION['valdiation_code']);
-        // draw registration page
-       // echo strtr(file_get_contents('templates/main_page.html'), array());
-        // extra useful function to make POST variables more safe
-        function escape($s) {
-            //return mysql_real_escape_string(strip_tags($s)); // uncomment in when you will use connection with database
-            return strip_tags($s);
-        }
-         
-        ?>
-
+        
+       
     <div id="choice" class="choice">
 
         <h1> <b>Are you a: </b><h1>
@@ -470,7 +268,8 @@
 
     <div id="parentForm" style="display:none;">
         
-        
+
+<p id="test"></p>
                 <h1>New Parent Registration </h1>
 
             <ul id="ProgressBar">
@@ -479,29 +278,29 @@
                 <li> Work Information </li>
                 <li> Account Information </li>
             </ul>
-            <form id="Parent_Form" method="post" onsubmit="return validate_all('results');">
+            <form id="Parent_Form" method="post">
                 <fieldset>
                     <h2 class="Form_Title">  Personal Information </h2>
                     <h3 class="Form_Subtitle">Step 1 </h3>
-                    <input type="text" name="firstName" placeholder="First name" maxlength="25"  id="FirstName" onKeyUp="updatelength('FirstName', 'FirstName_length')"><br /><div id="FirstName_length"></div> 
+                    <input type="text" name="firstName" placeholder="First name" id="FirstName" required title="EX: Alfred">  
 
-                    <input type="text" name="lastName" placeholder="Last name" maxlength="25" id="LastName" onKeyUp="updatelength('LastName', 'LastName_length')"><br /><div id="LastName_length"></div> 
+                    <input type="text" name="lastName" placeholder="Last name" required title="EX:Mohaned"> 
 
-                    <input type="text" name="familyName" placeholder="Family Name" maxlength="25" id="Family_Name" onKeyUp="updatelength('Family_Name', 'Family_Name_length')"><br /><div id="Family_Name_length"></div> 
+                    <input type="text" name="familyName" placeholder="Family Name" required title="EX:Elbechbechy">
  
                     <input type="radio" name="gender" value="Male"> Male 
 
                     <input  type="radio" name="gender" value="Female"> Female 
 
-                    <input type="text" name="nationality" placeholder="Nationality" maxlength="25" id="Nationality" onKeyUp="updatelength('Nationality', 'Nationality_length')"><br /><div id="Nationality_length"></div> 
+                    <input type="text" name="nationality" placeholder="Nationality" required title="EX:Egyptian , Algerian ,.."> 
 
-                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" > 
+                    <input type="date" name="dateOfBirth" placeholder="Date of Birth" required title="EX:Month/Day/Year">
 
-                    <input type="number" name="phoneNumber" placeholder="Phone Number" maxlength="25" id="phoneNumber" onKeyUp="updatelength('phoneNumber', 'phoneNumber_length')"><br /><div id="phoneNumber_length"></div> 
+                    <input type="number"  class="Input_Number" name="phoneNumber" placeholder="Phone Number" required title="EX:012365245681" > 
 
-                    <input type="number" name="homeNumber" placeholder="Home Number" maxlength="25" id="homeNumber" onKeyUp="updatelength('homeNumber', 'homeNumber_length')"><br /><div id="homeNumber_length"></div> 
+                    <input type="number"  class="Input_Number" name="homeNumber" placeholder="Home Number" required title="EX:02-25425246"> 
 
-                    <input type="number" name="ssn" placeholder="SSN" maxlength="25" id="SSN" onKeyUp="updatelength('SSN', 'SSN_length')"><br /><div id="SSN_length"></div>
+                    <input type="number" class="Input_Number" name="ssn" placeholder="SSN" required title="EX:2954413655254429">
                     
                     <input type="button" name="backP" id="backP" value="Get Back">    
 
@@ -517,17 +316,17 @@
 
                     <input type="text" name="streetName" placeholder="Street Name">
 
-                    <input type="number" name="buildingNumber" placeholder="Building Number">
+                    <input type="number"  class="Input_Number" name="buildingNumber" placeholder="Building Number">
 
-                    <input type="number" name="flatNumber" placeholder="Flat Number">
+                    <input type="number"  class="Input_Number" name="flatNumber" placeholder="Flat Number">
 
-                    <input type="number" name="apartmentNumber" placeholder="Apartment Number">
+                    <input type="number"  class="Input_Number" name="apartmentNumber" placeholder="Apartment Number">
 
-                    <input type="number" name="postalCode" placeholder="Postal Code">
+                    <input type="number"  class="Input_Number" name="postalCode" placeholder="Postal Code">
 
-                    <input type="button" name="Previous" class="Previous" value="Previous" >
+                    <input type="button"  class="Input_Number" name="Previous" class="Previous" value="Previous" >
 
-                    <input type="button" name="Next" class="Next" value="Next" >
+                    <input type="button"  class="Input_Number" name="Next" class="Next" value="Next" >
 
 
                 </fieldset>
@@ -537,9 +336,9 @@
                     <h3 class="Form_Subtitle"> Step 3 </h3>
                     <input type="text" name="workPosition" placeholder="Work Position">
 
-                    <input type="text" name="workPlace" placeholder="Work Residence">
+                    <input type="text"  name="workPlace" placeholder="Work Residence">
 
-                    <input type="number" name="workNumber" placeholder="Work Number">
+                    <input type="number"  class="Input_Number" name="workNumber" placeholder="Work Number">
 
                     <input type="button" name="Previous" class="Previous" value="Previous" >
 
@@ -551,10 +350,10 @@
                     <h2 class="Form_Title">  Account Information </h2>
                     <h3 class="Form_Subtitle">Final Step </h3>
 
-                    <input type="text" name="email"  attr.id="email" placeholder="Email" onBlur="checkAvailability()"><br>
+                    <input type="email" name="email"  attr.id="email" placeholder="Email" onBlur="checkAvailability()"><br>
                     <div id="msg"></div>
 
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password"  name="password" placeholder="Password">
 
                     <input type="password" name="confirmPassword" placeholder="Confirm Password">
 
@@ -563,18 +362,6 @@
                     <input type="submit" name="registerParent" value="register">
 
                 </fieldset>
-
-        </form>
-
-        <form action="../php/registration.php" method="post">
-        <input type="hidden" name="firstName" value="{firstName}">
-        <input type="hidden" name="lastname" value="{lastname}">
-        <input type="hidden" name="familyname" value="{familyname}"> 
-        <input type="hidden" name="nationality" value="{nationality}"> 
-        <input type="hidden" name="phonenumber" value="{phonenumber}">
-        <input type="hidden" name="homenumber" value="{homenumber}">
-        <input type="hidden" name="nationality" value="{nationality}"> 
-        <input type="hidden" name="ssn" value="{ssn}">
 
         </form>
 
@@ -854,79 +641,14 @@ $(".registerParent").click(function(){
 })
       </script>
 
-      <!--/////////////////////////////////////////////////////////////////////////-->
-      <style>
-          form {
-02
-	    background-color: #555;
-03
-	    display: block;
-04
-	    padding: 15px;
-05
-	}
-06
-	input[type=text], input[type=submit] {
-07
-	    -moz-border-radius: 2px;
-08
-	    -ms-border-radius: 2px;
-09
-	    -o-border-radius: 2px;
-10
-	    -webkit-border-radius: 2px;
-11
-	    border-radius: 2px;
-12
-	}
-13
-	input[type=text], input[type=password], select {
-14
-	    background-color: rgb(246, 254, 231);
-15
-	    border-color: rgb(180, 207, 94);
-16
-	    border-style: solid;
-17
-	    border-width: 1px;
-18
-	    font-size: 16px;
-19
-	    height: 25px;
-20
-	    margin-right: 10px;
-21
-	    width: 200px;
-22
-	}
-23
-	input[type=submit]{
-24
-	    cursor: pointer;
-25
-	    font-size: 16px;
-26
-	    height: 35px;
-27
-	    padding: 5px;
-28
-	}
-29
-	input.wrong {
-30
-	    border-color: rgb(180, 207, 94);
-31
-	    background-color: red;
-32
-	}
-33
-	input.correct {
-34
-	    border-color:green);
-35
-	    background-color: rgb(220, 251, 164);
-36
-	}
-      </style>
+<style>
+/* webkit deh bt-remove el arrows up and down */
+    .Input_Number::-webkit-inner-spin-button, 
+    .Input_Number::-webkit-outer-spin-button
+    { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+    </style>
 
 </html>
