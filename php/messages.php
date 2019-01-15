@@ -30,6 +30,7 @@ function displayAppointmentDetails($conn,$toUserId)
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
    AND messagetest.message='Invitation'
+   AND toChildId=4
    ";
   $resultDisplayAppointmentDetails= mysqli_query($conn,$sqlDisplayAppointmentDetails);
 
@@ -75,6 +76,7 @@ function displayAppointmentInvitation($conn,$toUserId)
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
    AND messagetest.message='Interview For Child'
+
    ";
   $resultDisplayInvitationDetails= mysqli_query($conn,$sqlDisplayInvitationDetails);
 
@@ -329,7 +331,7 @@ if (isset($_SESSION['username']))
   else if($_SESSION['toUserId']!=0){
     $toUserId= $_SESSION['toUserId'];
     
-   
+   echo '<a href="displaychilds.php">choose child</a>';
   displayResult2($conn,$toUserId);
   sendInvitation($conn,$toUserId);
   sendAppointment($conn,$toUserId);
