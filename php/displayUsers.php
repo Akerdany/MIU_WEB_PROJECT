@@ -16,6 +16,7 @@
             $(document).ready(function(){
                 $("#search").click(function(){
                     $("#form").fadeOut("fast");
+                    $("#buttondivision").fadeIn(3000);
                     $("#searchForm").fadeIn(3000);
                 });
             });
@@ -23,6 +24,7 @@
             $(document).ready(function(){
                 $("#getBack").click(function(){
                     $("#searchForm").hide();
+                    $("#buttondivision").hide();
                     $("#form").show("slow");
                 });
             });
@@ -46,13 +48,15 @@
             session_start();
             require("sidebar.php");
         ?>
-        <div id="body" name="body">
-            <br>
+        <div id="body" name="body"><br>
             <div id="searchForm" style="display:none;">
                 <form name="sForm" action="" id="sForm" method="post">
                     <input id="Search_Textfield" type="text" name="searchBar" >
                     <input id="Search_Button" type="submit" name="search"><br><br>
                 </form> 
+            </div>   
+
+            <div id="buttondivision" style="display:none;">
                 <button id="getBack" name="getBack">Get Back</button>
             </div>   
 
