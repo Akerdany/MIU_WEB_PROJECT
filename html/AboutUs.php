@@ -49,7 +49,7 @@
     </div>
     <div class="Middle_Of_Page">
     <img id="Kids_Pictures" src="../pictures/kids1.jpg" alt="kids" height="500" width="900"> 
-    <p style="Background-color:white; border-radius: 7px;">Activities:</P>
+    <p style="Background-color:white; border-radius: 15px;  padding: 5px; "><b>Activities:</b></P>
     <p1>Kids have to use their energy in useful way.</P1>
     <p2>Next</P2>
     
