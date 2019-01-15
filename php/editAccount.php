@@ -126,8 +126,8 @@
             <input type="text" name="lastName" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
 
             <button id='editPassword' name='editPassword' type='button'>Edit your Password</button>
-            <input type="submit" name="submit" value="Save">
-            <input type="submit" name="deleteAccount" value="Delete your Account">
+            <input  id='Submit'type="submit" name="submit" value="Save">
+            <input type="Submit" name="deleteAccount" value="Delete your Account">
         </form>
     </div>
     </fieldset>
@@ -193,7 +193,27 @@ body
     cursor: pointer;
     width: 200px;
 }
-#Change_Password_Button , #getBack
+
+
+#Submit_Button
+{
+    background-color: linen;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#Submit_Button:hover 
+    {
+        background-color:white;
+        opacity: 2.5;
+    }
+
+
+#Change_Password_Button , #getBack 
 {
     background-color: bisque;
     color: black;
@@ -208,7 +228,7 @@ body
     cursor: pointer;
     width: 200px;  
 }
-#Submit_Button:hover , #Change_Password_Button:hover , #getBack:hover  /*when standing on the buttons*/
+#Submit_Button:hover , #Change_Password_Button:hover , #getBack:hover ,#editPassword:hover /*when standing on the buttons*/
 {
 background-color:linen;
 opacity: 2.5;
