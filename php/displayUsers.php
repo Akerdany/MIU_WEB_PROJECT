@@ -27,16 +27,16 @@
                 });
             });
 
-            function search(){
-                jQuery.ajax({
-                    url: "displayUsers.php",
-                    data: 'search='+$("#Search_Textfield").val(),
-                    type: "POST",
-                    success: function(data){
-                        $("#result").html(data);
-                    }
-                });
-            } 
+            // function search(){
+            //     jQuery.ajax({
+            //         url: "display.php",
+            //         data: 'search='+$("#Search_Textfield").val(),
+            //         type: "POST",
+            //         success: function(data){
+            //             $("#result").html(data);
+            //         }
+            //     });
+            // } 
         </script>
         
     </head>
@@ -48,11 +48,13 @@
         ?>
         <div id="body" name="body">
             <br>
-            <form name="searchForm" action="" id="searchForm" method="post" style="display:none;">
-                <input  id="Search_Textfield"type="text" name="searchBar" >
-                <input id="Search_Button" type="submit" id="submit" name="submit" value="Search" onclick="search()"><br><br>
+            <div id="searchForm" style="display:none;">
+                <form name="sForm" action="" id="sForm" method="post">
+                    <input id="Search_Textfield" type="text" name="searchBar" >
+                    <input id="Search_Button" type="submit" name="search"><br><br>
+                </form> 
                 <button id="getBack" name="getBack">Get Back</button>
-            </form>    
+            </div>   
 
             <!-- <button id="forward" name="forward" onclick="window.location.href='display.php'">Search</button> -->
         <div id="form" name="form">    
@@ -153,7 +155,6 @@
 
                         $count = 0;
                         $ActID = $_POST['checkbox'];
-                        
 		                foreach ($ActID as $keys => $value){
                               
                             $ActSql = "UPDATE user SET statusId='2' WHERE id = $value";
@@ -171,7 +172,7 @@
                     }
 
                     if($count == count($ActID)){
-                        echo "Account Declined Successfully</br>";
+                        echo "Account Activated Successfully</br>";
                         echo "<a href='displayUsers.php'> Refresh </a>";
                     }
                 }
@@ -257,4 +258,15 @@
             background-color:linen;
             opacity: 2.5;
         } 
+        #search, #Search_Button {
+        text-decoration: none;
+        border: 1px solid #ccc;
+        background-color: #efefef;
+        padding: 10px 15px;
+        -moz-border-radius: 11px;
+        -webkit-border-radius: 11px;
+        border-radius: 11px;
+        text-shadow: 0 1px 0 #FFFFFF;
+        }
+
 </style>
