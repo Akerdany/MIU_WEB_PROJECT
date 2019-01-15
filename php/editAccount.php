@@ -36,10 +36,16 @@
         if(isset($_POST['submit'])){
             $first = $_POST['firstName'];
             $last = $_POST['lastName'];
-            $pass = $_POST['password'];
+            $family = $_POST['familyName'];
+            $nat = $_POST['nationality'];
+            $home=$_POST['homeNumber'];
+            $work=$_POST['workNumber'];
+            $phone=$_POST['phoneNumber'];
+            $email=$_POST['email'];
             $id = $_SESSION['userId'];
 
-            mysqli_query($conn, "UPDATE user SET firstName='$first', lastName='$last', password='$pass' WHERE id='$id'");
+            mysqli_query($conn, "UPDATE user SET firstName='$first', lastName='$last', familyName='$family', nationality='$nat' 
+                            , homeTelephoneNumber='$home', work='$work', phone='$phone', email='$email' WHERE id='$id'");
 
             header("location:../html/Welcome_Page.php");
         }
@@ -108,6 +114,23 @@
             <input type="text" name="lastName" value="<?php echo $_SESSION["lastName"];?>" placeholder="Last Name.." required><br>
 
             <b> Family Name: </b>
+            <input type="text" name="familyName" value="<?php echo $_SESSION["familyName"];?>" placeholder="Family Name.."><br>
+            
+            <b> Nationality: </b>
+            <input type="text" name="nationality" value="<?php echo $_SESSION["nationality"];?>" placeholder="Nationality"><br>
+
+            <b> Home Number: </b>
+            <input type="number" name="lastNhomeNumber" value="<?php echo $_SESSION["homeNumber"];?>" placeholder="Home Number"><br>
+            
+            <b> Work Number: </b>
+            <input type="number" name="workNumbert" value="<?php echo $_SESSION["workNumber"];?>" placeholder="Work Number"><br>
+            
+            <b> Phone Number: </b>
+            <input type="number" name="phoneNumber" value="<?php echo $_SESSION["phoneNumber"];?>" placeholder="Phone Number"><br>
+
+            <b> Email: </b>
+            <input type="text" name="email" value="<?php echo $_SESSION["username"];?>" placeholder="Email"><br>
+
             <input type="text" name="lastName" value="<?php echo $_SESSION["familyName"];?>" placeholder="Family Name.." required><br>
             
             <b> Nationality: </b>
