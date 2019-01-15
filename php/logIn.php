@@ -54,6 +54,8 @@
                     $_SESSION["medicalInsuranceId"] = $tempR["medicalInsuranceId"];
                     $_SESSION["toChildId"]=0;
                     $_SESSION["toUserId"]=0;
+                    $_SESSION["SETPOST"]=false;
+
 
                 }
                 else{
