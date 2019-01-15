@@ -329,7 +329,7 @@ if (isset($_SESSION['username']))
   else if($_SESSION['toUserId']!=0){
     $toUserId= $_SESSION['toUserId'];
     
-   
+   echo '<a href="displaychilds.php">choose child</a>';
   displayResult2($conn,$toUserId);
   sendInvitation($conn,$toUserId);
   sendAppointment($conn,$toUserId);
