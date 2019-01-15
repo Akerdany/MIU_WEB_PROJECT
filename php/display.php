@@ -1,3 +1,15 @@
+    <script>
+            function search(){
+                jQuery.ajax({
+                    url: "displayUsers.php",
+                    data: 'search='+$("#Search_Textfield").val(),
+                    type: "POST",
+                    success: function(data){
+                        $("#result").html(data);
+                    }
+                });
+            } 
+        </script>
 
     <form name="search" action="" id="search" method="post">
         <input  id="Search_Textfield"type="text" name="searchBar" >
