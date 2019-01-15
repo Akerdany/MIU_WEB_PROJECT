@@ -66,6 +66,49 @@ function displayAppointmentDetails($conn,$toUserId)
       </div>';//////////////////////////////////////////here////////////////////////////////////////////////////////////
   }
 }
+function displayAppointmentInvitation($conn,$toUserId)
+{
+  $sqlDisplayInvitationDetails="  SELECT messagetest.InvitationDate
+   FROM user INNER JOIN messagetest
+  ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
+   AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
+   AND messagetest.message='Interview For Child'
+   ";
+  $resultDisplayInvitationDetails= mysqli_query($conn,$sqlDisplayInvitationDetails);
+
+ 
+  while ($row= mysqli_fetch_assoc($resultDisplayInvitationDetails)) {
+  echo '  
+      <div class="container">
+  
+      
+      <button type="button"  data-toggle="modal" data-target="#myModal" style="  Background-color:yellow;
+      border-radius: 15px; 
+       padding: 5px; ">Invitation details</button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Interview Details</h4>
+            </div>
+            <div class="modal-body">
+              <p>"'.$row['InvitationDate'].'"</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      </div>';//////////////////////////////////////////here////////////////////////////////////////////////////////////
+  }
+}
 function getMessages($conn,$toUserId)
 {
 	
@@ -117,6 +160,24 @@ function getMessages($conn,$toUserId)
    
  
    }
+ }
+}
+//check this
+function sendInvitation($conn,$toUserId)
+ {
+ if(isset($_POST['Send_Invitation']))
+ {
+   $_SESSION['SETPOST']=true;
+   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`)
+   VALUES ("","Interview For Child","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfInvitation"].'",0)
+   ';
+   if(mysqli_query($conn,$sqlInvitation))
+   {
+   
+ 
+   }
+ 
+
  }
 }
  //invitationSql ends
@@ -176,7 +237,7 @@ function displayResult2($conn,$toUserId)
   if(isset($_SESSION['toUserId']))
   {
   //include 'sendInvitation.php';
-  if($_SESSION['SETPOST']==true){
+ // if($_SESSION['SETPOST']==true){
   echo"<form id='formSendAppointment' method='post' action=''>";
   echo'<input type="date" name="dateOfAppointment" placeholder="Date of Appointment" >'; 
   echo"<td><input type='submit' id='Send_Appointment' name='Send_Appointment'  form='formSendAppointment' value='Send Appointment'><td>";
@@ -184,8 +245,16 @@ function displayResult2($conn,$toUserId)
   // echo' <button type="button"  name="sendInvitation" 
   //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
       echo"</form>";
-  }
-  echo $_SESSION['SETPOST'];
+ // }
+  echo"<form id='formSendInvitation' method='post' action=''>";
+  echo'<input type="date" name="dateOfInvitation" placeholder="Date of Invitation" >'; 
+  echo"<td><input type='submit' id='Send_Invitation' name='Send_Invitation'  form='formSendInvitation' value='Send Invitation'><td>";
+
+  // echo' <button type="button"  name="sendInvitation" 
+  //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
+      echo"</form>";
+  //echo $_SESSION['SETPOST'];
+  displayAppointmentInvitation($conn,$toUserId);
   displayAppointmentDetails($conn,$toUserId);
   }
 echo'
@@ -256,6 +325,7 @@ if (isset($_SESSION['username']))
     
    
   displayResult2($conn,$toUserId);
+  sendInvitation($conn,$toUserId);
   sendAppointment($conn,$toUserId);
     getMessages($conn,$toUserId);
     getOthersMessages($conn,$toUserId);
@@ -271,7 +341,7 @@ if (isset($_SESSION['username']))
       displayMessageArea();
  
 
- $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+// $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 /*if( $_SESSION['page'] =="http://127.0.0.1:8080/MIU_Web_Project/php/DisplayingMessageToManager.php"){
   $sql300 = "UPDATE `message` SET `seen` = '1'";
    $result300= mysqli_query($conn,$sql300);
