@@ -138,6 +138,8 @@
                         <th>Medical Problems</th>
                         <th>Disability</th>
                         <th>Parent Name</th>
+                        <th>Edit</th>
+                        <th>Comment</th>
                         </tr>";
 
                     //if the user is a Manager he'll see all the children in the nursery
