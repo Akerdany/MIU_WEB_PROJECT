@@ -4,6 +4,12 @@ body
     background-image: linear-gradient( snow,pink);
  
 }
+.whiteBox
+{
+    Background-color:white;
+     border-radius: 15px; 
+      padding: 5px;
+}
 .Schedules
 {
     background-color: hotpink;  

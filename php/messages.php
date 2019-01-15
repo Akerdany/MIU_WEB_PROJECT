@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <link rel='stylesheet' href='../css/style1.css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style media="screen"  >
   *{margin: 0px; padding:0px;}
   #main{ width: 100%; height: 570px; margin: 40px auto}
@@ -15,12 +18,54 @@
 
 
 <?php
-
+//to hide send appointment
 date_default_timezone_set('Africa/Cairo');
 
   session_start();
     include("Database_Connection.php");
+function displayAppointmentDetails($conn,$toUserId)
+{
+  $sqlDisplayAppointmentDetails="  SELECT messagetest.InvitationDate
+   FROM user INNER JOIN messagetest
+  ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
+   AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
+   AND messagetest.message='Invitation'
+   ";
+  $resultDisplayAppointmentDetails= mysqli_query($conn,$sqlDisplayAppointmentDetails);
 
+ 
+  while ($row= mysqli_fetch_assoc($resultDisplayAppointmentDetails)) {
+  echo '  
+      <div class="container">
+  
+      
+      <button type="button"  data-toggle="modal" data-target="#myModal" style="  Background-color:yellow;
+      border-radius: 15px; 
+       padding: 5px; ">details</button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Appointment Details</h4>
+            </div>
+            <div class="modal-body">
+              <p>"'.$row['InvitationDate'].'"</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      </div>';//////////////////////////////////////////here////////////////////////////////////////////////////////////
+  }
+}
 function getMessages($conn,$toUserId)
 {
 	
@@ -58,6 +103,23 @@ function getMessages($conn,$toUserId)
 }
 
 }
+ // invitationSql
+ function sendAppointment($conn,$toUserId)
+ {
+ if(isset($_POST['Send_Appointment']))
+ {
+   $_SESSION['SETPOST']=true;
+   $sqlInvitation='INSERT INTO `messagetest` (`id`, `message`,`userId`,`toUserId`,`date`,`InvitationDate`,`seen`)
+   VALUES ("","Invitation","'.$_SESSION["userId"].'","'.$_SESSION["toUserId"].'","'.date('Y-m-d H:i:s').'","'.$_POST["dateOfAppointment"].'",0)
+   ';
+   if(mysqli_query($conn,$sqlInvitation))
+   {
+   
+ 
+   }
+ }
+}
+ //invitationSql ends
 function setMessages($conn,$toUserId)
 {
   $date=$_POST['date'];
@@ -102,7 +164,7 @@ echo'
   ';
 }
 
-function displayResult2($toUserId)
+function displayResult2($conn,$toUserId)
 {
 
   echo "<div class='comment-box'><p>";
@@ -114,6 +176,7 @@ function displayResult2($toUserId)
   if(isset($_SESSION['toUserId']))
   {
   //include 'sendInvitation.php';
+  if($_SESSION['SETPOST']==true){
   echo"<form id='formSendAppointment' method='post' action=''>";
   echo'<input type="date" name="dateOfAppointment" placeholder="Date of Appointment" >'; 
   echo"<td><input type='submit' id='Send_Appointment' name='Send_Appointment'  form='formSendAppointment' value='Send Appointment'><td>";
@@ -121,6 +184,9 @@ function displayResult2($toUserId)
   // echo' <button type="button"  name="sendInvitation" 
   //     id="sendingInvitation"  onclick="submitform()">send Invitation</button>';
       echo"</form>";
+  }
+  echo $_SESSION['SETPOST'];
+  displayAppointmentDetails($conn,$toUserId);
   }
 echo'
      <button onclick="ReloadingPage()">Reload page</button>';
@@ -182,25 +248,28 @@ function displayMessageArea()
 }
 if (isset($_SESSION['username']))
 
-{ if($_SESSION['toUserId']==0)
+{ 
+  if($_SESSION['toUserId']==0)
   displayResult1();
-  if($_SESSION['toUserId']!=0){
+  else if($_SESSION['toUserId']!=0){
     $toUserId= $_SESSION['toUserId'];
-
-  
-  displayResult2($toUserId);
-
+    
+   
+  displayResult2($conn,$toUserId);
+  sendAppointment($conn,$toUserId);
     getMessages($conn,$toUserId);
     getOthersMessages($conn,$toUserId);
-
+   
       if (Isset($_POST['submit']))
        {
         setMessages($conn,$toUserId);
 
        }
+
       }
     
       displayMessageArea();
+ 
 
  $_SESSION['page'] ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 /*if( $_SESSION['page'] =="http://127.0.0.1:8080/MIU_Web_Project/php/DisplayingMessageToManager.php"){
@@ -219,6 +288,10 @@ else
 }
 
 ?>
+
+
+  
+
 </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="../js/Reload.js"></script>
