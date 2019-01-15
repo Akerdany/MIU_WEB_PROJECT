@@ -21,7 +21,8 @@ function setComments($conn)
 {
   $sql= "SELECT user.email,user.id,comments.*
   FROM user
-  INNER JOIN comments ON user.id=comments.userId";
+  INNER JOIN comments ON user.id=comments.userId
+  AND comments.toChildId='".$_SESSION["toChildId"]."'";
   $result= mysqli_query($conn,$sql);
   while ($row=mysqli_fetch_assoc($result)) {
   echo "<div class='comment-box'><p>";
