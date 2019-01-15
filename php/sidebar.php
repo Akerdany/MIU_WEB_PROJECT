@@ -52,6 +52,7 @@
     <body>
     <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href='../html/Welcome_Page.php'>Home</a><br>
             <?php
                 if($_SESSION['typeId']==1){
                     echo"<a href='../php/displayChilds.php'>Display Childs Data</a><br>";
