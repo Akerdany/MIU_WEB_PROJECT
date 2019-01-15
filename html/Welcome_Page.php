@@ -53,8 +53,22 @@
 
         </div>
     </div>
+<p><b>Student Registration:</b>  It helps in easy registration of students and effectively maintaining the record of the same. </p>
+<img src="https://www.skolaro.com/wp-content/uploads/2017/08/phone.png" alt="Phone" /></span></a>
 
-    <div class="Rest_Of_Page">
+<p><img src="http://www.myischool.in/wp-content/uploads/2015/05/norton-safe-web.png" alt="norton-safe-web"width="100" height="65"/></p>
+
+<div class="call_section">
+	<div class="container">
+    	<div class="row">
+            
+            
+        </div>
+    </div>
+</div>
+
+   
+<div class="Rest_Of_Page">
        <div class="slideshow-container">
 
               <div class="mySlides fade">
@@ -67,14 +81,7 @@
             </div>
 
        <div class="mySlides fade">
-                <div class="numbertext"></div>
-               <!-- <img src="../pictures/Children2.jpg" style="width:100%" style="height:1305px">-->
-            </div>
 
-        <div class="mySlides fade">
-                <div class="numbertext"></div>
-              <!--  <img src="../pictures/Children.jpg" style="width:100%" style="height:1305px">-->
-            </div>
      
 
     </div>
