@@ -30,6 +30,7 @@ function displayAppointmentDetails($conn,$toUserId)
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
    AND messagetest.message='Invitation'
+   AND toChildId=4
    ";
   $resultDisplayAppointmentDetails= mysqli_query($conn,$sqlDisplayAppointmentDetails);
 
@@ -75,6 +76,7 @@ function displayAppointmentInvitation($conn,$toUserId)
   ON user.id=messagetest.userId AND '".$_SESSION["userId"]."'=messagetest.userId 
    AND '".$_SESSION["toUserId"]."'=messagetest.toUserId
    AND messagetest.message='Interview For Child'
+
    ";
   $resultDisplayInvitationDetails= mysqli_query($conn,$sqlDisplayInvitationDetails);
 
